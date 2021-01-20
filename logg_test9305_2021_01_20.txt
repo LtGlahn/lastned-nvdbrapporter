@@ -1,0 +1,190 @@
+Antallsukses for 3  Skjerm 39 stk
+Lengdesuksess for 3 Skjerm 2663.44m
+FEIL AREAL! 3 Skjerm v4=2911.675,  V2=7259.67  V3=7259.67
+        {'Beskrivelse': 'Skjerm', 'objtype': 3, 'withCount': True, 'withLengthPreferingFromAttribute': 1296, 'withAreaFromAttributeOrCrossSection': [1352, 9823]}
+Antallsukses for 5  Rekkverk 1792 stk OBS: Samme objekt inngår i flere tellinger i V2 rapport
+FEIL LENGDE! 5 Rekkverk v4=236527.79214296048,  V2=236959.79  V3=236527.81 OBS: Samme objekt inngår i flere tellinger i V2 rapport
+        {'Beskrivelse': 'Rekkverk', 'objtype': 5, 'withCount': True, 'withLengthPreferingFromAttribute': 1298}
+Antallsukses for 7  Gjerde 288 stk
+Lengdesuksess for 7 Gjerde 17281.827784934285m
+Arealsuksess for 7 Gjerde 26821.586865717632m^2
+Antallsukses for 9  Kantstein 652 stk OBS: Samme objekt inngår i flere tellinger i V2 rapport
+Lengdesuksess for 9 Kantstein 50277.794317468215m
+Antallsukses for 14  Rekkverksende, Ettergivende 250 stk
+Antallsukses for 15  Grøntanlegg Grasdekker 360 stk
+Lengdesuksess for 15 Grøntanlegg Grasdekker 32295.56m
+Arealsuksess for 15 Grøntanlegg Grasdekker 179976.0m^2
+Antallsukses for 20  Kantstolper 55 stk OBS: Samme objekt inngår i flere tellinger i V2  V3 rapport
+Lengdesuksess for 20 Kantstolper 26465.230000000003m
+--- Null data for 21 Permanente Brøytestikk i V2-rapporten for dette kontraktsområdet
+Antallsukses for 22  Ferist 8 stk
+Antallsukses for 23  Vegbom 36 stk
+Antallsukses for 24  Skiltportaler 3 stk
+Antallsukses for 25  Leskur 156 stk
+--- Null data for 26 Lekeapparat i V2-rapporten for dette kontraktsområdet
+Antallsukses for 27  Avfallsbeholdere 67 stk OBS: Samme objekt inngår i flere tellinger i V2  V3 rapport
+Antallsukses for 28  Utemøbler 80 stk OBS: Samme objekt inngår i flere tellinger i V2  V3 rapport
+Antallsukses for 29  Strøsandkasse 8 stk
+^[[1;5DAntallsukses for 37  Kanalisering primærveg 28 stk
+Antallsukses for 37  Kanalisering sekundærveg 50 stk
+Antallsukses for 37  Vegkryss 244 stk
+Lengdesuksess for 37 Vegkryss 0m
+Antallsukses for 39  Rasteplass 22 stk
+--- Null data for 40 Snuplass i V2-rapporten for dette kontraktsområdet
+Antallsukses for 42  Kollektivtrafikkterminaler 3 stk
+Antallsukses for 43  Parkeringsområde 20 stk
+Lengdesuksess for 43 Parkeringsområde 0m
+Arealsuksess for 43 Parkeringsområde 8272m^2
+Antallsukses for 44  Kontroll- og veieplasser 7 stk
+Antallsukses for 45  Bomstasjon 3 stk
+Antallsukses for 47  Busslomme 394 stk
+Lengdesuksess for 47 Busslomme 20348.5m
+FEIL AREAL! 47 Busslomme v4=2181.2200000000003,  V2=3979.8  V3=3979.8
+        {'Beskrivelse': 'Busslomme', 'objtype': 47, 'withFilter': 'ro -> attributeMatches(ro, 1257, 3200)', 'withCount': True, 'withLengthPreferingFromAttribute': 1307, 'withAreaFromAttributeOrCrossSection': [8317, 2239]}
+Antallsukses for 47  Trafikklomme u/busslomme 136 stk
+Lengdesuksess for 47 Trafikklomme u/busslomme 6551.68m
+FEIL AREAL! 47 Trafikklomme u/busslomme v4=1049.0,  V2=2259.0  V3=2259.0
+        {'Beskrivelse': 'Trafikklomme u/busslomme', 'objtype': 47, 'withFilter': 'ro -> !attributeMatches(ro, 1257, 3200)', 'withCount': True, 'withLengthPreferingFromAttribute': 1307, 'withAreaFromAttributeOrCrossSection': [8317, 2239]}
+Antallsukses for 48  Fortau 131 stk
+Lengdesuksess for 48 Fortau 6745.49m
+FEIL AREAL! 48 Fortau v4=13296.426,  V2=13392.46  V3=13392.46
+        {'Beskrivelse': 'Fortau', 'objtype': 48, 'withCount': True, 'withLengthPreferingFromAttribute': 11268, 'withAreaFromCrossSection': 2241, 'junk_FEILID_withAreaFromAttributeOrCrossSection': [1368, 2241]}
+Antallsukses for 49  Trafikkøyer 65 stk
+Lengdesuksess for 49 Trafikkøyer 3179.9400000000005m
+Arealsuksess for 49 Trafikkøyer 7830.8m^2
+Antallsukses for 60  Alle NVDB-data av typen "Bru" (dvs fra fagsystem Brutus) 280 stk OBS: Samme objekt inngår i flere tellinger i V2 rapport
+FEIL LENGDE! 60 Alle NVDB-data av typen "Bru" (dvs fra fagsystem Brutus) v4=13162.78,  V2=13367.47  V3=13162.779999999999 OBS: Samme objekt inngår i flere tellinger i V2 rapport
+        {'Beskrivelse': 'Alle NVDB-data av typen "Bru" (dvs fra fagsystem Brutus)', 'objtype': 60, 'withCount': True, 'withLengthPreferingFromAttribute': 1313}
+Antallsukses for 60  Ferjekai registrert som bru i NVDB 13 stk
+Antallsukses for 62  Mur 1338 stk OBS: Samme objekt inngår i flere tellinger i V2 rapport
+Lengdesuksess for 62 Mur 60602.22035596546m
+FEIL AREAL! 62 Mur v4=143850.30490974837,  V2=216039.16  V3=216039.16999999998 OBS: Samme objekt inngår i flere tellinger i V2 rapport
+        {'Beskrivelse': 'Mur', 'objtype': 62, 'withCount': True, 'withLengthPreferingFromAttribute': 1315, 'withAreaFromAttributeOrCrossSection': [3950, 1582]}
+Antallsukses for 64  Kaier 4 stk
+Antallsukses for 65  Bygninger 52 stk
+Antallsukses for 66  Skredoverbygg 3 stk
+Lengdesuksess for 66 Skredoverbygg 301.0m
+Antallsukses for 67  Tunneler 27 stk
+Lengdesuksess for 67 Tunneler 46185.0m
+Antallsukses for 72  Fjellsikringsutstyr 508 stk
+Lengdesuksess for 72 Fjellsikringsutstyr 71698.57m
+Arealsuksess for 72 Fjellsikringsutstyr 43445.0m^2
+Antallsukses for 78  Lukka drenering 458 stk
+Lengdesuksess for 78 Lukka drenering 64963.299999999996m
+Antallsukses for 79  Stikkrenne 3437 stk
+Antallsukses for 80  Grøft, terrenggrøft 20 stk
+Lengdesuksess for 80 Grøft, terrenggrøft 1133.57m
+Antallsukses for 80  Grøft. untatt terrenggrøft 753 stk OBS: Samme objekt inngår i flere tellinger i V2 rapport
+Lengdesuksess for 80 Grøft. untatt terrenggrøft 233975.77999999997m
+Antallsukses for 83  Kum, Alle NVDB-data 4424 stk
+Antallsukses for 83  Kum, Hjelpesluk 62 stk
+Antallsukses for 83  Kum, ikke tilknyttet lukket dren. 5 stk
+Antallsukses for 83  Kum, tilknyttet lukket drenering 489 stk
+Antallsukses for 85  Pumpestasjon 3 stk OBS: Samme objekt inngår i flere tellinger i V2  V3 rapport
+FEIL ANTALL! 86 Belysningsstrekning v4=122,  V2=123 V3=123 OBS: Samme objekt inngår i flere tellinger i V2  V3 rapport
+        {'Beskrivelse': 'Belysningsstrekning', 'objtype': 86, 'withCount': True, 'withLengthFromRoadnet': True}
+Lengdesuksess for 86 Belysningsstrekning 69763.33m
+Antallsukses for 95  Skiltportaler (Skiltpkt) 7 stk
+Antallsukses for 96  Informasjonstavle 5 stk
+Antallsukses for 96  Skilt, utvendig belysning 1 stk
+Antallsukses for 96  Skilt, innvendig belysning 299 stk
+Antallsukses for 96  Skilt, uten belysning 5684 stk
+Antallsukses for 96  Skiltplate, Alle NVDB-data unntatt tunnelmarkering 5146 stk
+Antallsukses for 96  Tunnelmarkering 838 stk
+Antallsukses for 97  Skilt, variable 74 stk
+--- Null data for 98 Kilometerstolpe i V2-rapporten for dette kontraktsområdet
+Antallsukses for 99  Alle NVDB-data for Vegoppmerking, langsgående 2024 stk
+Lengdesuksess for 99 Alle NVDB-data for Vegoppmerking, langsgående 968031.2m
+Antallsukses for 99  Vegbanereflektorer 1 stk
+Lengdesuksess for 99 Vegbanereflektorer 306.24m
+Antallsukses for 107  Værutsatt veg 1 stk
+Lengdesuksess for 107 Værutsatt veg 11783.57m
+Antallsukses for 153  Værstasjon 10 stk
+Antallsukses for 162  ATK-punkt 4 stk
+--- Null data for 166 Teledybdemåler i V2-rapporten for dette kontraktsområdet
+Antallsukses for 167  Tellesløyfer 14 stk
+Antallsukses for 172  Trafikkdelere 110 stk
+Lengdesuksess for 172 Trafikkdelere 5958.73m
+Antallsukses for 199  Grøntanlegg Trær 287 stk OBS: Samme objekt inngår i flere tellinger i V2  V3 rapport
+Antallsukses for 208  Oppsamlingsbasseng 1 stk
+Antallsukses for 234  Voll 43 stk
+Lengdesuksess for 234 Voll 5654.47m
+--- Null data for 241 Dekke, Betong i V2-rapporten for dette kontraktsområdet
+--- Null data for 241 Dekke, Grus i V2-rapporten for dette kontraktsområdet
+--- Null data for 241 Dekke, Stein i V2-rapporten for dette kontraktsområdet
+Antallsukses for 243  Toalettskåler 10 stk OBS: Samme objekt inngår i flere tellinger i V2  V3 rapport
+Antallsukses for 269  Vegskulder/vegkant 13 stk
+Lengdesuksess for 269 Vegskulder/vegkant 823.8799999999999m
+Antallsukses for 274  Grøntanlegg Beplantninger 16 stk
+Lengdesuksess for 274 Grøntanlegg Beplantninger 273.52m
+Arealsuksess for 274 Grøntanlegg Beplantninger 1260m^2
+--- Null data for 290 Telehiv i V2-rapporten for dette kontraktsområdet
+Antallsukses for 291  Viltrekk 23 stk
+Lengdesuksess for 291 Viltrekk 30042.0m
+Antallsukses for 301  Kantklippareal 953 stk
+Lengdesuksess for 301 Kantklippareal 557580.29m
+FEIL AREAL! 301 Kantklippareal v4=2198190.09,  V2=2213276.1  V3=2213276.11
+        {'Beskrivelse': 'Kantklippareal', 'objtype': 301, 'withCount': True, 'withLengthFromRoadnet': True, 'withAreaFromAttributeOrCrossSection': [11312, 9969]}
+Ingen telling av antall for 301 Kantklippareal, årlig anbefalt areal
+FEIL AREAL! 301 Kantklippareal, årlig anbefalt areal v4=2198190.09,  V2=2213276.1  V3=2213276.11
+        {'Beskrivelse': 'Kantklippareal, årlig anbefalt areal', 'objtype': 301, 'withAreaFromAttributeOrCrossSection': [11312, 9969], 'YearlyGrassCuttingAreaPreset': True}
+Antallsukses for 318  Snø- og isrydding 325 stk
+Lengdesuksess for 318 Snø- og isrydding 40676.21m
+Arealsuksess for 318 Snø- og isrydding 0.0m^2
+--- Null data for 319 Kolonnestrekning i V2-rapporten for dette kontraktsområdet
+Antallsukses for 342  Trafikkspeil 1 stk
+--- Null data for 451 Sykkelparkering i V2-rapporten for dette kontraktsområdet
+Antallsukses for 482  Tellepunkt 61 stk
+--- Null data for 498 Viltskremmere/varslere i V2-rapporten for dette kontraktsområdet
+Antallsukses for 511  Grøntanlegg Busker 50 stk OBS: Samme objekt inngår i flere tellinger i V2  V3 rapport
+Lengdesuksess for 511 Grøntanlegg Busker 1994.82m
+Arealsuksess for 511 Grøntanlegg Busker 8559.0m^2
+Antallsukses for 519  Vegoppmerking, tverrgående 610 stk
+Ingen telling av antall for 540 ÅDT (1), 0 - 500
+Lengdesuksess for 540 ÅDT (1), 0 - 500 333753.10000000003m
+Ingen telling av antall for 540 ÅDT (2), 500 - 1500
+Lengdesuksess for 540 ÅDT (2), 500 - 1500 333753.10000000003m
+Ingen telling av antall for 540 ÅDT (3), 1500 - 3000
+Lengdesuksess for 540 ÅDT (3), 1500 - 3000 333753.10000000003m
+Ingen telling av antall for 540 ÅDT (4), 3000 - 5000
+Lengdesuksess for 540 ÅDT (4), 3000 - 5000 333753.10000000003m
+Ingen telling av antall for 540 ÅDT (5), 5000 - 6000
+Lengdesuksess for 540 ÅDT (5), 5000 - 6000 333753.10000000003m
+Ingen telling av antall for 540 ÅDT (6), 6000 - 10000
+Lengdesuksess for 540 ÅDT (6), 6000 - 10000 333753.10000000003m
+Ingen telling av antall for 540 ÅDT (7), 10000 - 20000
+Lengdesuksess for 540 ÅDT (7), 10000 - 20000 333753.10000000003m
+--- Null data for 540 ÅDT (8), > 20000 i V2-rapporten for dette kontraktsområdet
+Antallsukses for 542  Støtpute 2 stk
+--- Null data for 810 Vinterdriftsklasse A i V2-rapporten for dette kontraktsområdet
+Ingen telling av antall for 810 Vinterdriftsklasse B,  Høy
+Lengdesuksess for 810 Vinterdriftsklasse B,  Høy 10605.08m
+Ingen telling av antall for 810 Vinterdriftsklasse B,  Middels
+Lengdesuksess for 810 Vinterdriftsklasse B,  Middels 84162.32m
+Ingen telling av antall for 810 Vinterdriftsklasse B, Lav
+Lengdesuksess for 810 Vinterdriftsklasse B, Lav 233107.20000000004m
+Ingen telling av antall for 810 Vinterdriftsklasse C
+Lengdesuksess for 810 Vinterdriftsklasse C 480.89m
+Ingen telling av antall for 810 Vinterdriftsklasse D
+Lengdesuksess for 810 Vinterdriftsklasse D 2398.74m
+--- Null data for 810 Vinterdriftsklasse E i V2-rapporten for dette kontraktsområdet
+--- Null data for 810 Vinterdriftsklasse GsA i V2-rapporten for dette kontraktsområdet
+Ingen telling av antall for 810 Vinterdriftsklasse GsB
+Lengdesuksess for 810 Vinterdriftsklasse GsB 53212.28m
+Ingen telling av antall for 810 Vinterdriftsklasse Sideanlegg
+Lengdesuksess for 810 Vinterdriftsklasse Sideanlegg 3332.9199999999996m
+Antallsukses for 836  Vegoppmerking, forsterket 58 stk
+Ingen telling av antall for 838 Vegbredde
+Lengdesuksess for 838 Vegbredde 308988.48m
+Arealsuksess for 838 Vegbredde 145304.67190000002m^2
+Antallsukses for 845  Fanggjerde 22 stk
+Lengdesuksess for 845 Fanggjerde 2170.2m
+Arealsuksess for 845 Fanggjerde 6924.4m^2
+--- Null data for 848 Snøskjerm i V2-rapporten for dette kontraktsområdet
+--- Null data for 849 Skredvarslingsanlegg med varsling på veg i V2-rapporten for dette kontraktsområdet
+Antallsukses for 859  Taktile Indikatorer 77 stk
+Lengdesuksess for 859 Taktile Indikatorer 14.0m
+Arealsuksess for 859 Taktile Indikatorer 14.73m^2
+Antallsukses for 875  Trapper 2 stk
+Lengdesuksess for 875 Trapper 5.0m
+--- Null data for 876 Overvannsgrøft i V2-rapporten for dette kontraktsområdet

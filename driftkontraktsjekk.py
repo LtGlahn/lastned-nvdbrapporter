@@ -1,3 +1,9 @@
+"""
+Sammenligner innholdet i V2, V3 og V4-rapporter fra 
+[NVDB rapporter / driftskontrakter](https://www.vegdata.no/produkter-og-tjenester/nvdb-rapporter/driftskontrakt-rapporter/)
+
+Koden nedenfor regner ut antall, lengde og areal fra V4-rapporten og sammenligner med data fra V2 og V3-rapportene
+"""
 
 
 import fnmatch
@@ -10,6 +16,25 @@ import pdb
 
 import pandas as pd 
 import numpy as np
+
+"""
+De egenskapene som kan finnes i reglene: 
+
+'withCount', 
+'withCountFrom', 
+'withFilter', 
+'withLengthFromRoadnet', 
+'withLengthPreferingFromAttribute', 
+'withCustomPresetsNumberInRange', 
+'withFeatureLabel', 
+'withAreaFromAttribute', 
+'withAreaFromAttributeOrCrossSection', 
+'withAreaFromCrossSection',
+'withAverage', 
+'YearlyGrassCuttingAreaPreset'
+
+"""
+
 
 def finnrapportfil( mappenavn, sokestreng  ): 
     """

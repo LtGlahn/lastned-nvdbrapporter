@@ -126,7 +126,7 @@ Lengdesuksess for 301 Kantklippareal 557580.29m
 FEIL AREAL! 301 Kantklippareal v4=2198190.09,  V2=2213276.1  V3=2213276.11
         {'Beskrivelse': 'Kantklippareal', 'objtype': 301, 'withCount': True, 'withLengthFromRoadnet': True, 'withAreaFromAttributeOrCrossSection': [11312, 9969]}
 Ingen telling av antall for 301 Kantklippareal, årlig anbefalt areal
-FEIL AREAL! 301 Kantklippareal, årlig anbefalt areal v4=2198190.09,  V2=2213276.1  V3=2213276.11
+FEIL AREAL! 301 Kantklippareal, årlig anbefalt areal v4=2207333.09,  V2=2213276.1  V3=2213276.11
         {'Beskrivelse': 'Kantklippareal, årlig anbefalt areal', 'objtype': 301, 'withAreaFromAttributeOrCrossSection': [11312, 9969], 'YearlyGrassCuttingAreaPreset': True}
 Antallsukses for 318  Snø- og isrydding 325 stk
 Lengdesuksess for 318 Snø- og isrydding 40676.21m

@@ -296,6 +296,45 @@ def parserfilteregler( regl, dakat ):
 
     return regel 
 
+def applyYearlyGrassCuttingAreaPreset( anbefalt_intervall ):
+    """
+    Regner ut "klippefaktor" [0.25, 0.5, 1, 2] som arealet skal justeres med. 
+    """
+    faktor = 1
+
+    if   anbefalt_intervall == '2 g. pr år': 
+        faktor = 2
+    elif anbefalt_intervall == '1 g. pr år': 
+        faktor = 1
+    elif anbefalt_intervall == '2.hvert år': 
+        faktor = 0.5
+    elif anbefalt_intervall == '3-5. hvert år': 
+        faktor = 0.25
+    elif anbefalt_intervall and isinstance(anbefalt_intervall, str) and len( anbefalt_intervall ) > 1: 
+        print( f'RAR DATAVERDI: Kantklippareal, anbefalt areal klarer ikke tolke egenskapverdi {anbefalt_intervall}')
+
+    return faktor 
+
+def kantklippspesial( v4, regl, dakat  ):
+    """
+    For kantklippareal har vi regelen YearlyGrassCuttingAreaPreset
+    """
+    v4 = deepcopy(v4)
+
+    if not 'YearlyGrassCuttingAreaPreset' in regl: 
+        print( f'Kantklippspesial: Mangler YearlyGrassCuttingAreaPreset i regel {regl}'   )        
+        return v4 
+
+    if not 'withAreaFromAttributeOrCrossSection' in regl: 
+        print( f'Kantklippspesial: Mangler withAreaFromAttributeOrCrossSection i regel {regl} '   )        
+        return v4
+
+    arealvariabel = dakat['egenskaper'][str(regl['withAreaFromAttributeOrCrossSection'][0])]['navn']
+    v4['kantklippfaktor'] = v4['Kantklipp, anbefalt intervall'].apply( lambda x : applyYearlyGrassCuttingAreaPreset( x )  )
+    v4[arealvariabel] = v4[arealvariabel] * v4['kantklippfaktor']
+
+    return v4 
+
 def arealtelling( v4, regl, dakat): 
 
     lengdevariabel = None
@@ -306,6 +345,11 @@ def arealtelling( v4, regl, dakat):
         lengdevariabel = dakat['egenskaper'][str( regl['withLengthPreferingFromAttribute'] ) ]['navn']
 
     v4kopi = laglengder( v4, lengdevariabel=lengdevariabel) # har føyd til kolonne syntetiskLengde 
+
+    # Spesialregel for årlig beregning av kantklipp 
+    if 'YearlyGrassCuttingAreaPreset' in regl: 
+        v4kopi = kantklippspesial( v4, regl, dakat )
+
 
     # 'withAreaFromAttribute' Bruker areal-egenskap (hvis den finnes), ingen backup
     # egenskapID for areal

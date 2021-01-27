@@ -13,6 +13,7 @@ import json
 import requests 
 from copy import deepcopy
 import pdb
+from datetime import datetime 
 
 import pandas as pd 
 import numpy as np
@@ -56,9 +57,13 @@ def finnrapportfilnavn( mappenavn ):
     filnavn = {    
         'v2rapp' : finnrapportfil( mappenavn, '*V2*.XLSX' ), 
         'v3rapp' : finnrapportfil( mappenavn, '*V3*.xlsx' ), 
-        'v4rapp' : finnrapportfil( mappenavn, '*V4*.XLSX' )
+        'v4rapp' : finnrapportfil( mappenavn, '*V4*.XLSX' ),
     }
 
+    try: 
+        filnavn['funkra'] = finnrapportfil( mappenavn, '*StandardVedleggsfil*.xlsx') 
+    except FileNotFoundError: 
+        pass 
     return filnavn 
 
 def aggregertmengdesummering( mindf ): 
@@ -118,6 +123,243 @@ def lesV3( filnavn ):
     altsammen = pd.concat( allefaner )
 
     return altsammen 
+
+def kjenteproblem(skrivutalt=False, skrivutproblem=False ):
+
+
+    vinterfeil =  'Spesialregel for vinterdiftsklasse og ÅDT feiler med for små verdier'
+    arealfeil1 = 'Spesialregel areal = Lengde x Bredde feiler'
+    dakatfeil1  = 'Regeldefinisjon er utdatert ihht datakatalog, må justeres'
+    vekgryss    = 'Telling av vegkryss og avledede verdier (primærveg, sekundærveg) feiler'
+
+    problem = { 'ATK-punkt'									                : '', 
+                'Alle NVDB-data av typen "Bru" (dvs fra fagsystem Brutus)'	: '', 
+                'Alle NVDB-data for Vegoppmerking, langsgående'				: '', 
+                'Avfallsbeholdere'											: '', 
+                'Belysningsstrekning'										: '', 
+                'Bomstasjon'												: '', 
+                'Busslomme'													: arealfeil1, 
+                'Bygninger'													: '', 
+                'Fanggjerde'												: arealfeil1, 
+                'Ferist'													: '', 
+                'Ferjekai registrert som bru i NVDB'						: '', 
+                'Fjellsikringsutstyr'										: '', 
+                'Fortau'													: '', 
+                'Gjerde'													: '', 
+                'Grøft, terrenggrøft'										: '', 
+                'Grøft. untatt terrenggrøft'								: '', 
+                'Grøntanlegg Beplantninger'									: '', 
+                'Grøntanlegg Busker'										: '', 
+                'Grøntanlegg Grasdekker'									: '', 
+                'Grøntanlegg Trær'											: '', 
+                'Informasjonstavle'											: '', 
+                'Kaier'														: '', 
+                'Kanalisering primærveg'									: vekgryss, 
+                'Kanalisering sekundærveg'									: vekgryss, 
+                'Kantklippareal'											: arealfeil1, 
+                'Kantklippareal, årlig anbefalt areal'						: arealfeil1 + ' og muligens spesialregel for "Anbefalt årlig" feiler', 
+                'Kantstein'													: '', 
+                'Kantstolper'												: '', 
+                'Kollektivtrafikkterminaler'								: '', 
+                'Kontroll- og veieplasser'									: '', 
+                'Kum, Alle NVDB-data'										: '', 
+                'Kum, Hjelpesluk'											: '', 
+                'Kum, ikke tilknyttet lukket dren.'							: '', 
+                'Kum, tilknyttet lukket drenering'							: '', 
+                'Leskur'													: '', 
+                'Lukka drenering'											: '', 
+                'Mur'														: arealfeil1, 
+                'Oppsamlingsbasseng'										: '', 
+                'Parkeringsområde'											: '', 
+                'Pumpestasjon'												: '', 
+                'Rasteplass'												: '', 
+                'Rekkverk'													: '', 
+                'Rekkverksende, Ettergivende'								: '', 
+                'Skilt, innvendig belysning'								: '', 
+                'Skilt, uten belysning'										: '', 
+                'Skilt, utvendig belysning'									: '', 
+                'Skilt, variable'											: '', 
+                'Skiltplate, Alle NVDB-data unntatt tunnelmarkering'		: '', 
+                'Skiltportaler'												: '', 
+                'Skiltportaler (Skiltpkt)'									: '', 
+                'Skjerm'													: arealfeil1, 
+                'Skredoverbygg'												: '', 
+                'Snø- og isrydding'											: '', 
+                'Stikkrenne'												: '', 
+                'Strøsandkasse'												: '', 
+                'Støtpute'													: '', 
+                'Taktile Indikatorer'										: arealfeil1, 
+                'Tellepunkt'												: '', 
+                'Tellesløyfer'												: '', 
+                'Toalettskåler'												: '', 
+                'Trafikkdelere'												: '', 
+                'Trafikklomme u/busslomme'									: '', 
+                'Trafikkspeil'												: '', 
+                'Trafikkøyer'												: '', 
+                'Trapper'													: '', 
+                'Tunneler'													: '', 
+                'Tunnelmarkering'											: '', 
+                'Utemøbler'													: '', 
+                'Vegbanereflektorer'										: '', 
+                'Vegbom'													: '', 
+                'Vegbredde'													: dakatfeil1, 
+                'Vegkryss'													: vekgryss, 
+                'Vegoppmerking, forsterket'									: '', 
+                'Vegoppmerking, tverrgående'								: '', 
+                'Vegskulder/vegkant'										: '', 
+                'Viltrekk'													: '', 
+                'Vinterdriftsklasse B,  Høy'								: vinterfeil, 
+                'Vinterdriftsklasse B,  Middels'							: vinterfeil, 
+                'Vinterdriftsklasse B, Lav'									: vinterfeil, 
+                'Vinterdriftsklasse C'										: vinterfeil, 
+                'Vinterdriftsklasse D'										: vinterfeil, 
+                'Vinterdriftsklasse GsB'									: vinterfeil, 
+                'Vinterdriftsklasse Sideanlegg'								: vinterfeil, 
+                'Voll'														: '', 
+                'Værstasjon'												: '', 
+                'Værutsatt veg'												: '',
+                'ÅDT (1), 0 - 500'										    : vinterfeil, 
+                'ÅDT (2), 500 - 1500'										: vinterfeil, 
+                'ÅDT (3), 1500 - 3000'										: vinterfeil, 
+                'ÅDT (4), 3000 - 5000'										: vinterfeil, 
+                'ÅDT (5), 5000 - 6000'										: vinterfeil, 
+                'ÅDT (6), 6000 - 10000' 									: vinterfeil, 
+                'ÅDT (7), 10000 - 20000'									: vinterfeil
+            }
+
+    if skrivutalt: 
+        print( json.dumps( problem, indent=4 ))
+    elif skrivutproblem: 
+        p2 = { x for x in problem if problem[x] != ''}
+        print( json.dumps( p2, indent=4 ))
+    else: 
+        return problem 
+
+def oversettfunkranavn(skrivutalt=False, sjekkulike=False, sjekkugyldige=False, skrivutgyldige=False ):
+    oversett = { 'ATK-punkt'									            : 'ATK-punkt', 
+                'Alle NVDB-data av typen "Bru" (dvs fra fagsystem Brutus)'	: 'Bruer', 
+                'Alle NVDB-data for Vegoppmerking, langsgående'				: False, 
+                'Avfallsbeholdere'											: 'Avfallsbeholdere', 
+                'Belysningsstrekning'										: False, 
+                'Bomstasjon'												: 'Bomstasjon', 
+                'Busslomme'													: 'Busslomme', 
+                'Bygninger'													: 'Bygninger', 
+                'Fanggjerde'												: 'Fanggjerde', 
+                'Ferist'													: 'Ferist', 
+                'Ferjekai registrert som bru i NVDB'						: False, 
+                'Fjellsikringsutstyr'										: 'Bergsikringsutstyr', 
+                'Fortau'													: 'Fortau', 
+                'Gjerde'													: 'Gjerde (unntatt fanggjerde)', 
+                'Grøft, terrenggrøft'										: False, 
+                'Grøft. untatt terrenggrøft'								: False, 
+                'Grøntanlegg Beplantninger'									: 'Grøntanlegg Beplantninger', 
+                'Grøntanlegg Busker'										: 'Grøntanlegg Busker', 
+                'Grøntanlegg Grasdekker'									: 'Grøntanlegg Grasdekker', 
+                'Grøntanlegg Trær'											: 'Grøntanlegg Trær', 
+                'Informasjonstavle'											: 'Informasjonstavler', 
+                'Kaier'														: 'Kaier', 
+                'Kanalisering primærveg'									: False, 
+                'Kanalisering sekundærveg'									: False, 
+                'Kantklippareal'											: False, 
+                'Kantklippareal, årlig anbefalt areal'						: False, 
+                'Kantstein'													: 'Kantstein', 
+                'Kantstolper'												: 'Kantstolper', 
+                'Kollektivtrafikkterminaler'								: False, 
+                'Kontroll- og veieplasser'									: 'Kontroll- og veieplasser', 
+                'Kum, Alle NVDB-data'										: False, 
+                'Kum, Hjelpesluk'											: False, 
+                'Kum, ikke tilknyttet lukket dren.'							: 'Kum ikke tilknyttet lukket dren.', 
+                'Kum, tilknyttet lukket drenering'							: 'Kum tilknyttet lukket drenering', 
+                'Leskur'													: 'Leskur', 
+                'Lukka drenering'											: False, 
+                'Mur'														: 'Mur', 
+                'Oppsamlingsbasseng'										: 'Oppsamlingsbasseng', 
+                'Parkeringsområde'											: 'Parkeringsplass', 
+                'Pumpestasjon'												: 'Pumpestasjon', 
+                'Rasteplass'												: 'Rasteplass', 
+                'Rekkverk'													: 'Rekkverk', 
+                'Rekkverksende, Ettergivende'								: False, 
+                'Skilt, innvendig belysning'								: False, 
+                'Skilt, uten belysning'										: False, 
+                'Skilt, utvendig belysning'									: False, 
+                'Skilt, variable'											: 'Skilt, variable', 
+                'Skiltplate, Alle NVDB-data unntatt tunnelmarkering'		: 'Skilt', 
+                'Skiltportaler'												: 'Skiltportaler', 
+                'Skiltportaler (Skiltpkt)'									: 'Skiltportaler (Skiltpkt)', 
+                'Skjerm'													: 'Skjerm (unntatt snøskjerm)', 
+                'Skredoverbygg'												: 'Skredoverbygg', 
+                'Snø- og isrydding'											: 'Snø og isrydding', 
+                'Stikkrenne'												: 'Stikkrenne', 
+                'Strøsandkasse'												: 'Strøsandkasse', 
+                'Støtpute'													: 'Støtpute', 
+                'Taktile Indikatorer'										: False, 
+                'Tellepunkt'												: 'Tellepunkt', 
+                'Tellesløyfer'												: False, 
+                'Toalettskåler'												: 'Toalettskåler', 
+                'Trafikkdelere'												: 'Trafikkdelere', 
+                'Trafikklomme u/busslomme'									: 'Trafikklomme (u/busslomme)', 
+                'Trafikkspeil'												: 'Trafikkspeil', 
+                'Trafikkøyer'												: 'Trafikkøy', 
+                'Trapper'													: False, 
+                'Tunneler'													: 'Tunnel', 
+                'Tunnelmarkering'											: 'Tunnelmarkering', 
+                'Utemøbler'													: 'Utemøbler', 
+                'Vegbanereflektorer'										: 'Vegbanereflektorer', 
+                'Vegbom'													: 'Bommer', 
+                'Vegbredde'													: False, 
+                'Vegkryss'													: 'Vegkryss', 
+                'Vegoppmerking, forsterket'									: False, 
+                'Vegoppmerking, tverrgående'								: False, 
+                'Vegskulder/vegkant'										: 'Vegskulder/vegkant', 
+                'Viltrekk'													: 'Vilttrekk', 
+                'Vinterdriftsklasse B,  Høy'								: 'Vinterdriftsklasse B, Høy', 
+                'Vinterdriftsklasse B,  Middels'							: 'Vinterdriftsklasse B, Middels', 
+                'Vinterdriftsklasse B, Lav'									: 'Vinterdriftsklasse B, Lav', 
+                'Vinterdriftsklasse C'										: 'Vinterdriftsklasse C', 
+                'Vinterdriftsklasse D'										: 'Vinterdriftsklasse D', 
+                'Vinterdriftsklasse GsB'									: False, 
+                'Vinterdriftsklasse Sideanlegg'								: 'Vinterdriftsklasse Sideanlegg', 
+                'Voll'														: 'Voll', 
+                'Værstasjon'												: 'Værstasjon', 
+                'Værutsatt veg'												: False
+            }
+    
+    if sjekkulike: 
+        sub = { x : oversett[x] for x in oversett if oversett[x] and x != oversett[x] }
+        for x in sub: 
+            print( f"{x} => {sub[x]} ")
+
+    elif sjekkugyldige: 
+        sub = { x : oversett[x] for x in oversett if not oversett[x] }
+        for x in sub: 
+            print( f"{x} ")
+
+    elif skrivutalt: 
+        for x in oversett: 
+            print( f"{x} => {oversett[x]} ")
+
+    elif skrivutgyldige:
+        sub = { x : oversett[x] for x in oversett if oversett[x] } 
+        for x in sub: 
+            print( f"{x} => {oversett[x]} ")
+
+    else: 
+        return oversett
+
+def lesfunkraV3( filnavn, giMegV3=False ):
+    """
+    Leser såkalt "standard vedleggsfil" og henter V2-fanen 
+    """
+    funkraV3 = pd.read_excel( filnavn, sheet_name='V3 Sum pr veg', header=6)
+
+    funkraV3.dropna( subset=['Veg'], inplace=True )
+
+    funkraV3 = funkraV3[ funkraV3['Veg'] != 'Veg' ]
+    funkraV3 = funkraV3[ funkraV3['Beskrivelse'] != 'Total veglengde (inkl. armer og ramper)' ]
+    if not giMegV3: # Returnerer den orginale V3-fila 
+        funkraV3 = funkraV3.groupby('Beskrivelse').agg( { 'Antall' : sum, 'Lengde (km)' : sum, 'm2' : sum } ).reset_index()
+
+    return funkraV3 
 
 def oppfriskdakat( filnavn='rapportdefinisjon.json'): 
 
@@ -226,8 +468,6 @@ def tellv4antall( v4, regl, dakat  ):
         v4_antallObjekt['v4'] = v4['Filteringshjelp'].sum() 
         v4_antallObjekt['v2'] = len( v4tellv2( v4 ) ) 
         v4_antallObjekt['v3'] = len( v4tellv3( v4 ) ) 
-
-
 
     elif 'withCountFrom' in regl: 
         v4_antallObjekt['v4'] = v4['Filteringshjelp'].sum() 
@@ -488,11 +728,109 @@ def sjekkrapportdefinisjon( velgregel=None, skrivalt=True, objektTyper=None ):
                     else: 
                         print( f"\tKlarte ikke oversette til datakatalog-egenskaper: {var} {regl[var]} ")
 
-                    
+def feilprint( overskrift, v2sum, v3sum, v4sum, prosentavvik, regl, funkratall='', kommentar=''  ): 
+    """
+    Lager markdown-sammendrag av avvik
+    """
 
+    if funkratall:
+        funkratall=f"\n\nFrå Funkra={funkratall} "
+
+    errstr = f"""
+
+# Avvik {overskrift} {prosentavvik} => {regl['objtype']} {regl['Beskrivelse']}
+
+```
+V2={int(v2sum):>12}
+V3={int(v3sum):>12}
+V4={int(v4sum):>12} {funkratall}
+```
+{kommentar}
+Regler: {regl}
+
+"""
+    return errstr
+
+def lagProsentTekst( svarA, svarB, fasit, avrunding=2, uendeligtekst='Inf' ):
+    prosentavvik = max([ 100*abs(svarA-fasit )/fasit, 100*abs(svarB-fasit)/fasit ]) 
+    prosent_tekst = uendeligtekst
+    if fasit == 0:
+        if svarA == 0 and svarB == 0: 
+            prosent_tekst = "0"
+            prosentavvik = 0
+        else: 
+            prosentavvik = 10000
+
+    else: 
+        prosent_tekst = f"{round(prosentavvik, avrunding)}"   
+
+    return (prosentavvik, prosent_tekst)
+
+def funkrasjekk( funkraV3, v2sum, v3sum, v4sum, regl,  antall=False, lengde=False, areal=False, prosentterskel=1 ): 
+    """
+    Skriver ut resultatet av sammenligning med gml Funkra (hvis det finnes data) 
+    Hvis avvik > prosent returnerer tekststreng 
+    OBS! Kun en av parametrene antall, lende eller areal av gangen
+    """
+    svar = ''
+
+    if antall: 
+        kolonnenavn = 'Antall'
+        beskrivelse = 'antall'
+        benevning = 'stk'
+    elif lengde: 
+        kolonnenavn = 'Lengde (km)'
+        beskrivelse = 'lengde'
+        benevning = 'm'
+    elif areal:
+        kolonnenavn = 'm2'
+        beskrivelse = 'areal'
+        benevning = 'm^2'
+    else: 
+        return svar
+
+    babel = oversettfunkranavn()
+
+    if regl['Beskrivelse'] in babel: 
+        funkraNavn = babel[regl['Beskrivelse']]
+        if funkraNavn: 
+            funkratall = float( funkraV3[ funkraV3['Beskrivelse'] == funkraNavn ][kolonnenavn] ) 
+            if lengde: 
+                funkratall = funkratall * 1000
+
+            if funkratall != 0: # Antar det ikke finnes noe data her når tallet == 0
+
+                svar =  _intern_funkrasjekk( funkratall, 'v2', beskrivelse, v2sum, regl, benevning, v2sum, v3sum, v4sum, antall=antall)
+                svar += _intern_funkrasjekk( funkratall, 'v3', beskrivelse, v3sum, regl, benevning, v2sum, v3sum, v4sum, antall=antall)
+                svar += _intern_funkrasjekk( funkratall, 'v4', beskrivelse, v4sum, regl, benevning, v2sum, v3sum, v4sum, antall=antall)
+
+    return svar 
+
+def _intern_funkrasjekk(  funkratall, rapporttype, beskrivelse, tall, regl, benevning, v2sum, v3sum, v4sum, antall=False ):
+    svar = ''
+    prosentterskel = 1
+    prosenttegn = '%'
+    if antall: 
+        prosentavvik = abs( funkratall - tall )
+        prosent_tekst = f"{prosentavvik} " 
+        prosentterskel = 0.5
+        prosenttegn = 'stk'
+    else: 
+        (prosentavvik, prosent_tekst) = lagProsentTekst(funkratall, funkratall, tall )
+    if prosentavvik  < prosentterskel: 
+        print( f"Funkrasjekk for {rapporttype} suksess {regl['objtype']} {regl['Beskrivelse']} {beskrivelse}={int(tall)}{benevning} "  )
+    else: 
+        print( f"FUNKRASJEKK for {rapporttype} FEILER {beskrivelse} {regl['objtype']} {regl['Beskrivelse']}", 
+                f"Ny {rapporttype}={int(tall)}{benevning}, Funkra={int(funkratall)}{benevning} "  )
+        # print(f"\t{regl} " )
+        svar = feilprint( f'FUNKRASJEKK for {rapporttype} FEILER {beskrivelse}', v2sum, v3sum, v4sum, f'{prosent_tekst}{prosenttegn}', 
+                            regl, funkratall=f"{round(funkratall)}" )    
+    return svar 
 
 def sjekkmengder( mappenavn, objekttyper ): 
 
+    feilmeldinger = f"\n# Oppsummering av avvik\n\n{datetime.now().strftime('%Y-%m-%d %H:%M:%S') }" 
+    feilmelding_nulldata = ""
 
     filnavn = finnrapportfilnavn( mappenavn )
 
@@ -512,6 +850,12 @@ def sjekkmengder( mappenavn, objekttyper ):
     v4indeks = list( v4oversikt['Unnamed: 0'])[5:]
     v4indeks =  {  int( n.split('-')[0] )  : n  for n in v4indeks }
 
+    # Leser Funkraliste hvis den finnes 
+    if 'funkra' in filnavn: 
+        funkraV3 = lesfunkraV3( filnavn['funkra'])
+    else: 
+        funkraV3 = None 
+
     if isinstance( objekttyper, int):
         objekttyper = [ objekttyper ]
 
@@ -526,76 +870,89 @@ def sjekkmengder( mappenavn, objekttyper ):
 
             if regl['Beskrivelse'] not in v2sum: 
 
-                print( f"--- Null data for {objekttype} {regl['Beskrivelse']} i V2-rapporten for dette kontraktsområdet ")
+                errstr =  f"--- Null data for {objekttype} {regl['Beskrivelse']} i V2-rapporten for dette kontraktsområdet "
+                feilmelding_nulldata += '\n' + errstr  
+                print( errstr )
 
             else: 
 
+                kommentar = ''
                 v4 = deepcopy( v4data ) 
                 # Filtrerer på egenskapverdi 
                 v4 = egenskapfilter(v4, regl, dakat[str(objekttype)])
 
-# 
-# Sjekker antall ----- 
-# 
+                ######################################################################################################
+                # Sjekker antall ----- 
                 if 'withCount' in regl or 'withCountFrom' in regl: 
                     v4_antallObjekt = tellv4antall( v4, regl, dakat[str(objekttype)]  )
+                    kommentar = v4_antallObjekt['kommentar']
 
 
                     if 'v4' in  v4_antallObjekt and 'v3' in v4_antallObjekt and 'v2' in v4_antallObjekt:
                         
-                        if v4_antallObjekt['v2'] == v2sum[regl['Beskrivelse']]['totalAntall'] and v4_antallObjekt['v3'] == v3sum[regl['Beskrivelse']]['totalAntall']: 
-                            print( f"Antallsukses for {objekttype}  {regl['Beskrivelse']} {v4_antallObjekt['v4']} stk {v4_antallObjekt['kommentar'] } ")
+                        v2svar = v2sum[regl['Beskrivelse']]['totalAntall']
+                        v3svar = v3sum[regl['Beskrivelse']]['totalAntall']
+                        if v4_antallObjekt['v2'] == v2svar and v4_antallObjekt['v3'] == v3svar: 
+                            print( f"Antallsukses \t {objekttype}  {regl['Beskrivelse']} {v4_antallObjekt['v4']} stk {v4_antallObjekt['kommentar'] } ")
                         else: 
-                            print( f"FEIL ANTALL! {objekttype} {regl['Beskrivelse']} v4={v4_antallObjekt['v4']},", 
-                                    f" V2={v2sum[regl['Beskrivelse']]['totalAntall']} V3={v3sum[regl['Beskrivelse']]['totalAntall']}", 
-                                    f"{v4_antallObjekt['kommentar']}" )
-                            print( f"\t{regl}")
+                            print( f"FEIL ANTALL! {objekttype} {regl['Beskrivelse']} V2={v2svar}, V3={v3svar} V4={v4_antallObjekt['v4']} {v4_antallObjekt['kommentar']}" )
+                            # print( f"\t{regl}")
+                        if isinstance( funkraV3, pd.core.frame.DataFrame):
+                            feilmeldinger += funkrasjekk( funkraV3, v2svar, v3svar, v4_antallObjekt['v4'], regl,  antall=v4_antallObjekt['v4']  )
 
                     else: 
                         print( f"---- TELLING FEILER {objekttype} {regl} ")
-
-                else: 
-                    print( f"Ingen telling av antall for {objekttype} {regl['Beskrivelse']} ")
+                        feilmeldinger += feilprint( 'antall', v2svar, v3svar, v4_antallObjekt['v4'], '', regl )
 
 
-#
-# Sjekker lengde -----------
-# 
-
+                ######################################################################################################
+                # Sjekker lengde -----------
                 if 'withLengthFromRoadnet' in regl or 'withLengthPreferingFromAttribute' in regl or 'withFeatureLabel' in regl: 
                     v4lengde = lengdetelling( v4, regl, dakat[str(objekttype)])
 
-                    v2diff = v2sum[regl['Beskrivelse']]['totalLengde'] - v4lengde
-                    v3diff = v3sum[regl['Beskrivelse']]['totalLengde'] - v4lengde
-                    toleranse = 1
-                    
-                    if v3diff <= toleranse and v2diff <= toleranse: 
-                        print(f"Lengdesuksess for {objekttype} {regl['Beskrivelse']} {v4lengde}m " )
+                    v2svar = v2sum[regl['Beskrivelse']]['totalLengde'] 
+                    v3svar = v3sum[regl['Beskrivelse']]['totalLengde'] 
+                    (prosentavvik, prosent_tekst) = lagProsentTekst(v2svar, v3svar, v4lengde )
+
+                    if prosentavvik < 1:
+                        print(f"Lengdesuksess \t {objekttype} {regl['Beskrivelse']} {v4lengde} avvik= {prosent_tekst}% " )
                     else: 
-                        print( f"FEIL LENGDE! {objekttype} {regl['Beskrivelse']} v4={v4lengde},", 
-                                f" V2={v2sum[regl['Beskrivelse']]['totalLengde']} ", 
-                                f"V3={v3sum[regl['Beskrivelse']]['totalLengde']}", 
-                                f"{v4_antallObjekt['kommentar']}" )
-                        print( f"\t{regl}")
+                        print( f"FEIL LENGDE avvik={prosent_tekst}% ! {objekttype} {regl['Beskrivelse']} V2={v2svar}, V3={v3svar}, V4={v4lengde} {kommentar}" )
+                        # print( f"\t{regl}")
+                        feilmeldinger += feilprint( 'lengde', v2svar, v3svar, v4lengde, f"{prosent_tekst}%", regl )
 
-#
-# Sjekker Areal -----------
-# 
+                    if isinstance( funkraV3, pd.core.frame.DataFrame):
+                        feilmeldinger += funkrasjekk( funkraV3, v2svar, v3svar, v4lengde, regl,  lengde=v4lengde  )
 
-                  
+
+                ######################################################################################################
+                # Sjekker Areal ----------- 
                 if 'withAreaFromAttribute' in regl or 'withAreaFromAttributeOrCrossSection' in regl or 'withAreaFromCrossSection' in regl:
                     v4areal = arealtelling( v4, regl, dakat[str(objekttype)])
-
-                    v2diff = v2sum[regl['Beskrivelse']]['totalAreal'] - v4areal
-                    v3diff = v3sum[regl['Beskrivelse']]['totalAreal'] - v4areal
-                    toleranse = 1
-
-                    if v3diff <= toleranse and v2diff <= toleranse: 
-                        print(f"Arealsuksess for {objekttype} {regl['Beskrivelse']} {v4areal}m^2 " )
+                    v2svar = v2sum[regl['Beskrivelse']]['totalAreal']
+                    v3svar = v3sum[regl['Beskrivelse']]['totalAreal']
+                    (prosentavvik, prosent_tekst) = lagProsentTekst(v2svar, v3svar, v4areal )
+                    if prosentavvik < 1:                   
+                        print(f"Arealsuksess \t {objekttype} {regl['Beskrivelse']} {v4areal}m^2 avvik= {prosent_tekst}% " )
                     else: 
-                        print( f"FEIL AREAL! {objekttype} {regl['Beskrivelse']} v4={v4areal},", 
-                                f" V2={v2sum[regl['Beskrivelse']]['totalAreal']} ", 
-                                f"V3={v3sum[regl['Beskrivelse']]['totalAreal']}", 
-                                f"{v4_antallObjekt['kommentar']}" )
-                        print( f"\t{regl}")
-                    
+                        print( f"FEIL AREAL avvik={prosent_tekst}% ! {objekttype} {regl['Beskrivelse']}", 
+                                f" V2={round(v2svar)}, V3={round(v3svar)}, V4={round(v4areal)} {kommentar}" )
+                        # print( f"\t{regl}")
+                        feilmeldinger += feilprint( 'areal', v2svar, v3svar, v4areal, f"{prosent_tekst}%", regl )
+
+                    if isinstance( funkraV3, pd.core.frame.DataFrame):
+                        feilmeldinger += funkrasjekk( funkraV3, v2svar, v3svar, v4areal, regl,  areal=v4areal )
+
+
+    print( '\n\n', feilmeldinger)
+    print( '\n\n# Manglende data i dette kontraktsområdet\n\n', "```\n", feilmelding_nulldata, "```" )
+
+if __name__ == "__main__":
+
+    mappenavn = './testmagnus2/'
+
+    filnavn = finnrapportfilnavn( mappenavn ) 
+    v4oversikt = pd.read_excel( filnavn['v4rapp'] )  
+    v4indeks = list( v4oversikt['Unnamed: 0'])[5:] 
+    objektliste = [ int( x.split('-')[0].strip()  ) for x in v4indeks]  
+    sjekkmengder( mappenavn, objektliste )  

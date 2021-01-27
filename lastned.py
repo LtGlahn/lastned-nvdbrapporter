@@ -10,6 +10,7 @@ import requests
 import json 
 from time import sleep
 from datetime import datetime 
+import pdb 
 
 def finnKontraktsID( kontraktNavn,  kontraktType = 11750  ):
     """
@@ -43,7 +44,13 @@ def finnKontraktsID( kontraktNavn,  kontraktType = 11750  ):
     r = requests.get('https://nvdbrapportapi.atlas.vegvesen.no/rapporter/kontraktsomraader', params={ 'type' : kontraktType } )
     if r.ok: 
         data = r.json()
-        omradeId = [ x['id'] for x in data if kontraktNavn.lower() in x['navn'].lower() ]
+        omradeId =   [ x['id'] for x in data if kontraktNavn.lower() == x['navn'].lower() ]
+        if len( omradeId ) == 0: 
+            omradeId =   [ x['id'] for x in data if kontraktNavn.lower() in x['navn'].lower() ]
+
+        navnetreff = [ x       for x in data if kontraktNavn.lower() in x['navn'].lower() ]
+
+        # pdb.set_trace()
         if len( omradeId ) == 1: 
             return omradeId[0]
 
@@ -53,7 +60,6 @@ def finnKontraktsID( kontraktNavn,  kontraktType = 11750  ):
 
         elif len(omradeId) > 1: 
             print( 'Snevre inn søket: Flertydig treff på kontraktnavn', kontraktNavn, 'for kontraktstype', kontraktType )
-            print( json.dumps( data, indent=4 ))
             return None 
 
     else: 
@@ -132,7 +138,7 @@ def lastnedFlere(driftskontrakter = False, veglister=False, kostra=False, mappen
         apiurl = 'https://nvdbrapportapi.test.atlas.vegvesen.no'
 
     if not mappenavn: 
-        mappenavn = 'nedlasting_' + datetime.now().strftime( '%Y-%m-%d')
+        mappenavn = 'nedlasting_ATM_' + datetime.now().strftime( '%Y-%m-%d')
 
     t_start = datetime.now()
     
@@ -147,7 +153,7 @@ def lastnedFlere(driftskontrakter = False, veglister=False, kostra=False, mappen
 
     kontrakter = [ ]
     # kontrakter.append( '9304 Bergen' )
-    kontrakter.append( '9305 Sunnfjord' )
+    kontrakter.append( '9305 Sunnfjord 2021-2026' )
     # kontrakter.append( '0104 Ørje 2012-2020' ) 
     if driftskontrakter: 
         t0 = datetime.now()
@@ -167,6 +173,9 @@ def lastnedFlere(driftskontrakter = False, veglister=False, kostra=False, mappen
                     os.path.join( mappe, rapportType['navn'])
 
                     print( '\tTid nedlasting', mappe, rapportType['navn'], datetime.now()-t2 ) 
+
+            else: 
+                print( 'Fant ingen driftskontrakt med navn', kontr)
 
             print( 'Tid nedlasting', mappenavn, datetime.now()-t1 )
 
@@ -324,3 +333,5 @@ def lastnedveglister():
 
     # if not r.ok:  
     #     print("Feil ved henting av rapport: http", r.status_code, '\n\t', r.text, '\n\t', r.url )
+
+

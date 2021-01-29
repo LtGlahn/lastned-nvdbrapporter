@@ -21,6 +21,135 @@ from driftkontraktsjekk import lesv4, egenskapfilter, parserfilteregler
 from driftkontraktsjekk import lesregler, egenskapfilter, kjenteproblem
 from driftkontraktsjekk import kantklippspesial
 
+def oppsummerDiff_htmlfarge( mintekst ): 
+
+    # manglerFarge = 'style="background-color:#c0f0d4"'
+    manglerFarge = 'style="text-align:center;'
+    okFarge = 'style="text-align:center;background-color:#03ff5f"'
+    noeFarge = 'style="text-align:center;background-color:#fff566"'
+    myeFarge = 'style="text-align:center;background-color:#ff9999"'
+
+    if mintekst.upper() == 'BLANK' or mintekst == '-': 
+        svar = manglerFarge 
+    elif mintekst.upper() == 'OK': 
+        svar = okFarge
+    elif mintekst.upper() in  ['NOE', 'NOE AVVIK']: 
+        svar = noeFarge
+    elif mintekst.upper() in ['MYE', 'MYE AVVIK', 'STORE AVVIK']: 
+        svar = myeFarge
+    else: 
+        svar = 'style="text-align:center;'
+
+    return svar 
+
+def oppsummerDiff_skrivhtmlrad( mindict ): 
+    """
+    Tar resultatet fra oppsummerDiff og lager en rad til HTML-tabell, med fargekoder 
+
+    For noen spesifikke tekstverdiene i  "antall", "lengde" og "areal" vil vi endre bakgrunnsfarge på cellen
+    """
+
+    antallfarge = oppsummerDiff_htmlfarge( mindict['antall'] )
+    lengdeFarge = oppsummerDiff_htmlfarge( mindict['lengde'] )
+    arealFarge = oppsummerDiff_htmlfarge( mindict['areal'] )
+    
+    tableRow = (    f"<tr><td>{mindict['objtype']}</td> " 
+                    f"<td>{mindict['Beskrivelse']}</td>" 
+                    f"<td {antallfarge}>{mindict['antall']}</td> "
+                    f"<td {lengdeFarge}>{mindict['lengde']}</td>"
+                    f"<td {arealFarge}>{mindict['areal']}</td>"
+                    f"<td>{mindict['Kjent problem']}</td></tr>\n " )
+    return tableRow
+
+def oppsummerDiff( diff ): 
+    """
+    Oppsummerer en dataframe laget av "differanser" fra mengdesjekk 
+    """
+
+    antall           =  diff['antall'].max()
+    lengde           =  diff['lengde'].max()
+    areal            =  diff['areal'].max()
+    antallprosent    =  diff['antallprosent'].max()
+    lengdeprosent    =  diff['lengdeprosent'].max()
+    arealprosent     =  diff['arealprosent'].max()
+
+
+    if np.isnan( antall ): 
+        antall = '-'
+    elif antall == 0 and np.isnan( antallprosent ): 
+        antall = 'OK'
+    elif antall == 1: 
+        antall = 'Noe avvik'
+    elif antallprosent < 2: 
+        antall = 'Noe avvik'
+    elif antallprosent > 2: 
+        antall = 'Mye avvik'
+    else: 
+        antall = 'FEIL i QA'
+
+    if np.isnan( lengde ): 
+        lengde = '-'
+    elif lengde == 0 and np.isnan( lengdeprosent ): 
+        lengde = 'OK'
+    elif ~np.isnan( lengdeprosent) and lengdeprosent < 0.5: 
+        lengde = 'OK'
+    elif ~np.isnan( lengdeprosent) and lengdeprosent < 2: 
+        lengde = 'Noe avvik'
+    elif ~np.isnan( lengdeprosent) and lengdeprosent > 2: 
+        lengde = 'Store avvik'
+    else: 
+        lengde = 'FEIL i QA'
+
+
+    if np.isnan( areal ): 
+        areal = '-'
+    elif areal == 0 and np.isnan( arealprosent ): 
+        areal = 'OK'
+    elif ~np.isnan( arealprosent) and arealprosent < 0.5: 
+        areal = 'OK'
+    elif ~np.isnan( arealprosent) and arealprosent < 2: 
+        areal = 'Noe avvik'
+    elif ~np.isnan( arealprosent) and arealprosent > 2: 
+        areal = 'Store avvik'
+    else: 
+        areal = 'FEIL i QA'
+
+
+    oppsum = { 
+            'type'             :  ', '.join( list( diff['type'].unique()) ),
+            'datakilde'        : ', '.join( list( diff['datakilde'].unique()) ), 
+            'telletype'        : ', '.join( list( diff['type'].unique()) ), 
+            'Beskrivelse'      : ', '.join( list( diff['Beskrivelse'].unique()) ), 
+            'objtype'          : set( list( diff['objtype'].unique()) ),  
+            'antall'           :  antall,
+            'lengde'           :  lengde,
+            'areal'            :  areal,
+            'avvik'            : ', '.join( list( diff['avvik'].unique()) ),  
+            'Kjent problem'    : ', '.join( list( diff['Kjent problem'].unique()) )  
+    }
+
+    return oppsum
+
+
+def lagHtmlOppsummering( diff ): 
+
+    svar = (    f"# Oppsummering\n\n" 
+                f'Denne tabellen er laget ved å bruke data fra V4-tabellen og egenprodusert kode som "etterligner" beregning av V2- og V3-tabellene, for antall, lengde og areal per vegstrekning.\n\n' 
+                f'### Kjente svakheter\n\n'
+                f'Vi mistenker at egenskapsfilteret som brukes i koden vår er litt for primitivt: Det fungerer for enkle tilfeller (f.eks _"Terrenggrøft"_),'
+                f'men feiler for de mer komplekse tilfellene (f.eks "_Grøft unntatt terrenggrøft_"). Dette blir forbedret.\n\n' 
+                f'Andre _"Kjente feil"_ mener vi er feil i produksjonssystemet vårt. Feilsøking og feilretting pågår'
+                f"<table><thead><tr><td>TypeID</td><td>Beskrivelse</td><td>Antall</td><td>Lengde</td><td>Areal</td><td>Kjente feil</td></tr></thead>\n" )
+
+    for beskr in list( diff['Beskrivelse'].unique() ): 
+        oppsum = oppsummerDiff( diff[ diff['Beskrivelse'] == beskr ] )
+        htmlrad = oppsummerDiff_skrivhtmlrad( oppsum )
+        svar += htmlrad 
+    
+    svar += '</table>'
+    return svar 
+
+
 def loggTelling( telling ):
 
     if not isinstance( telling, list): 
@@ -98,10 +227,77 @@ def tellV4somV3( v3, v4, funkraV3, regl, dakat):
 
     return (tellinger, differ) 
 
+
+def tellV4somV2( v2, v4, funkraV3, regl, dakat): 
+
+    tellinger = []
+    differ =  []
+    kjent = ''
+    kjenteFeil = kjenteproblem()
+    if regl['Beskrivelse'] in kjenteFeil and kjenteFeil[regl['Beskrivelse']] != '': 
+        kjent = kjenteFeil[regl['Beskrivelse']]
+
+    v4temp = v4.copy()
+    # v4temp['E+R'] = v4temp['Vegkategori'] + 'V' + v4temp['vegnummer'].astype('str')
+
+    # Aktuelle kolonner i V2-rapporten 
+    v2kol =  [ x for x in  list( v2.columns)[3:] if not 'Unnamed' in x  ]
+    vegtyper = [ x.split('-')[0].strip() for x in v2kol ]
+    vegtyper = set( vegtyper )
+
+
+
+    for Veg in vegtyper:
+
+        v4uttrekk = None 
+        if Veg == 'E+R': 
+            v4uttrekk = v4temp[ (v4temp['Vegkategori'] == 'E') | (v4temp['Vegkategori'] == 'R' ) ]
+            v4uttrekk = v4uttrekk[ v4uttrekk['Trafikantgruppe'] == 'K' ]
+        elif Veg == 'g/s': 
+            v4uttrekk = v4temp[ v4temp['Trafikantgruppe'] == 'G' ]
+        else: 
+            print( 'IKKE IMPLEMENTERT: Kolonne', Veg, 'i V2-rapporten. FIKS OPP!')
+
+        if isinstance( v4uttrekk, pd.core.frame.DataFrame): 
+
+            tellV4 = v4mengdetelling( v4uttrekk, 'v4', 'langs-'+Veg, regl, dakat  )
+            loggTelling( tellV4 )
+            tellinger.append( tellV4 )
+
+            antallKolonne =  [ x for x in v2kol if Veg in x and 'Antall' in x][0]
+            lengdeKolonne =  [ x for x in v2kol if Veg in x and 'Lengde' in x][0]
+            arealKolonne  =  [ x for x in v2kol if Veg in x and 'Areal'  in x][0]
+
+            if regl['Beskrivelse'] in list( v2['Beskrivelse']): 
+                v2row = v2[ v2['Beskrivelse'] == regl['Beskrivelse']].iloc[0]
+
+                tellV2 = {  'type'          : 'telling',
+                            'datakilde'     : 'V2',  
+                            'telletype'     : 'langs-'+Veg, 
+                            'Beskrivelse'   : regl['Beskrivelse'], 
+                            'objtype'       : regl['objtype'], 
+                            'antall'        : v2row[antallKolonne],
+                            'lengde'        : v2row[lengdeKolonne], 
+                            'areal'         : v2row[arealKolonne], 
+                            'Kjent problem' : kjent, 
+                            'regl'          : regl  }
+                loggTelling (tellV2 )
+                tellinger.append( tellV2 )
+
+                diff  = differanser( tellV2, tellV4, regl)
+                loggTelling( diff )
+                
+                differ.append( diff )
+            else: 
+                print( 'Ingen data i V2-rapporten samsvarer med', regl['objtype'], regl['Beskrivelse'])
+
+    return (tellinger, differ) 
+
+
 def differanser( tellA, tellB, regl): 
 
     antall        = lengde       = areal        = np.nan
-    antallprosent = lendeprosent = arealprosent = np.nan
+    antallprosent = lengdeprosent = arealprosent = np.nan
     karrakter = mellomrom = kjent = ''
 
     kjenteFeil = kjenteproblem()
@@ -162,7 +358,7 @@ def differanser( tellA, tellB, regl):
                 'lengde'        : lengde, 
                 'areal'         : areal, 
                 'antallprosent' : antallprosent,
-                'lengdeprosent' : lendeprosent,
+                'lengdeprosent' : lengdeprosent,
                 'arealprosent'  : arealprosent, 
                 'avvik'         : karrakter, 
                 'Kjent problem' : kjent,
@@ -330,7 +526,10 @@ def feilObjektDefinisjon(regl):
         kjent = kjenteFeil[regl['Beskrivelse']]
 
 
-    if regl['objtype'] in [241 ]: 
+    spesial = { 241 : 'Ingen data for 241', 
+                810 : 'Summering vinterdriftsklasse feiler'}
+
+    if regl['objtype'] in [241, 810 ]: 
         antall = lengde = areal = np.nan 
         tell = { 'type'          : 'FEIL',
                 'datakilde'     : 'V2,V3,V4',  
@@ -340,7 +539,7 @@ def feilObjektDefinisjon(regl):
                 'antall'        : antall, 
                 'lengde'        : lengde, 
                 'areal'         : areal, 
-                'avvik'         : 'Ingen data for 241 ', 
+                'avvik'         : spesial[regl['objtype']], 
                 'Kjent problem'  : kjent,
                 'regl'          : regl }
         data.append( tell )
@@ -379,33 +578,50 @@ def mengdesjekk( mappenavn, objekttyper, lespickle=False, hentFunkraV3=False):
 
         for regl in regler: 
             v4data = egenskapfilter( v4data, regl, dakat[str(objekttype)] )
+
+            # Etterprøver V2-regnearket
+            (tellinger, differ) = tellV4somV2(    v2, v4data, funkraV3, regl, dakat) 
+            datarader.extend( tellinger )
+            differanser.extend( differ )
+
+            # Etterprøver V3-regnearket 
             (tellinger, differ) = tellV4somV3( v3alt, v4data, funkraV3, regl, dakat) 
             datarader.extend( tellinger )
             differanser.extend( differ )
+
+            # spesialbehanding av et par objekt som ikke plukkes opp fordi feilen gjør at de ikke finnes i listene 
             datarader.extend(    feilObjektDefinisjon(regl) )
             differanser.extend(  feilObjektDefinisjon(regl) )
             
-            
-    pdb.set_trace()
-    print('ferdig')
-
     return (datarader, differanser)
     
 if __name__ == "__main__":
 
-    mappenavn = './testmagnus2/'
-    mappenavn = './nedlasting_ATM_2021-01-279305_Sunnfjord_2021-2026/'
-    filnavn = finnrapportfilnavn( mappenavn ) 
-    v4oversikt = pd.read_excel( filnavn['v4rapp'] )  
-    v4indeks = list( v4oversikt['Unnamed: 0'])[5:] 
-    objektliste = [ int( x.split('-')[0].strip()  ) for x in v4indeks]  
-    # mengdesjekk( mappenavn, objektliste )  
 
+    # mappenavn = './nedlasting_ATM_2021-01-279305_Sunnfjord_2021-2026/'
+    # filnavn = finnrapportfilnavn( mappenavn ) 
+    # v4oversikt = pd.read_excel( filnavn['v4rapp'] )  
+    # v4indeks = list( v4oversikt['Unnamed: 0'])[5:] 
+    # objektliste = [ int( x.split('-')[0].strip()  ) for x in v4indeks]  
+    # (tellinger, differanser) = mengdesjekk( mappenavn, objektliste, lespickle=False, hentFunkraV3=False )  
+
+
+
+    mappenavn = './testmagnus2/'
     # with open( 'v4picle.pickle', 'rb' ) as f: 
     #     v4alt = pickle.load(f ) 
     # v4indeks = list( v4alt['Objektoversikt']['79 tabeller:'] )
     # objektliste = [ int( x.split('-')[0].strip()  ) for x in v4indeks]  
 
+    filnavn = finnrapportfilnavn( mappenavn ) 
+    v4oversikt = pd.read_excel( filnavn['v4rapp'] )  
+    v4indeks = list( v4oversikt['Unnamed: 0'])[5:] 
+    objektliste = [ int( x.split('-')[0].strip()  ) for x in v4indeks]  
 
     (tellinger, differanser) = mengdesjekk( mappenavn, objektliste, lespickle=False, hentFunkraV3=False )  
-    # (tellinger, differanser) = mengdesjekk( mappenavn, 241, lespickle=True, hentFunkraV3=False )  
+
+    diff = pd.DataFrame( differanser )
+    svar = lagHtmlOppsummering( diff )
+
+    with open( 'testmarkdown.md', 'w') as f:
+        f.write( svar )

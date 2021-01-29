@@ -127,10 +127,12 @@ def lesV3( filnavn ):
 def kjenteproblem(skrivutalt=False, skrivutproblem=False ):
 
 
-    vinterfeil =  'Spesialregel for vinterdiftsklasse og ÅDT feiler med for små verdier'
-    arealfeil1 = 'Spesialregel areal = Lengde x Bredde feiler'
+    vinterfeil  =  'Spesialregel for vinterdiftsklasse og ÅDT feiler med for små verdier'
+    arealfeil1  = 'Spesialregel areal = Lengde x Bredde feiler'
     dakatfeil1  = 'Regeldefinisjon er utdatert ihht datakatalog, må justeres'
     vekgryss    = 'Telling av vegkryss og avledede verdier (primærveg, sekundærveg) feiler'
+    qafeil      = 'Skal sjekkes nærmere, mistenker feil i kvalitetskontrollens egenskapfilter'
+    vegdekkefeil = 'Utdaterte regler, vi må justere ihht ny datakatalog'
 
     problem = { 'ATK-punkt'									                : '', 
                 'Alle NVDB-data av typen "Bru" (dvs fra fagsystem Brutus)'	: '', 
@@ -139,15 +141,19 @@ def kjenteproblem(skrivutalt=False, skrivutproblem=False ):
                 'Belysningsstrekning'										: '', 
                 'Bomstasjon'												: '', 
                 'Busslomme'													: arealfeil1, 
+                'Trafikklomme u/busslomme'									: arealfeil1, 
                 'Bygninger'													: '', 
+                'Dekke, Betong'												: vegdekkefeil, 
+                'Dekke, Grus'												: vegdekkefeil, 
+                'Dekke, Stein'												: vegdekkefeil, 
                 'Fanggjerde'												: arealfeil1, 
                 'Ferist'													: '', 
                 'Ferjekai registrert som bru i NVDB'						: '', 
                 'Fjellsikringsutstyr'										: '', 
                 'Fortau'													: '', 
-                'Gjerde'													: '', 
+                'Gjerde'													: arealfeil1, 
                 'Grøft, terrenggrøft'										: '', 
-                'Grøft. untatt terrenggrøft'								: '', 
+                'Grøft. untatt terrenggrøft'								: qafeil, 
                 'Grøntanlegg Beplantninger'									: '', 
                 'Grøntanlegg Busker'										: '', 
                 'Grøntanlegg Grasdekker'									: '', 
@@ -164,8 +170,8 @@ def kjenteproblem(skrivutalt=False, skrivutproblem=False ):
                 'Kontroll- og veieplasser'									: '', 
                 'Kum, Alle NVDB-data'										: '', 
                 'Kum, Hjelpesluk'											: '', 
-                'Kum, ikke tilknyttet lukket dren.'							: '', 
-                'Kum, tilknyttet lukket drenering'							: '', 
+                'Kum, ikke tilknyttet lukket dren.'							: qafeil, 
+                'Kum, tilknyttet lukket drenering'							: qafeil, 
                 'Leskur'													: '', 
                 'Lukka drenering'											: '', 
                 'Mur'														: arealfeil1, 
@@ -175,11 +181,11 @@ def kjenteproblem(skrivutalt=False, skrivutproblem=False ):
                 'Rasteplass'												: '', 
                 'Rekkverk'													: '', 
                 'Rekkverksende, Ettergivende'								: '', 
-                'Skilt, innvendig belysning'								: '', 
-                'Skilt, uten belysning'										: '', 
-                'Skilt, utvendig belysning'									: '', 
+                'Skilt, innvendig belysning'								: qafeil, 
+                'Skilt, uten belysning'										: qafeil, 
+                'Skilt, utvendig belysning'									: qafeil, 
                 'Skilt, variable'											: '', 
-                'Skiltplate, Alle NVDB-data unntatt tunnelmarkering'		: '', 
+                'Skiltplate, Alle NVDB-data unntatt tunnelmarkering'		: qafeil, 
                 'Skiltportaler'												: '', 
                 'Skiltportaler (Skiltpkt)'									: '', 
                 'Skjerm'													: arealfeil1, 
@@ -198,7 +204,7 @@ def kjenteproblem(skrivutalt=False, skrivutproblem=False ):
                 'Trafikkøyer'												: '', 
                 'Trapper'													: '', 
                 'Tunneler'													: '', 
-                'Tunnelmarkering'											: '', 
+                'Tunnelmarkering'											: qafeil, 
                 'Utemøbler'													: '', 
                 'Vegbanereflektorer'										: '', 
                 'Vegbom'													: '', 

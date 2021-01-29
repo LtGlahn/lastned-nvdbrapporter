@@ -40,6 +40,7 @@ def oppsummerDiff_htmlfarge( mintekst ):
     else: 
         svar = 'style="text-align:center;'
 
+    svar = ''
     return svar 
 
 def oppsummerDiff_skrivhtmlrad( mindict ): 
@@ -53,12 +54,12 @@ def oppsummerDiff_skrivhtmlrad( mindict ):
     lengdeFarge = oppsummerDiff_htmlfarge( mindict['lengde'] )
     arealFarge = oppsummerDiff_htmlfarge( mindict['areal'] )
     
-    tableRow = (    f"<tr><td>{mindict['objtype']}</td> " 
+    tableRow = (    f"<tr><td>{mindict['objtype']}</td>" 
                     f"<td>{mindict['Beskrivelse']}</td>" 
                     f"<td {antallfarge}>{mindict['antall']}</td> "
                     f"<td {lengdeFarge}>{mindict['lengde']}</td>"
                     f"<td {arealFarge}>{mindict['areal']}</td>"
-                    f"<td>{mindict['Kjent problem']}</td></tr>\n " )
+                    f"<td>{mindict['Kjent problem']}</td></tr>\n" )
     return tableRow
 
 def oppsummerDiff( diff ): 

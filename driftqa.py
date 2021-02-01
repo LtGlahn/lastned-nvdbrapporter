@@ -265,8 +265,6 @@ def tellV4somV2( v2, v4, funkraV3, regl, dakat):
     vegtyper = [ x.split('-')[0].strip() for x in v2kol ]
     vegtyper = set( vegtyper )
 
-
-
     for Veg in vegtyper:
 
         v4uttrekk = None 
@@ -456,8 +454,8 @@ def v4mengdetelling( v4, datakilde, telletype, regl, dakat):
     if colAreal: 
         # Finner først dem som har  - og ikke har - Areal-egenskap
         harAreal  = v4areal[ ~v4areal[colAreal].isnull() ].drop_duplicates(subset=col_id)
-        v4areal   = v4areal[ ~v4areal[colAreal].isnull() ]
         arealsum_harAreal = harAreal[colAreal].sum()
+        v4areal   = v4areal[ v4areal[colAreal].isnull() ].copy() # Har ikke areal
 
     # Finne dem tversnitt (bredde eller høyde)
     if colTverrsnitt: 
@@ -631,7 +629,7 @@ if __name__ == "__main__":
 
 
     mappenavn = './testmagnus2/'
-    mappenavn = './test_nedlasting28des2020_9305_Sunnfjord/'
+    # mappenavn = './test_nedlasting28des2020_9305_Sunnfjord/'
     # with open( 'v4picle.pickle', 'rb' ) as f: 
     #     v4alt = pickle.load(f ) 
     # v4indeks = list( v4alt['Objektoversikt']['79 tabeller:'] )
@@ -643,10 +641,10 @@ if __name__ == "__main__":
     objektliste = [ int( x.split('-')[0].strip()  ) for x in v4indeks]  
 
     # (tellinger, differanser) = mengdesjekk( mappenavn, 80, lespickle=False, hentFunkraV3=False )  
-    (tellinger, differanser) = mengdesjekk( mappenavn, objektliste, lespickle=False, hentFunkraV3=True )  
+    (tellinger, differanser) = mengdesjekk( mappenavn, objektliste, lespickle=False, hentFunkraV3=False )  
 
     diff = pd.DataFrame( differanser )
     svar = lagHtmlOppsummering( diff )
 
-    with open( 'testhtml.html', 'w') as f:
+    with open( 'oppsummering_tester.html', 'w') as f:
         f.write( svar )

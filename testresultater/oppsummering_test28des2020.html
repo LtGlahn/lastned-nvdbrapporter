@@ -15,14 +15,14 @@ td { padding:15px }
 
 <h3>Kjente svakheter</h3>
 
-<p>Vi mistenker at egenskapsfilteret som brukes i koden vår er litt for primitivt: Det fungerer for enkle tilfeller (f.eks <em>Terrenggrøft"</em>),men feiler for de mer komplekse tilfellene (f.eks <em>"Grøft unntatt terrenggrøft"</em>). Dette blir forbedret.</p>
+men feiler for de mer komplekse tilfellene (f.eks <em>"Grøft unntatt terrenggrøft"</em>). Dette blir forbedret.</p>
 
 <p>Andre <em>"Kjente feil"</em> mener vi er feil i produksjonssystemet vårt. Feilsøking og feilretting pågår.</p>
 
 <table><thead><tr><td>TypeID</td><td>Beskrivelse</td><td>Antall</td><td>Lengde</td><td>Areal</td><td>Kjente feil</td></tr></thead>
-<tr><td> {3} </td><td> Skjerm </td><td class="OK"> OK </td> <td class="OK"> OK </td><td class="myeavvik">  Store avvik </td><td> Spesialregel areal = Lengde x Bredde feiler </td></tr>
+<tr><td> {3} </td><td> Skjerm </td><td class="myeavvik"> Mye avvik </td> <td class="OK"> OK </td><td class="myeavvik">  Store avvik </td><td> Spesialregel areal = Lengde x Bredde feiler </td></tr>
 <tr><td> {5} </td><td> Rekkverk </td><td class="OK"> OK </td> <td class="OK"> OK </td><td class="neutral">  - </td><td>  </td></tr>
-<tr><td> {7} </td><td> Gjerde </td><td class="OK"> OK </td> <td class="OK"> OK </td><td class="myeavvik">  Store avvik </td><td> Spesialregel areal = Lengde x Bredde feiler </td></tr>
+<tr><td> {7} </td><td> Gjerde </td><td class="myeavvik"> Mye avvik </td> <td class="myeavvik"> Store avvik </td><td class="myeavvik">  Store avvik </td><td> Spesialregel areal = Lengde x Bredde feiler </td></tr>
 <tr><td> {9} </td><td> Kantstein </td><td class="OK"> OK </td> <td class="OK"> OK </td><td class="neutral">  - </td><td>  </td></tr>
 <tr><td> {14} </td><td> Rekkverksende, Ettergivende </td><td class="OK"> OK </td> <td class="neutral"> - </td><td class="neutral">  - </td><td>  </td></tr>
 <tr><td> {15} </td><td> Grøntanlegg Grasdekker </td><td class="OK"> OK </td> <td class="OK"> OK </td><td class="OK">  OK </td><td>  </td></tr>
@@ -42,13 +42,13 @@ td { padding:15px }
 <tr><td> {43} </td><td> Parkeringsområde </td><td class="OK"> OK </td> <td class="OK"> OK </td><td class="OK">  OK </td><td>  </td></tr>
 <tr><td> {44} </td><td> Kontroll- og veieplasser </td><td class="OK"> OK </td> <td class="neutral"> - </td><td class="neutral">  - </td><td>  </td></tr>
 <tr><td> {45} </td><td> Bomstasjon </td><td class="OK"> OK </td> <td class="neutral"> - </td><td class="neutral">  - </td><td>  </td></tr>
-<tr><td> {47} </td><td> Busslomme </td><td class="OK"> OK </td> <td class="OK"> OK </td><td class="myeavvik">  Store avvik </td><td> Spesialregel areal = Lengde x Bredde feiler </td></tr>
-<tr><td> {47} </td><td> Trafikklomme u/busslomme </td><td class="OK"> OK </td> <td class="OK"> OK </td><td class="myeavvik">  Store avvik </td><td> Spesialregel areal = Lengde x Bredde feiler </td></tr>
-<tr><td> {48} </td><td> Fortau </td><td class="OK"> OK </td> <td class="OK"> OK </td><td class="noeavvik">  Noe avvik </td><td>  </td></tr>
+<tr><td> {47} </td><td> Busslomme </td><td class="myeavvik"> Mye avvik </td> <td class="noeavvik"> Noe avvik </td><td class="myeavvik">  Store avvik </td><td> Spesialregel areal = Lengde x Bredde feiler </td></tr>
+<tr><td> {47} </td><td> Trafikklomme u/busslomme </td><td class="OK"> OK </td> <td class="OK"> OK </td><td class="OK">  OK </td><td> Spesialregel areal = Lengde x Bredde feiler </td></tr>
+<tr><td> {48} </td><td> Fortau </td><td class="myeavvik"> Mye avvik </td> <td class="OK"> OK </td><td class="OK">  OK </td><td> Spesialregel areal = Lengde x Bredde feiler </td></tr>
 <tr><td> {49} </td><td> Trafikkøyer </td><td class="OK"> OK </td> <td class="OK"> OK </td><td class="OK">  OK </td><td>  </td></tr>
 <tr><td> {60} </td><td> Alle NVDB-data av typen "Bru" (dvs fra fagsystem Brutus) </td><td class="OK"> OK </td> <td class="OK"> OK </td><td class="neutral">  - </td><td>  </td></tr>
 <tr><td> {60} </td><td> Ferjekai registrert som bru i NVDB </td><td class="OK"> OK </td> <td class="neutral"> - </td><td class="neutral">  - </td><td>  </td></tr>
-<tr><td> {62} </td><td> Mur </td><td class="OK"> OK </td> <td class="OK"> OK </td><td class="myeavvik">  Store avvik </td><td> Spesialregel areal = Lengde x Bredde feiler </td></tr>
+<tr><td> {62} </td><td> Mur </td><td class="myeavvik"> Mye avvik </td> <td class="myeavvik"> Store avvik </td><td class="myeavvik">  Store avvik </td><td> Spesialregel areal = Lengde x Bredde feiler </td></tr>
 <tr><td> {64} </td><td> Kaier </td><td class="OK"> OK </td> <td class="neutral"> - </td><td class="neutral">  - </td><td>  </td></tr>
 <tr><td> {65} </td><td> Bygninger </td><td class="OK"> OK </td> <td class="neutral"> - </td><td class="neutral">  - </td><td>  </td></tr>
 <tr><td> {66} </td><td> Skredoverbygg </td><td class="OK"> OK </td> <td class="OK"> OK </td><td class="neutral">  - </td><td>  </td></tr>
@@ -57,13 +57,13 @@ td { padding:15px }
 <tr><td> {78} </td><td> Lukka drenering </td><td class="OK"> OK </td> <td class="OK"> OK </td><td class="neutral">  - </td><td>  </td></tr>
 <tr><td> {79} </td><td> Stikkrenne </td><td class="OK"> OK </td> <td class="neutral"> - </td><td class="neutral">  - </td><td>  </td></tr>
 <tr><td> {80} </td><td> Grøft, terrenggrøft </td><td class="OK"> OK </td> <td class="OK"> OK </td><td class="neutral">  - </td><td>  </td></tr>
-<tr><td> {80} </td><td> Grøft. untatt terrenggrøft </td><td class="OK"> OK </td> <td class="OK"> OK </td><td class="neutral">  - </td><td>  </td></tr>
+<tr><td> {80} </td><td> Grøft. untatt terrenggrøft </td><td class="noeavvik"> Noe avvik </td> <td class="OK"> OK </td><td class="neutral">  - </td><td>  </td></tr>
 <tr><td> {83} </td><td> Kum, Alle NVDB-data </td><td class="OK"> OK </td> <td class="neutral"> - </td><td class="neutral">  - </td><td>  </td></tr>
 <tr><td> {83} </td><td> Kum, Hjelpesluk </td><td class="OK"> OK </td> <td class="neutral"> - </td><td class="neutral">  - </td><td>  </td></tr>
 <tr><td> {83} </td><td> Kum, ikke tilknyttet lukket dren. </td><td class="OK"> OK </td> <td class="neutral"> - </td><td class="neutral">  - </td><td>  </td></tr>
 <tr><td> {83} </td><td> Kum, tilknyttet lukket drenering </td><td class="OK"> OK </td> <td class="neutral"> - </td><td class="neutral">  - </td><td>  </td></tr>
 <tr><td> {85} </td><td> Pumpestasjon </td><td class="OK"> OK </td> <td class="neutral"> - </td><td class="neutral">  - </td><td>  </td></tr>
-<tr><td> {86} </td><td> Belysningsstrekning </td><td class="OK"> OK </td> <td class="OK"> OK </td><td class="neutral">  - </td><td>  </td></tr>
+<tr><td> {86} </td><td> Belysningsstrekning </td><td class="noeavvik"> Noe avvik </td> <td class="OK"> OK </td><td class="neutral">  - </td><td>  </td></tr>
 <tr><td> {95} </td><td> Skiltportaler (Skiltpkt) </td><td class="OK"> OK </td> <td class="neutral"> - </td><td class="neutral">  - </td><td>  </td></tr>
 <tr><td> {96} </td><td> Informasjonstavle </td><td class="OK"> OK </td> <td class="neutral"> - </td><td class="neutral">  - </td><td>  </td></tr>
 <tr><td> {96} </td><td> Skilt, utvendig belysning </td><td class="OK"> OK </td> <td class="neutral"> - </td><td class="neutral">  - </td><td>  </td></tr>
@@ -89,7 +89,7 @@ td { padding:15px }
 <tr><td> {269} </td><td> Vegskulder/vegkant </td><td class="OK"> OK </td> <td class="OK"> OK </td><td class="neutral">  - </td><td>  </td></tr>
 <tr><td> {274} </td><td> Grøntanlegg Beplantninger </td><td class="OK"> OK </td> <td class="OK"> OK </td><td class="OK">  OK </td><td>  </td></tr>
 <tr><td> {291} </td><td> Viltrekk </td><td class="OK"> OK </td> <td class="OK"> OK </td><td class="neutral">  - </td><td>  </td></tr>
-<tr><td> {301} </td><td> Kantklippareal </td><td class="OK"> OK </td> <td class="OK"> OK </td><td class="myeavvik">  Store avvik </td><td> Spesialregel areal = Lengde x Bredde feiler </td></tr>
+<tr><td> {301} </td><td> Kantklippareal </td><td class="myeavvik"> Mye avvik </td> <td class="OK"> OK </td><td class="myeavvik">  Store avvik </td><td> Spesialregel areal = Lengde x Bredde feiler </td></tr>
 <tr><td> {301} </td><td> Kantklippareal, årlig anbefalt areal </td><td class="neutral"> - </td> <td class="neutral"> - </td><td class="myeavvik">  Store avvik </td><td> Spesialregel areal = Lengde x Bredde feiler og muligens spesialregel for "Anbefalt årlig" feiler </td></tr>
 <tr><td> {318} </td><td> Snø- og isrydding </td><td class="OK"> OK </td> <td class="OK"> OK </td><td class="neutral">  - </td><td>  </td></tr>
 <tr><td> {342} </td><td> Trafikkspeil </td><td class="OK"> OK </td> <td class="neutral"> - </td><td class="neutral">  - </td><td>  </td></tr>
@@ -116,7 +116,7 @@ td { padding:15px }
 <tr><td> {810} </td><td> Vinterdriftsklasse Sideanlegg </td><td class="neutral"> - </td> <td class="neutral"> - </td><td class="neutral">  - </td><td> Spesialregel for vinterdiftsklasse og ÅDT feiler med for små verdier </td></tr>
 <tr><td> {836} </td><td> Vegoppmerking, forsterket </td><td class="OK"> OK </td> <td class="neutral"> - </td><td class="neutral">  - </td><td>  </td></tr>
 <tr><td> {838} </td><td> Vegbredde </td><td class="neutral"> - </td> <td class="OK"> OK </td><td class="OK">  OK </td><td> Regeldefinisjon er utdatert ihht datakatalog, må justeres </td></tr>
-<tr><td> {845} </td><td> Fanggjerde </td><td class="OK"> OK </td> <td class="OK"> OK </td><td class="myeavvik">  Store avvik </td><td> Spesialregel areal = Lengde x Bredde feiler </td></tr>
+<tr><td> {845} </td><td> Fanggjerde </td><td class="myeavvik"> Mye avvik </td> <td class="myeavvik"> Store avvik </td><td class="myeavvik">  Store avvik </td><td> Spesialregel areal = Lengde x Bredde feiler </td></tr>
 <tr><td> {859} </td><td> Taktile Indikatorer </td><td class="OK"> OK </td> <td class="OK"> OK </td><td class="myeavvik">  Store avvik </td><td> Spesialregel areal = Lengde x Bredde feiler </td></tr>
 <tr><td> {875} </td><td> Trapper </td><td class="OK"> OK </td> <td class="OK"> OK </td><td class="neutral">  - </td><td>  </td></tr>
 </table>

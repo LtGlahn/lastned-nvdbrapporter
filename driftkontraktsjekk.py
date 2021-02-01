@@ -149,7 +149,7 @@ def kjenteproblem(skrivutalt=False, skrivutproblem=False ):
                 'Ferist'													: '', 
                 'Ferjekai registrert som bru i NVDB'						: '', 
                 'Fjellsikringsutstyr'										: '', 
-                'Fortau'													: '', 
+                'Fortau'													: arealfeil1, 
                 'Gjerde'													: arealfeil1, 
                 'Grøft, terrenggrøft'										: '', 
                 'Grøft. untatt terrenggrøft'								: '', 

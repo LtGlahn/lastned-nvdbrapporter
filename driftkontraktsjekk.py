@@ -131,7 +131,6 @@ def kjenteproblem(skrivutalt=False, skrivutproblem=False ):
     arealfeil1  = 'Spesialregel areal = Lengde x Bredde feiler'
     dakatfeil1  = 'Regeldefinisjon er utdatert ihht datakatalog, må justeres'
     vekgryss    = 'Telling av vegkryss og avledede verdier (primærveg, sekundærveg) feiler'
-    qafeil      = 'Skal sjekkes nærmere, mistenker feil i kvalitetskontrollens egenskapfilter'
     vegdekkefeil = 'Utdaterte regler, vi må justere ihht ny datakatalog'
 
     problem = { 'ATK-punkt'									                : '', 
@@ -153,7 +152,7 @@ def kjenteproblem(skrivutalt=False, skrivutproblem=False ):
                 'Fortau'													: '', 
                 'Gjerde'													: arealfeil1, 
                 'Grøft, terrenggrøft'										: '', 
-                'Grøft. untatt terrenggrøft'								: qafeil, 
+                'Grøft. untatt terrenggrøft'								: '', 
                 'Grøntanlegg Beplantninger'									: '', 
                 'Grøntanlegg Busker'										: '', 
                 'Grøntanlegg Grasdekker'									: '', 
@@ -170,8 +169,8 @@ def kjenteproblem(skrivutalt=False, skrivutproblem=False ):
                 'Kontroll- og veieplasser'									: '', 
                 'Kum, Alle NVDB-data'										: '', 
                 'Kum, Hjelpesluk'											: '', 
-                'Kum, ikke tilknyttet lukket dren.'							: qafeil, 
-                'Kum, tilknyttet lukket drenering'							: qafeil, 
+                'Kum, ikke tilknyttet lukket dren.'							: '', 
+                'Kum, tilknyttet lukket drenering'							: '', 
                 'Leskur'													: '', 
                 'Lukka drenering'											: '', 
                 'Mur'														: arealfeil1, 
@@ -181,11 +180,11 @@ def kjenteproblem(skrivutalt=False, skrivutproblem=False ):
                 'Rasteplass'												: '', 
                 'Rekkverk'													: '', 
                 'Rekkverksende, Ettergivende'								: '', 
-                'Skilt, innvendig belysning'								: qafeil, 
-                'Skilt, uten belysning'										: qafeil, 
-                'Skilt, utvendig belysning'									: qafeil, 
+                'Skilt, innvendig belysning'								: '', 
+                'Skilt, uten belysning'										: '', 
+                'Skilt, utvendig belysning'									: '', 
                 'Skilt, variable'											: '', 
-                'Skiltplate, Alle NVDB-data unntatt tunnelmarkering'		: qafeil, 
+                'Skiltplate, Alle NVDB-data unntatt tunnelmarkering'		: '', 
                 'Skiltportaler'												: '', 
                 'Skiltportaler (Skiltpkt)'									: '', 
                 'Skjerm'													: arealfeil1, 
@@ -199,12 +198,11 @@ def kjenteproblem(skrivutalt=False, skrivutproblem=False ):
                 'Tellesløyfer'												: '', 
                 'Toalettskåler'												: '', 
                 'Trafikkdelere'												: '', 
-                'Trafikklomme u/busslomme'									: '', 
                 'Trafikkspeil'												: '', 
                 'Trafikkøyer'												: '', 
                 'Trapper'													: '', 
                 'Tunneler'													: '', 
-                'Tunnelmarkering'											: qafeil, 
+                'Tunnelmarkering'											: '', 
                 'Utemøbler'													: '', 
                 'Vegbanereflektorer'										: '', 
                 'Vegbom'													: '', 

@@ -24,10 +24,17 @@ from driftkontraktsjekk import kantklippspesial
 def oppsummerDiff_htmlfarge( mintekst ): 
 
     # manglerFarge = 'style="background-color:#c0f0d4"'
-    manglerFarge = 'style="text-align:center;'
-    okFarge = 'style="text-align:center;background-color:#03ff5f"'
-    noeFarge = 'style="text-align:center;background-color:#fff566"'
-    myeFarge = 'style="text-align:center;background-color:#ff9999"'
+    # manglerFarge = 'style="text-align:center;'
+    # okFarge = 'style="text-align:center;background-color:#03ff5f"'
+    # noeFarge = 'style="text-align:center;background-color:#fff566"'
+    # myeFarge = 'style="text-align:center;background-color:#ff9999"'
+
+    manglerFarge    = 'class="neutral"'
+    okFarge         = 'class="OK"'
+    noeFarge        = 'class="noeavvik"' 
+    myeFarge        = 'class="myeavvik"'
+
+
 
     if mintekst.upper() == 'BLANK' or mintekst == '-': 
         svar = manglerFarge 
@@ -38,9 +45,9 @@ def oppsummerDiff_htmlfarge( mintekst ):
     elif mintekst.upper() in ['MYE', 'MYE AVVIK', 'STORE AVVIK']: 
         svar = myeFarge
     else: 
-        svar = 'style="text-align:center;'
+        pass 
+        # svar = 'style="text-align:center;'
 
-    svar = ''
     return svar 
 
 def oppsummerDiff_skrivhtmlrad( mindict ): 
@@ -54,12 +61,15 @@ def oppsummerDiff_skrivhtmlrad( mindict ):
     lengdeFarge = oppsummerDiff_htmlfarge( mindict['lengde'] )
     arealFarge = oppsummerDiff_htmlfarge( mindict['areal'] )
     
-    tableRow = (    f"<tr><td>{mindict['objtype']}</td>" 
-                    f"<td>{mindict['Beskrivelse']}</td>" 
-                    f"<td {antallfarge}>{mindict['antall']}</td> "
-                    f"<td {lengdeFarge}>{mindict['lengde']}</td>"
-                    f"<td {arealFarge}>{mindict['areal']}</td>"
-                    f"<td>{mindict['Kjent problem']}</td></tr>\n" )
+    tableRow = (    f"<tr>"
+                    f"<td> {mindict['objtype'] } </td>" 
+                    f"<td> {mindict['Beskrivelse']} </td>" 
+                    f"<td {antallfarge}> {mindict['antall']} </td> "
+                    f"<td {lengdeFarge}> {mindict['lengde']} </td>"
+                    f"<td {arealFarge}>  {mindict['areal']} </td>"
+                    f"<td> {mindict['Kjent problem']} </td>"
+                    f"</tr>\n" )
+
     return tableRow
 
 def oppsummerDiff( diff ): 
@@ -131,15 +141,24 @@ def oppsummerDiff( diff ):
 
     return oppsum
 
-
 def lagHtmlOppsummering( diff ): 
 
-    svar = (    f"# Oppsummering\n\n" 
-                f'Denne tabellen er laget ved å bruke data fra V4-tabellen og egenprodusert kode som "etterligner" beregning av V2- og V3-tabellene, for antall, lengde og areal per vegstrekning.\n\n' 
-                f'### Kjente svakheter\n\n'
-                f'Vi mistenker at egenskapsfilteret som brukes i koden vår er litt for primitivt: Det fungerer for enkle tilfeller (f.eks _"Terrenggrøft"_),'
-                f'men feiler for de mer komplekse tilfellene (f.eks "_Grøft unntatt terrenggrøft_"). Dette blir forbedret.\n\n' 
-                f'Andre _"Kjente feil"_ mener vi er feil i produksjonssystemet vårt. Feilsøking og feilretting pågår'
+    svar = (    f'<!DOCTYPE html>\n'
+                f'<html>\n'
+                f'<head>\n'
+                f'<style>\n'
+                f'.neutral {{ background-color: white; text-align: center; }}\n' 
+                f'.OK  {{ background-color:#03ff5f; text-align: center; }} \n'
+                f'.noeavvik {{ background-color:#fff566;  text-align: center;}} \n'
+                f'.myeavvik {{ background-color:#fc9996; text-align: center; }} \n'
+                f'td {{ padding:15px }} \n'
+                f'</style>\n\n'
+                f"<h1> Oppsummering</h1>\n\n" 
+                f'<p>Denne tabellen er laget ved å bruke data fra V4-tabellen og egenprodusert kode som "etterligner" beregning av V2- og V3-tabellene, for antall, lengde og areal per vegstrekning.</p>\n\n' 
+                f'<h3>Kjente svakheter</h3>\n\n'
+                f'men feiler for de mer komplekse tilfellene (f.eks <em>"Grøft unntatt terrenggrøft"</em>). Dette blir forbedret.</p>\n\n' 
+                f'<p>Andre <em>"Kjente feil"</em> mener vi er feil i produksjonssystemet vårt. Feilsøking og feilretting pågår.</p>\n'
+                f'\n'
                 f"<table><thead><tr><td>TypeID</td><td>Beskrivelse</td><td>Antall</td><td>Lengde</td><td>Areal</td><td>Kjente feil</td></tr></thead>\n" )
 
     for beskr in list( diff['Beskrivelse'].unique() ): 
@@ -147,7 +166,7 @@ def lagHtmlOppsummering( diff ):
         htmlrad = oppsummerDiff_skrivhtmlrad( oppsum )
         svar += htmlrad 
     
-    svar += '</table>'
+    svar += '</table>\n</body>\n</html>'
     return svar 
 
 
@@ -570,7 +589,7 @@ def mengdesjekk( mappenavn, objekttyper, lespickle=False, hentFunkraV3=False):
     if isinstance( objekttyper, int):
         objekttyper = [ objekttyper ]
     for objekttype in objekttyper: 
-        v4data = v4alt[v4indeks[objekttype]]
+        v4dRaadata = v4alt[v4indeks[objekttype]]
         # v4data = lesv4( filnavn['v4rapp'], sheet_name=v4indeks[objekttype])
 
         regler = [ x for x in regelListe if x['objtype'] == objekttype ]
@@ -578,6 +597,9 @@ def mengdesjekk( mappenavn, objekttyper, lespickle=False, hentFunkraV3=False):
             print( 'Fant ingen regler for objekttype', objekttype)
 
         for regl in regler: 
+            v4data = v4dRaadata.copy( )
+            # v4Backup = v4dRaadata.copy()
+
             v4data = egenskapfilter( v4data, regl, dakat[str(objekttype)] )
 
             # Etterprøver V2-regnearket
@@ -609,6 +631,7 @@ if __name__ == "__main__":
 
 
     mappenavn = './testmagnus2/'
+    mappenavn = './test_nedlasting28des2020_9305_Sunnfjord/'
     # with open( 'v4picle.pickle', 'rb' ) as f: 
     #     v4alt = pickle.load(f ) 
     # v4indeks = list( v4alt['Objektoversikt']['79 tabeller:'] )
@@ -619,10 +642,11 @@ if __name__ == "__main__":
     v4indeks = list( v4oversikt['Unnamed: 0'])[5:] 
     objektliste = [ int( x.split('-')[0].strip()  ) for x in v4indeks]  
 
-    (tellinger, differanser) = mengdesjekk( mappenavn, objektliste, lespickle=False, hentFunkraV3=False )  
+    # (tellinger, differanser) = mengdesjekk( mappenavn, 80, lespickle=False, hentFunkraV3=False )  
+    (tellinger, differanser) = mengdesjekk( mappenavn, objektliste, lespickle=False, hentFunkraV3=True )  
 
     diff = pd.DataFrame( differanser )
     svar = lagHtmlOppsummering( diff )
 
-    with open( 'testmarkdown.md', 'w') as f:
+    with open( 'testhtml.html', 'w') as f:
         f.write( svar )

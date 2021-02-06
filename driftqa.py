@@ -10,6 +10,7 @@ Her returnerer vi to dataframes: En med alle tallene som er henta, og en med dif
 """
 
 import pdb 
+from datetime import datetime
 
 import pandas as pd
 import pickle
@@ -125,13 +126,18 @@ def oppsummerDiff( diff ):
     else: 
         areal = 'FEIL i QA'
 
+    objtype = list( set( list( diff['objtype'].unique()) ))
+    if len( objtype) == 1: 
+        objtype = objtype[0]
+    else: 
+        objtype = ','.join( [ str(x) for x in objtype ] )
 
     oppsum = { 
             'type'             :  ', '.join( list( diff['type'].unique()) ),
             'datakilde'        : ', '.join( list( diff['datakilde'].unique()) ), 
             'telletype'        : ', '.join( list( diff['type'].unique()) ), 
             'Beskrivelse'      : ', '.join( list( diff['Beskrivelse'].unique()) ), 
-            'objtype'          : set( list( diff['objtype'].unique()) ),  
+            'objtype'          : objtype,  
             'antall'           :  antall,
             'lengde'           :  lengde,
             'areal'            :  areal,
@@ -141,7 +147,13 @@ def oppsummerDiff( diff ):
 
     return oppsum
 
-def lagHtmlOppsummering( diff ): 
+def lagHtmlOppsummering( diff, omraade='' ): 
+
+    if omraade != '': 
+        omraade = f"\n\n<p>Rapporten er laget for kontraktsområde: {omraade}.</p>\n\n"
+
+    tid = datetime.now().isoformat()[0:16]
+    tid = tid.replace( 'T', '  ')
 
     svar = (    f'<!DOCTYPE html>\n'
                 f'<html>\n'
@@ -154,10 +166,12 @@ def lagHtmlOppsummering( diff ):
                 f'td {{ padding:15px }} \n'
                 f'</style>\n\n'
                 f"<h1> Oppsummering</h1>\n\n" 
-                f'<p>Denne tabellen er laget ved å bruke data fra V4-tabellen og egenprodusert kode som "etterligner" beregning av V2- og V3-tabellene, for antall, lengde og areal per vegstrekning.</p>\n\n' 
+                f'<p>Denne tabellen er laget ved å bruke data fra V4-tabellen og egenprodusert kode som "etterligner" beregning av V2- og V3-tabellene, for antall, lengde og areal per vegstrekning.</p>'
+                f'{omraade}\n\n' 
+                f'Rapport generert: {tid}\n\n'
                 f'<h3>Kjente svakheter</h3>\n\n'
-                f'men feiler for de mer komplekse tilfellene (f.eks <em>"Grøft unntatt terrenggrøft"</em>). Dette blir forbedret.</p>\n\n' 
-                f'<p>Andre <em>"Kjente feil"</em> mener vi er feil i produksjonssystemet vårt. Feilsøking og feilretting pågår.</p>\n'
+                f'\n\n' 
+                f'<p>Kolonnen <em>"Kjente feil"</em> lister opp feil vi kjenner til i produksjonssystemet vårt. Feilsøking og feilretting pågår.</p>\n'
                 f'\n'
                 f"<table><thead><tr><td>TypeID</td><td>Beskrivelse</td><td>Antall</td><td>Lengde</td><td>Areal</td><td>Kjente feil</td></tr></thead>\n" )
 
@@ -239,7 +253,7 @@ def tellV4somV3( v3, v4, funkraV3, regl, dakat):
             loggTelling (tellV3 )
             tellinger.append( tellV3 )
 
-            diff  = differanser( tellV3, tellV4, regl)
+            diff  = finnDifferanser( tellV3, tellV4, regl)
             loggTelling( diff )
             differ.append( diff )
         else: 
@@ -273,8 +287,12 @@ def tellV4somV2( v2, v4, funkraV3, regl, dakat):
             v4uttrekk = v4uttrekk[ v4uttrekk['Trafikantgruppe'] == 'K' ]
         elif Veg == 'g/s': 
             v4uttrekk = v4temp[ v4temp['Trafikantgruppe'] == 'G' ]
+        elif Veg == 'F' or Veg == 'K' or Veg == 'P' or Veg == 'S': 
+            v4uttrekk = v4temp[ v4temp['Vegkategori'] == Veg ]
+            v4uttrekk = v4uttrekk[ v4uttrekk['Trafikantgruppe'] == 'K' ]
         else: 
             print( 'IKKE IMPLEMENTERT: Kolonne', Veg, 'i V2-rapporten. FIKS OPP!')
+            pdb.set_trace( )
 
         if isinstance( v4uttrekk, pd.core.frame.DataFrame): 
 
@@ -302,7 +320,7 @@ def tellV4somV2( v2, v4, funkraV3, regl, dakat):
                 loggTelling (tellV2 )
                 tellinger.append( tellV2 )
 
-                diff  = differanser( tellV2, tellV4, regl)
+                diff  = finnDifferanser( tellV2, tellV4, regl)
                 loggTelling( diff )
                 
                 differ.append( diff )
@@ -312,7 +330,7 @@ def tellV4somV2( v2, v4, funkraV3, regl, dakat):
     return (tellinger, differ) 
 
 
-def differanser( tellA, tellB, regl): 
+def finnDifferanser( tellA, tellB, regl): 
 
     antall        = lengde       = areal        = np.nan
     antallprosent = lengdeprosent = arealprosent = np.nan
@@ -381,7 +399,7 @@ def differanser( tellA, tellB, regl):
                 'avvik'         : karrakter, 
                 'Kjent problem' : kjent,
                 'regl'          : regl, 
-                 }
+                }
 
 
     return diff 
@@ -407,6 +425,8 @@ def v4mengdetelling( v4, datakilde, telletype, regl, dakat):
         colVeglengde = 'lengde'
     elif 'strekningslengde' in v4.columns:  # fagdata fra NVDB api / nvdbapiv3.py ? 
         colVeglengde = 'strekningslengde'
+    elif 'segmentlendge' in v4.columns:  # fagdata fra NVDB api / nvdbapiv3.py ? 
+        colVeglengde = 'segmentlengde'
     else: 
         print( 'ADVARSEL - mangler kolonne for "Lengde vegnett" i dataframe', datakilde, telletype, v4.columns)
 
@@ -423,8 +443,7 @@ def v4mengdetelling( v4, datakilde, telletype, regl, dakat):
 
     # Lengde-regler og variabler 
     # 'withLengthFromRoadnet', 
-    # 'withLengthPreferingFromAttribute', 
-    # 'withCustomPresetsNumberInRange', 
+    # 'withLengthPreferingFromAttribute',  
     if 'withLengthPreferingFromAttribute' in regl: 
         colLengde = dakat[str(regl['objtype'])]['egenskaper'][str( regl['withLengthPreferingFromAttribute'] )]['navn']
     
@@ -481,7 +500,7 @@ def v4mengdetelling( v4, datakilde, telletype, regl, dakat):
         harLengde = v4[ ~v4[colLengde].isnull() ].drop_duplicates( subset=col_id )
         lengde = harLengde[colLengde].sum() + v4[ v4[colLengde].isnull() ][colVeglengde].sum()
 
-    elif 'withLengthFromRoadnet' in regl: 
+    elif 'withLengthFromRoadnet' in regl or 'withFeatureLabel' in regl: 
         lengde = v4[colVeglengde].sum()
 
     kjent = ''
@@ -547,7 +566,8 @@ def feilObjektDefinisjon(regl):
     spesial = { 241 : 'Ingen data for 241', 
                 810 : 'Summering vinterdriftsklasse feiler'}
 
-    if regl['objtype'] in [241, 810 ]: 
+    # if regl['objtype'] in [241, 810 ]: 
+    if regl['objtype'] in [ -9, -10 ]: 
         antall = lengde = areal = np.nan 
         tell = { 'type'          : 'FEIL',
                 'datakilde'     : 'V2,V3,V4',  
@@ -627,24 +647,49 @@ if __name__ == "__main__":
     # (tellinger, differanser) = mengdesjekk( mappenavn, objektliste, lespickle=False, hentFunkraV3=False )  
 
 
+    mapper = ['nedlasting_2021-02-021102_Høgsfjord_2015-2020', 'nedlasting_2021-02-021105_Indre_Ryfylke_2015-2021' ]
+    mapper.append( 'nedlasting_UTV_2021-02-02_1206_Voss_2014-2019' ) 
+    mapper.append( 'nedlasting_UTV_2021-02-02_9108_Østerdalen_2021-2025' ) 
+    flere_komrader = []
+    flere_differ = []
+    for mappe in mapper: 
 
-    mappenavn = './testmagnus2/'
-    # mappenavn = './test_nedlasting28des2020_9305_Sunnfjord/'
-    # with open( 'v4picle.pickle', 'rb' ) as f: 
-    #     v4alt = pickle.load(f ) 
-    # v4indeks = list( v4alt['Objektoversikt']['79 tabeller:'] )
-    # objektliste = [ int( x.split('-')[0].strip()  ) for x in v4indeks]  
+        # mappe = 'nedlasting_UTV_2021-02-029305_Sunnfjord_2021-2026'
+        mappenavn = './' + mappe + '/'
+        # mappenavn = './test_nedlasting28des2020_9305_Sunnfjord/'
+        # with open( 'v4picle.pickle', 'rb' ) as f: 
+        #     v4alt = pickle.load(f ) 
+        # v4indeks = list( v4alt['Objektoversikt']['79 tabeller:'] )
+        # objektliste = [ int( x.split('-')[0].strip()  ) for x in v4indeks]  
 
-    filnavn = finnrapportfilnavn( mappenavn ) 
-    v4oversikt = pd.read_excel( filnavn['v4rapp'] )  
-    v4indeks = list( v4oversikt['Unnamed: 0'])[5:] 
-    objektliste = [ int( x.split('-')[0].strip()  ) for x in v4indeks]  
+        filnavn = finnrapportfilnavn( mappenavn ) 
+        v4oversikt = pd.read_excel( filnavn['v4rapp'] )  
+        v4indeks = list( v4oversikt['Unnamed: 0'])[5:] 
+        objektliste = [ int( x.split('-')[0].strip()  ) for x in v4indeks]  
 
-    # (tellinger, differanser) = mengdesjekk( mappenavn, 80, lespickle=False, hentFunkraV3=False )  
-    (tellinger, differanser) = mengdesjekk( mappenavn, objektliste, lespickle=False, hentFunkraV3=False )  
+        # Navn på mapper og kontraktsområder
+        svarmapper1 = mappe.split('_')
+        svarmapper = [ x for x in svarmapper1 if x.lower() not in ['nedlasting', 'utv', 'test' ] ]
+        komrade = ' '.join( svarmapper )
+        flere_komrader.append( komrade )
 
-    diff = pd.DataFrame( differanser )
-    svar = lagHtmlOppsummering( diff )
+        # (tellinger, differanser) = mengdesjekk( mappenavn, 540, lespickle=False, hentFunkraV3=False )  
+        (tellinger, differanser) = mengdesjekk( mappenavn, objektliste, lespickle=False, hentFunkraV3=False )  
+        differanser = [ dict( x, **{ 'omrade' : komrade }) for x in differanser ] # https://stackoverflow.com/a/34757497
+        flere_differ.extend( differanser )
 
-    with open( 'oppsummering_tester.html', 'w') as f:
-        f.write( svar )
+        diff = pd.DataFrame( differanser )
+        tell = pd.DataFrame( tellinger )
+
+        svar = lagHtmlOppsummering( diff, omraade=komrade )
+
+        with open( 'test_' + mappe + '.html', 'w') as f:
+            f.write( svar )
+
+    if len( flere_komrader ) > 1: 
+        komrade = ', '.join( flere_komrader )
+        diff = pd.DataFrame( flere_differ )
+        svar = lagHtmlOppsummering( diff, omraade=komrade )
+        with open( 'testsammendrag_flererapporter.html', 'w') as f: 
+            f.write( svar )
+

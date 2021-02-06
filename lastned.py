@@ -131,14 +131,17 @@ def lastnedFlere(driftskontrakter = False, veglister=False, kostra=False, mappen
     TODO: Forske fram hvordan er det effektivt å bruke slik nedlastingskode? Parameterrom? ... 
     """
 
+    miljonavn = ''
     apiurl = 'https://nvdbrapportapi.atlas.vegvesen.no'
     if miljo and miljo.lower() == 'utv':
         apiurl = 'https://nvdbrapportapi.utv.atlas.vegvesen.no'
+        miljonavn = 'UTV_'
     elif miljo and miljo.lower() == 'test':
         apiurl = 'https://nvdbrapportapi.test.atlas.vegvesen.no'
+        miljonavn = 'ATM_'
 
     if not mappenavn: 
-        mappenavn = 'nedlasting_ATM_' + datetime.now().strftime( '%Y-%m-%d')
+        mappenavn = 'nedlasting_' + miljonavn + datetime.now().strftime( '%Y-%m-%d')
 
     t_start = datetime.now()
     
@@ -153,7 +156,12 @@ def lastnedFlere(driftskontrakter = False, veglister=False, kostra=False, mappen
 
     kontrakter = [ ]
     # kontrakter.append( '9304 Bergen' )
-    kontrakter.append( '9305 Sunnfjord 2021-2026' )
+    # kontrakter.append( '9305 Sunnfjord 2021-2026' )
+    # kontrakter.append( '1105 Indre Ryfylke 2015-2021' )
+    # kontrakter.append( '1102 Høgsfjord 2015-2020' )
+    # kontrakter.append( '1206 Voss 2014-2019' )
+    kontrakter.append( '9108 Østerdalen 2021-2025' )
+
     # kontrakter.append( '0104 Ørje 2012-2020' ) 
     if driftskontrakter: 
         t0 = datetime.now()
@@ -162,7 +170,7 @@ def lastnedFlere(driftskontrakter = False, veglister=False, kostra=False, mappen
             kontrId = finnKontraktsID( kontr )
             if kontrId: 
                 parametre = { 'kontraktsomradeId' : kontrId  }
-                mappe = mappenavn  + kontr.replace( ' ', '_')
+                mappe = mappenavn + '_' + kontr.replace( ' ', '_')
 
                 for rapportType in rapportTyper: 
                     t2 = datetime.now( )
@@ -172,7 +180,7 @@ def lastnedFlere(driftskontrakter = False, veglister=False, kostra=False, mappen
 
                     os.path.join( mappe, rapportType['navn'])
 
-                    print( '\tTid nedlasting', mappe, rapportType['navn'], datetime.now()-t2 ) 
+                    print( '\tTid nedlasting', mappe, rapportType['navn'], datetime.now()-t2, '\n' ) 
 
             else: 
                 print( 'Fant ingen driftskontrakt med navn', kontr)

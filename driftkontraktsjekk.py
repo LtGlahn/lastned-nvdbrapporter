@@ -43,6 +43,9 @@ def finnrapportfil( mappenavn, sokestreng  ):
     """
     rule = re.compile(fnmatch.translate(sokestreng), re.IGNORECASE)
     rapp =  [name for name in os.listdir(mappenavn) if rule.match(name)]
+
+    # Fjerner helvetes bedritne excel-backupfiler 
+    rapp = [ x for x in rapp if '~$' not in x]
     
     if len( rapp ) == 1: 
         rapp = rapp[0]
@@ -131,7 +134,7 @@ def kjenteproblem(skrivutalt=False, skrivutproblem=False ):
     arealfeil1  = 'Spesialregel areal = Lengde x Bredde feiler'
     dakatfeil1  = 'Regeldefinisjon er utdatert ihht datakatalog, må justeres'
     vekgryss    = 'Telling av vegkryss og avledede verdier (primærveg, sekundærveg) feiler'
-    vegdekkefeil = 'Utdaterte regler, vi må justere ihht ny datakatalog'
+    vegdekkefeil = 'Utdaterte regler, vi må justere ihht ny datakatalog FIKSA men ' + arealfeil1
 
     problem = { 'ATK-punkt'									                : '', 
                 'Alle NVDB-data av typen "Bru" (dvs fra fagsystem Brutus)'	: '', 
@@ -212,14 +215,16 @@ def kjenteproblem(skrivutalt=False, skrivutproblem=False ):
                 'Vegoppmerking, tverrgående'								: '', 
                 'Vegskulder/vegkant'										: '', 
                 'Viltrekk'													: '', 
+                'Vinterdriftsklasse A'      								: vinterfeil, 
                 'Vinterdriftsklasse B,  Høy'								: vinterfeil, 
                 'Vinterdriftsklasse B,  Middels'							: vinterfeil, 
                 'Vinterdriftsklasse B, Lav'									: vinterfeil, 
                 'Vinterdriftsklasse C'										: vinterfeil, 
                 'Vinterdriftsklasse D'										: vinterfeil, 
+                'Vinterdriftsklasse GsA'									: vinterfeil, 
                 'Vinterdriftsklasse GsB'									: vinterfeil, 
                 'Vinterdriftsklasse Sideanlegg'								: vinterfeil, 
-                'Voll'														: '', 
+                'Voll'														: vinterfeil, 
                 'Værstasjon'												: '', 
                 'Værutsatt veg'												: '',
                 'ÅDT (1), 0 - 500'										    : vinterfeil, 
@@ -531,6 +536,16 @@ def egenskapfilter(v4, regl, dakat):
 
             v4 = pd.concat( data )
 
+    elif 'withCustomPresetsNumberInRange' in regl and isinstance( regl['withCustomPresetsNumberInRange'], list ) and \
+        len( regl['withCustomPresetsNumberInRange']) == 3: 
+
+        if regl['withCustomPresetsNumberInRange'][0] != 4623: 
+            raise ValueError( f"Må lage mer robust håndtering av regel 'withCustomPresetsNumberInRange' {regl} "  )
+
+        terskler = regl['withCustomPresetsNumberInRange']
+
+        v4 = v4[ (v4['ÅDT, total'] >= terskler[1]) & (v4['ÅDT, total'] < terskler[2]) ].copy()
+
     return v4    
 
 def parserfilteregler( regl, dakat ): 
@@ -552,6 +567,7 @@ def parserfilteregler( regl, dakat ):
 
     elif 'withCustomPresetsNumberInRange' in regl: 
         pass 
+        # Har hardkodet løsning 
         # "ÅDT (4), 3000 - 5000": {
         #     "objtype": 540,
         #     "withFeatureLabel": true,

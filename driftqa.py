@@ -292,7 +292,7 @@ def tellV4somV2( v2, v4, funkraV3, regl, dakat):
             v4uttrekk = v4uttrekk[ v4uttrekk['Trafikantgruppe'] == 'K' ]
         else: 
             print( 'IKKE IMPLEMENTERT: Kolonne', Veg, 'i V2-rapporten. FIKS OPP!')
-            pdb.set_trace( )
+            # pdb.set_trace()
 
         if isinstance( v4uttrekk, pd.core.frame.DataFrame): 
 

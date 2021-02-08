@@ -48,7 +48,7 @@ def finnKontraktsID( kontraktNavn,  kontraktType = 11750  ):
         if len( omradeId ) == 0: 
             omradeId =   [ x['id'] for x in data if kontraktNavn.lower() in x['navn'].lower() ]
 
-        navnetreff = [ x       for x in data if kontraktNavn.lower() in x['navn'].lower() ]
+        # navnetreff = [ x       for x in data if kontraktNavn.lower() in x['navn'].lower() ]
 
         # pdb.set_trace()
         if len( omradeId ) == 1: 
@@ -131,7 +131,7 @@ def lastnedFlere(driftskontrakter = False, veglister=False, kostra=False, mappen
     TODO: Forske fram hvordan er det effektivt å bruke slik nedlastingskode? Parameterrom? ... 
     """
 
-    miljonavn = ''
+    miljonavn = 'PROD_'
     apiurl = 'https://nvdbrapportapi.atlas.vegvesen.no'
     if miljo and miljo.lower() == 'utv':
         apiurl = 'https://nvdbrapportapi.utv.atlas.vegvesen.no'
@@ -141,9 +141,13 @@ def lastnedFlere(driftskontrakter = False, veglister=False, kostra=False, mappen
         miljonavn = 'ATM_'
 
     if not mappenavn: 
-        mappenavn = 'nedlasting_' + miljonavn + datetime.now().strftime( '%Y-%m-%d')
+        mappenavn = '../drift_tester/nedlasting_' + miljonavn + datetime.now().strftime( '%Y-%m-%d') + '_'
 
-    t_start = datetime.now()
+    # Placeholder for statistikk for resultater, mappenavn etc
+    resultater = []
+
+
+    # t_start = datetime.now()
     
     rapportTyper = [{ 'id' :  8000, 'navn' :  "V1_Vegnettsrapport" }, 
                     { 'id' :  9100, 'navn' :  "V2_AggregertMengdePerVegkategori" },
@@ -154,38 +158,54 @@ def lastnedFlere(driftskontrakter = False, veglister=False, kostra=False, mappen
 
     # rapportTyper = [ { 'id' : 13000, 'navn' :  "Tilstandsrapport" } ]
 
-    kontrakter = [ ]
-    # kontrakter.append( '9304 Bergen' )
-    # kontrakter.append( '9305 Sunnfjord 2021-2026' )
-    # kontrakter.append( '1105 Indre Ryfylke 2015-2021' )
-    # kontrakter.append( '1102 Høgsfjord 2015-2020' )
-    # kontrakter.append( '1206 Voss 2014-2019' )
-    kontrakter.append( '9108 Østerdalen 2021-2025' )
+    if driftskontrakter and isinstance(driftskontrakter, str):
+        kontrakter = [ driftskontrakter ]
+    elif driftskontrakter and isinstance( driftskontrakter, list ): 
+        kontrakter = driftskontrakter
+    else: 
+        kontrakter = [ ]
+        # kontrakter.append( '9304 Bergen' )
+        kontrakter.append( '9305 Sunnfjord 2021-2026' )
+        # kontrakter.append( '1105 Indre Ryfylke 2015-2021' )
+        # kontrakter.append( '1102 Høgsfjord 2015-2020' )
+        # kontrakter.append( '1206 Voss 2014-2019' )
+        # kontrakter.append( '9108 Østerdalen 2021-2025' )
+        # kontrakter.append( '0104 Ørje 2012-2020' ) 
 
-    # kontrakter.append( '0104 Ørje 2012-2020' ) 
+
+
     if driftskontrakter: 
         t0 = datetime.now()
         for kontr in kontrakter: 
             t1 = datetime.now()
+            resultat  = { 'kontraktsomrade' : kontr }
             kontrId = finnKontraktsID( kontr )
             if kontrId: 
                 parametre = { 'kontraktsomradeId' : kontrId  }
                 mappe = mappenavn + '_' + kontr.replace( ' ', '_')
+                mappe = mappe.replace( '(', '-')
+                mappe = mappe.replace( ')', '-')
+
+                resultat['mappe'] = mappe 
 
                 for rapportType in rapportTyper: 
                     t2 = datetime.now( )
                     parametre['rapporttype'] = rapportType['id']
                     print( 'Laster ned', mappe, rapportType['navn'])
-                    lastned( apiurl, '/rapporter/driftskontrakt/', parametre, os.path.join( mappe, rapportType['navn'] ))
-
-                    os.path.join( mappe, rapportType['navn'])
-
+                    filnavn = os.path.join( mappe, rapportType['navn'] )
+                    lastned( apiurl, '/rapporter/driftskontrakt/', parametre, filnavn )
                     print( '\tTid nedlasting', mappe, rapportType['navn'], datetime.now()-t2, '\n' ) 
+                    resultat['rapporttype_' + rapportType['id'] ]  = { 'status' : 'OK', 'filnavn' : filnavn } 
 
             else: 
-                print( 'Fant ingen driftskontrakt med navn', kontr)
+                errmsg = f'Fant ingen driftskontrakt med navn {kontr}'
+                print( errmsg )
+                resultat['rapporttype_' + rapportType['id'] ]  = { 'status' : errmsg } 
 
             print( 'Tid nedlasting', mappenavn, datetime.now()-t1 )
+            resultater.append( resultat )
+
+
 
         print( 'Totalt medgått tid driftskontrakter: Lastet ned', len(rapportTyper), 'for', len( kontrakter ), 'k.områder:', datetime.now()-t0)
 
@@ -269,16 +289,18 @@ def lastnedFlere(driftskontrakter = False, veglister=False, kostra=False, mappen
             print( 'laster ned', mappe, rapportType['id'], rapportType['navn'])
             lastned( apiurl, '/rapporter/kostra/' + str( rapportType['id']), parametre, mappe + rapportType['navn']  )
 
+    if len( resultater) > 1: 
+        return resultater
 
 def lastnedveglister():
     """
     Laster ned alle mulige vegliste-varianter for angitt område
     """
 
-    t0 = datetime.now()
+    # t0 = datetime.now()
     
-    rapportTyper = [{ 'bkId' :  904, 'navn' :  "Normaltransport, offisiell, arbeid", "publisering" : "false"},  
-                    { 'bkId' :  905, 'navn' :  "Normaltransport, UOFF, arbeid", "publisering" : "false"}  ]
+    # rapportTyper = [{ 'bkId' :  904, 'navn' :  "Normaltransport, offisiell, arbeid", "publisering" : "false"},  
+    #                 { 'bkId' :  905, 'navn' :  "Normaltransport, UOFF, arbeid", "publisering" : "false"}  ]
 
 
 

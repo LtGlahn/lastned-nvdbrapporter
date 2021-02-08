@@ -195,12 +195,12 @@ def lastnedFlere(driftskontrakter = False, veglister=False, kostra=False, mappen
                     filnavn = os.path.join( mappe, rapportType['navn'] )
                     lastned( apiurl, '/rapporter/driftskontrakt/', parametre, filnavn )
                     print( '\tTid nedlasting', mappe, rapportType['navn'], datetime.now()-t2, '\n' ) 
-                    resultat['rapporttype_' + rapportType['id'] ]  = { 'status' : 'OK', 'filnavn' : filnavn } 
+                    resultat['rapporttype_' + rapportType['navn'] ]  = { 'status' : 'OK', 'filnavn' : filnavn, 'rapportTypeId' : rapportType['id'] } 
 
             else: 
                 errmsg = f'Fant ingen driftskontrakt med navn {kontr}'
                 print( errmsg )
-                resultat['rapporttype_' + rapportType['id'] ]  = { 'status' : errmsg } 
+                resultat['FEILER'] = errmsg 
 
             print( 'Tid nedlasting', mappenavn, datetime.now()-t1 )
             resultater.append( resultat )

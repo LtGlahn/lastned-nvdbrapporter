@@ -232,7 +232,12 @@ def tellV4somV3( v3, v4, funkraV3, regl, dakat):
     v4temp = v4.copy()
     v4temp['Veg'] = v4temp['Vegkategori'] + 'V' + v4temp['vegnummer'].astype('str')
     for Veg in v4temp['Veg'].unique():
-        tellV4 = v4mengdetelling( v4temp[ v4temp['Veg'] == Veg ], 'v4', 'langs-'+Veg, regl, dakat  )
+
+        debug = None 
+        if 'FV5402' in Veg: 
+            debug = True 
+
+        tellV4 = v4mengdetelling( v4temp[ v4temp['Veg'] == Veg ], 'v4', 'langs-'+Veg, regl, dakat, debug=debug  )
         loggTelling( tellV4 )
         tellinger.append( tellV4 )
 
@@ -405,7 +410,7 @@ def finnDifferanser( tellA, tellB, regl):
     return diff 
 
 
-def v4mengdetelling( v4, datakilde, telletype, regl, dakat):
+def v4mengdetelling( v4, datakilde, telletype, regl, dakat, debug=None):
     """
     Regner ut antall, lengde og areal for en V4-dataframe. 
 
@@ -490,6 +495,9 @@ def v4mengdetelling( v4, datakilde, telletype, regl, dakat):
         else: 
             tverr[colAreal]     = tverr[colTverrsnitt] * tverr[colVeglengde]
             arealsum_TxL        = tverr[colAreal].sum()
+
+    if debug: 
+        pdb.set_trace( )
 
     areal = arealsum_harAreal + arealsum_TxL
 

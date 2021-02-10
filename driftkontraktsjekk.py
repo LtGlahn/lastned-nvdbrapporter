@@ -131,10 +131,10 @@ def kjenteproblem(skrivutalt=False, skrivutproblem=False ):
 
 
     vinterfeil  =  'Spesialregel for vinterdiftsklasse og ÅDT feiler med for små verdier'
-    arealfeil1  = 'Spesialregel areal = Lengde x Bredde feiler'
-    dakatfeil1  = 'Regeldefinisjon er utdatert ihht datakatalog, må justeres'
-    vekgryss    = 'Telling av vegkryss og avledede verdier (primærveg, sekundærveg) feiler'
-    vegdekkefeil = 'Utdaterte regler, vi må justere ihht ny datakatalog FIKSA men ' + arealfeil1
+    arealfeil1  =  '' # Spesialregel areal = Lengde x Bredde feiler'
+    dakatfeil1  =  '' #  'FIKSA Regeldefinisjon er utdatert ihht datakatalog, må justeres'
+    vekgryss    =  '' #  'Telling av vegkryss og avledede verdier (primærveg, sekundærveg) feiler'
+    vegdekkefeil = '' # 'Utdaterte regler, vi må justere ihht ny datakatalog FIKSA men ' + arealfeil1
 
     problem = { 'ATK-punkt'									                : '', 
                 'Alle NVDB-data av typen "Bru" (dvs fra fagsystem Brutus)'	: '', 
@@ -165,7 +165,7 @@ def kjenteproblem(skrivutalt=False, skrivutproblem=False ):
                 'Kanalisering primærveg'									: vekgryss, 
                 'Kanalisering sekundærveg'									: vekgryss, 
                 'Kantklippareal'											: arealfeil1, 
-                'Kantklippareal, årlig anbefalt areal'						: arealfeil1 + ' og muligens spesialregel for "Anbefalt årlig" feiler', 
+                'Kantklippareal, årlig anbefalt areal'						: 'Må sjekke spesialregel for "Anbefalt årlig"', 
                 'Kantstein'													: '', 
                 'Kantstolper'												: '', 
                 'Kollektivtrafikkterminaler'								: '', 
@@ -224,7 +224,7 @@ def kjenteproblem(skrivutalt=False, skrivutproblem=False ):
                 'Vinterdriftsklasse GsA'									: vinterfeil, 
                 'Vinterdriftsklasse GsB'									: vinterfeil, 
                 'Vinterdriftsklasse Sideanlegg'								: vinterfeil, 
-                'Voll'														: vinterfeil, 
+                'Voll'														: '', 
                 'Værstasjon'												: '', 
                 'Værutsatt veg'												: '',
                 'ÅDT (1), 0 - 500'										    : vinterfeil, 
@@ -524,27 +524,30 @@ def egenskapfilter(v4, regl, dakat):
         Et subsett av den opprinnelige dataframen (evt hele)
     """
 
-    regel = parserfilteregler( regl, dakat) 
-    if regel:
-        data = [] 
-        if 'inverse' in regel: 
-            for verdi in regel['verdier']:
-                v4 = v4[ v4[regel['egenskapsNavn']]  != verdi]
-        else: 
-            for verdi in regel['verdier']: 
-                data.append( v4[ v4[regel['egenskapsNavn']]  == verdi ]  )
+    if len( v4 ) >  0: 
+        debugdata = v4.copy( )
 
-            v4 = pd.concat( data )
+        regel = parserfilteregler( regl, dakat) 
+        if regel:
+            data = [] 
+            if 'inverse' in regel: 
+                for verdi in regel['verdier']:
+                    v4 = v4[ v4[regel['egenskapsNavn']]  != verdi]
+            else: 
+                for verdi in regel['verdier']: 
+                    data.append( v4[ v4[regel['egenskapsNavn']]  == verdi ]  )
 
-    elif 'withCustomPresetsNumberInRange' in regl and isinstance( regl['withCustomPresetsNumberInRange'], list ) and \
-        len( regl['withCustomPresetsNumberInRange']) == 3: 
+                v4 = pd.concat( data )
 
-        if regl['withCustomPresetsNumberInRange'][0] != 4623: 
-            raise ValueError( f"Må lage mer robust håndtering av regel 'withCustomPresetsNumberInRange' {regl} "  )
+        elif 'withCustomPresetsNumberInRange' in regl and isinstance( regl['withCustomPresetsNumberInRange'], list ) and \
+            len( regl['withCustomPresetsNumberInRange']) == 3: 
 
-        terskler = regl['withCustomPresetsNumberInRange']
+            if regl['withCustomPresetsNumberInRange'][0] != 4623: 
+                raise ValueError( f"Må lage mer robust håndtering av regel 'withCustomPresetsNumberInRange' {regl} "  )
 
-        v4 = v4[ (v4['ÅDT, total'] >= terskler[1]) & (v4['ÅDT, total'] < terskler[2]) ].copy()
+            terskler = regl['withCustomPresetsNumberInRange']
+
+            v4 = v4[ (v4['ÅDT, total'] >= terskler[1]) & (v4['ÅDT, total'] < terskler[2]) ].copy()
 
     return v4    
 

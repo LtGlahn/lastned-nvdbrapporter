@@ -16,11 +16,16 @@ import pandas as pd
 import pickle
 import numpy as np
 
+import STARTHER
+import nvdbapiv3
+
 from driftkontraktsjekk import finnrapportfil, finnrapportfilnavn
 from driftkontraktsjekk import lesV3, lesfunkraV3, oversettfunkranavn
 from driftkontraktsjekk import lesv4, egenskapfilter, parserfilteregler
 from driftkontraktsjekk import lesregler, egenskapfilter, kjenteproblem
 from driftkontraktsjekk import kantklippspesial
+
+
 
 def oppsummerDiff_htmlfarge( mintekst ): 
 
@@ -89,6 +94,8 @@ def oppsummerDiff( diff ):
     if np.isnan( antall ): 
         antall = '-'
     elif antall == 0 and np.isnan( antallprosent ): 
+        antall = 'OK'
+    elif antall == 0 and antallprosent == 0: 
         antall = 'OK'
     elif antall == 1: 
         antall = 'Noe avvik'
@@ -217,10 +224,11 @@ def loggTelling( telling ):
 
 
         print( f"{tell['type']:<12} {tell['datakilde']:<10} {tell['objtype']} {tell['Beskrivelse']:<60} {tell['telletype']}", 
-                f"\t {antall:>7} stk {lengde:>10} m {areal:>10} m2 {avvik} {kjent}"   )
+                f"\t {antall:>7} stk {lengde:>10} m {areal:>10} m2 {avvik}"   )
+                # f"\t {antall:>7} stk {lengde:>10} m {areal:>10} m2 {avvik} {kjent}"   )
 
 
-def tellV4somV3( v3, v4, funkraV3, regl, dakat): 
+def tellV4somV3( v3, v4, funkraV3, regl, dakat, v4datakilde='V4'): 
 
     tellinger = []
     differ =  []
@@ -234,10 +242,10 @@ def tellV4somV3( v3, v4, funkraV3, regl, dakat):
     for Veg in v4temp['Veg'].unique():
 
         debug = None 
-        if 'FV5402' in Veg: 
-            debug = True 
+        # if 'FV5400' in Veg: 
+        #     debug = True 
 
-        tellV4 = v4mengdetelling( v4temp[ v4temp['Veg'] == Veg ], 'v4', 'langs-'+Veg, regl, dakat, debug=debug  )
+        tellV4 = v4mengdetelling( v4temp[ v4temp['Veg'] == Veg ], v4datakilde, 'langs-'+Veg, regl, dakat, debug=debug  )
         loggTelling( tellV4 )
         tellinger.append( tellV4 )
 
@@ -267,7 +275,7 @@ def tellV4somV3( v3, v4, funkraV3, regl, dakat):
     return (tellinger, differ) 
 
 
-def tellV4somV2( v2, v4, funkraV3, regl, dakat): 
+def tellV4somV2( v2, v4, funkraV3, regl, dakat, v4datakilde='V4'): 
 
     tellinger = []
     differ =  []
@@ -289,19 +297,19 @@ def tellV4somV2( v2, v4, funkraV3, regl, dakat):
         v4uttrekk = None 
         if Veg == 'E+R': 
             v4uttrekk = v4temp[ (v4temp['Vegkategori'] == 'E') | (v4temp['Vegkategori'] == 'R' ) ]
-            v4uttrekk = v4uttrekk[ v4uttrekk['Trafikantgruppe'] == 'K' ]
+            v4uttrekk = v4uttrekk[ v4uttrekk['trafikantgruppe'] == 'K' ]
         elif Veg == 'g/s': 
-            v4uttrekk = v4temp[ v4temp['Trafikantgruppe'] == 'G' ]
+            v4uttrekk = v4temp[ v4temp['trafikantgruppe'] == 'G' ]
         elif Veg == 'F' or Veg == 'K' or Veg == 'P' or Veg == 'S': 
             v4uttrekk = v4temp[ v4temp['Vegkategori'] == Veg ]
-            v4uttrekk = v4uttrekk[ v4uttrekk['Trafikantgruppe'] == 'K' ]
+            v4uttrekk = v4uttrekk[ v4uttrekk['trafikantgruppe'] == 'K' ]
         else: 
             print( 'IKKE IMPLEMENTERT: Kolonne', Veg, 'i V2-rapporten. FIKS OPP!')
             # pdb.set_trace()
 
         if isinstance( v4uttrekk, pd.core.frame.DataFrame): 
 
-            tellV4 = v4mengdetelling( v4uttrekk, 'v4', 'langs-'+Veg, regl, dakat  )
+            tellV4 = v4mengdetelling( v4uttrekk, v4datakilde, 'langs-'+Veg, regl, dakat  )
             loggTelling( tellV4 )
             tellinger.append( tellV4 )
 
@@ -424,98 +432,119 @@ def v4mengdetelling( v4, datakilde, telletype, regl, dakat, debug=None):
     antall = lengde = areal = np.nan 
     colAntall = colLengde = colAreal = colTverrsnitt = None 
 
-    if 'Lengde vegnett' in v4.columns: 
-        colVeglengde = 'Lengde vegnett'
-    elif 'lengde' in v4.columns:  # vegnnettsdata fra NVDB api / nvdbapiv3.py ? 
-        colVeglengde = 'lengde'
-    elif 'strekningslengde' in v4.columns:  # fagdata fra NVDB api / nvdbapiv3.py ? 
-        colVeglengde = 'strekningslengde'
-    elif 'segmentlendge' in v4.columns:  # fagdata fra NVDB api / nvdbapiv3.py ? 
-        colVeglengde = 'segmentlengde'
-    else: 
-        print( 'ADVARSEL - mangler kolonne for "Lengde vegnett" i dataframe', datakilde, telletype, v4.columns)
+    if len( v4 ) > 0: 
 
-    # Teller antall  
-    if 'withCount' in regl: 
-        antall = len( v4[col_id].unique() )
-    elif 'withCountFrom' in regl: 
-        colAntall = dakat[str(regl['objtype'])]['egenskaper'][str( regl['withCountFrom'] )]['navn']
-
-        # Finner dem med antall-egenskap, og den inverse
-        harAntall  = v4[ ~v4[colAntall].isnull() ].drop_duplicates( subset=col_id)
-        ikkeAntall = v4[  v4[colAntall].isnull() ].drop_duplicates( subset=col_id)
-        antall     = harAntall[colAntall].sum() + len( ikkeAntall[col_id].unique() )
-
-    # Lengde-regler og variabler 
-    # 'withLengthFromRoadnet', 
-    # 'withLengthPreferingFromAttribute',  
-    if 'withLengthPreferingFromAttribute' in regl: 
-        colLengde = dakat[str(regl['objtype'])]['egenskaper'][str( regl['withLengthPreferingFromAttribute'] )]['navn']
-    
-
-
-    # Areal-regler og variabler
-    # 'withAreaFromAttribute', 
-    # 'withAreaFromAttributeOrCrossSection', 
-    # 'withAreaFromCrossSection',
-    # 'YearlyGrassCuttingAreaPreset'
-    if 'withAreaFromAttribute' in regl: 
-        colAreal = dakat[str(regl['objtype'])]['egenskaper'][str( regl['withAreaFromAttribute'] )]['navn']
-    elif 'withAreaFromCrossSection' in regl: 
-        colTverrsnitt = dakat[str(regl['objtype'])]['egenskaper'][str( regl['withAreaFromCrossSection'] )]['navn'] 
-    elif 'withAreaFromAttributeOrCrossSection' in regl: 
-        colAreal      = dakat[str(regl['objtype'])]['egenskaper'][str( regl['withAreaFromAttributeOrCrossSection'][0] )]['navn']
-        colTverrsnitt = dakat[str(regl['objtype'])]['egenskaper'][str( regl['withAreaFromAttributeOrCrossSection'][1] )]['navn']
-
-    # Lager en v4-kopi spesielt for arealberegning 
-    v4areal = v4.copy()
-    arealsum_harAreal = arealsum_TxL = 0 
-    # Spesialregler for årlig klipp av kantareal, modifiserer V4 
-    # med et areal som er multiplisert med faktor 0.25-2
-    if 'YearlyGrassCuttingAreaPreset' in regl: 
-        v4areal = kantklippspesial( v4areal, regl, dakat[str( regl['objtype'] )])
-
-    if colAreal: 
-        # Finner først dem som har  - og ikke har - Areal-egenskap
-        harAreal  = v4areal[ ~v4areal[colAreal].isnull() ].drop_duplicates(subset=col_id)
-        arealsum_harAreal = harAreal[colAreal].sum()
-        v4areal   = v4areal[ v4areal[colAreal].isnull() ].copy() # Har ikke areal
-
-    # Finne dem tversnitt (bredde eller høyde)
-    if colTverrsnitt: 
-        tverr    = v4areal[ ~v4areal[colTverrsnitt].isnull() ].drop_duplicates(subset=col_id)
-
-        # Av dem igjen, finne dem som har Lengde-egenskap og multiplisere bredden/høyden med lengden
-        if colLengde: 
-            tverr_len           = tverr[ ~tverr[colLengde].isnull()].drop_duplicates( subset=col_id ).copy()
-            tverr_veg           = tverr[  tverr[colLengde].isnull()].copy()        
-            tverr_len[colAreal] = tverr_len[colTverrsnitt] * tverr_len[colLengde] 
-            tverr_veg[colAreal] = tverr_veg[colTverrsnitt] * tverr_veg[colVeglengde]
-            arealsum_TxL        = tverr_len[colAreal].sum() + tverr_veg[colAreal].sum()
+        if 'Lengde vegnett' in v4.columns: 
+            colVeglengde = 'Lengde vegnett'
+        elif 'lengde' in v4.columns:  # vegnnettsdata fra NVDB api / nvdbapiv3.py ? 
+            colVeglengde = 'lengde'
+        elif 'strekningslengde' in v4.columns:  # Litt usikker på denne, har den med for sikkerhets skyld? 
+            colVeglengde = 'strekningslengde'
+        elif 'segmentlengde' in v4.columns:  # fagdata fra NVDB api / nvdbapiv3.py 
+            colVeglengde = 'segmentlengde'
         else: 
-            tverr[colAreal]     = tverr[colTverrsnitt] * tverr[colVeglengde]
-            arealsum_TxL        = tverr[colAreal].sum()
+            print( 'ADVARSEL - mangler kolonne for "Lengde vegnett" i dataframe', datakilde, telletype, v4.columns)
 
-    if debug: 
-        pdb.set_trace( )
+        # Teller antall  
+        if 'withCount' in regl: 
+            antall = len( v4[col_id].unique() )
+        elif 'withCountFrom' in regl: 
+            colAntall = dakat[str(regl['objtype'])]['egenskaper'][str( regl['withCountFrom'] )]['navn']
 
-    areal = arealsum_harAreal + arealsum_TxL
+            if not colAntall in v4.columns: 
+                v4[colAntall] = np.nan 
 
-    # Variabler for lengde 
-    # 'withLengthFromRoadnet', 
-    # 'withLengthPreferingFromAttribute', 
-    if colLengde: 
-        harLengde = v4[ ~v4[colLengde].isnull() ].drop_duplicates( subset=col_id )
-        lengde = harLengde[colLengde].sum() + v4[ v4[colLengde].isnull() ][colVeglengde].sum()
 
-    elif 'withLengthFromRoadnet' in regl or 'withFeatureLabel' in regl: 
-        lengde = v4[colVeglengde].sum()
+            # Finner dem med antall-egenskap, og den inverse
+            harAntall  = v4[ ~v4[colAntall].isnull() ].drop_duplicates( subset=col_id)
+            ikkeAntall = v4[  v4[colAntall].isnull() ].drop_duplicates( subset=col_id)
+            antall     = harAntall[colAntall].sum() + len( ikkeAntall[col_id].unique() )
+
+        # Lengde-regler og variabler 
+        # 'withLengthFromRoadnet', 
+        # 'withLengthPreferingFromAttribute',  
+        if 'withLengthPreferingFromAttribute' in regl: 
+            colLengde = dakat[str(regl['objtype'])]['egenskaper'][str( regl['withLengthPreferingFromAttribute'] )]['navn']
+        
+            if not colLengde in v4.columns: 
+                v4[colLengde] = np.nan 
+
+        # Areal-regler og variabler
+        # 'withAreaFromAttribute', 
+        # 'withAreaFromAttributeOrCrossSection', 
+        # 'withAreaFromCrossSection',
+        # 'YearlyGrassCuttingAreaPreset'
+        if 'withAreaFromAttribute' in regl: 
+            colAreal = dakat[str(regl['objtype'])]['egenskaper'][str( regl['withAreaFromAttribute'] )]['navn']
+
+            if not colAreal in v4.columns: 
+                v4[colAreal] = np.nan 
+
+        elif 'withAreaFromCrossSection' in regl: 
+            colTverrsnitt = dakat[str(regl['objtype'])]['egenskaper'][str( regl['withAreaFromCrossSection'] )]['navn'] 
+            if not colTverrsnitt in v4.columns: 
+                v4[colTverrsnitt] = np.nan 
+
+        elif 'withAreaFromAttributeOrCrossSection' in regl: 
+            colAreal      = dakat[str(regl['objtype'])]['egenskaper'][str( regl['withAreaFromAttributeOrCrossSection'][0] )]['navn']
+            colTverrsnitt = dakat[str(regl['objtype'])]['egenskaper'][str( regl['withAreaFromAttributeOrCrossSection'][1] )]['navn']
+            if not colTverrsnitt in v4.columns:
+                v4[colTverrsnitt] = np.nan 
+            if not colAreal in v4.columns: 
+                v4[colAreal] = np.nan 
+
+        # Lager en v4-kopi spesielt for arealberegning 
+        v4areal = v4.copy()
+
+        arealsum_harAreal = arealsum_TxL = 0 
+        # Spesialregler for årlig klipp av kantareal, modifiserer V4 
+        # med et areal som er multiplisert med faktor 0.25-2
+        if 'YearlyGrassCuttingAreaPreset' in regl: 
+            v4areal = kantklippspesial( v4areal, regl, dakat[str( regl['objtype'] )])
+
+        if colAreal: 
+        
+            # Finner først dem som har  - og ikke har - Areal-egenskap
+            harAreal  = v4areal[ ~v4areal[colAreal].isnull() ].drop_duplicates(subset=col_id)
+            arealsum_harAreal = harAreal[colAreal].sum()
+            v4areal   = v4areal[ v4areal[colAreal].isnull() ].copy() # Har ikke areal
+
+        # Finne dem tversnitt (bredde eller høyde)
+        if colTverrsnitt: 
+
+            tverr    = v4areal[ ~v4areal[colTverrsnitt].isnull() ].copy()
+
+            # Av dem igjen, finne dem som har Lengde-egenskap og multiplisere bredden/høyden med lengden
+            if colLengde: 
+                tverr_len           = tverr[ ~tverr[colLengde].isnull()].drop_duplicates( subset=col_id ).copy()
+                tverr_veg           = tverr[  tverr[colLengde].isnull()].copy()        
+                tverr_len[colAreal] = tverr_len[colTverrsnitt] * tverr_len[colLengde] 
+                tverr_veg[colAreal] = tverr_veg[colTverrsnitt] * tverr_veg[colVeglengde]
+                arealsum_TxL        = tverr_len[colAreal].sum() + tverr_veg[colAreal].sum()
+            else: 
+                tverr[colAreal]     = tverr[colTverrsnitt] * tverr[colVeglengde]
+                arealsum_TxL        = tverr[colAreal].sum()
+
+        if debug: 
+            pdb.set_trace( )
+
+        areal = arealsum_harAreal + arealsum_TxL
+
+        # Variabler for lengde 
+        # 'withLengthFromRoadnet', 
+        # 'withLengthPreferingFromAttribute', 
+        if colLengde: 
+
+            harLengde = v4[ ~v4[colLengde].isnull() ].drop_duplicates( subset=col_id )
+            lengde = harLengde[colLengde].sum() + v4[ v4[colLengde].isnull() ][colVeglengde].sum()
+
+        elif 'withLengthFromRoadnet' in regl or 'withFeatureLabel' in regl: 
+            lengde = v4[colVeglengde].sum()
 
     kjent = ''
     kjenteFeil = kjenteproblem()
     if regl['Beskrivelse'] in kjenteFeil and kjenteFeil[regl['Beskrivelse']] != '': 
         kjent = kjenteFeil[regl['Beskrivelse']]
-
 
     tell = {    'type'          : 'telling',
                 'datakilde'     : datakilde,  
@@ -526,30 +555,17 @@ def v4mengdetelling( v4, datakilde, telletype, regl, dakat, debug=None):
                 'Kjent problem' : kjent,
                 'regl' : regl  }
 
-    loggTelling( tell )
+    # loggTelling( tell )
     return tell 
 
 def hentdata( mappenavn, lespickle=False, hentFunkraV3=False  ): 
 
     filnavn = None 
 
-    # Filer: funkraV3picle.pickle*  v2picle.pickle*  v3picle.pickle*  v4picle.pickle*
-    if lespickle: 
-        with open( 'v2picle.pickle', 'rb' ) as f:
-            v2 = pickle.load( f )
-        with open( 'v3picle.pickle', 'rb' ) as f:
-            v3alt = pickle.load( f )
-        with open( 'v4picle.pickle', 'rb' ) as f: 
-            v4alt = pickle.load(f ) 
-        # FUNKE ITJ for funkra-rapporten. Feil tegnsett? 
-        #     with open( 'funkraV3picle.pickle', 'rb' ) as f:  
-        #         funkraV3.pickle.load( f )    
-
-    else: 
-        filnavn = finnrapportfilnavn( mappenavn )
-        v2    = pd.read_excel( filnavn['v2rapp'], sheet_name='V2', header=5) 
-        v3alt = pd.read_excel( filnavn['v3rapp'], sheet_name=None, header=5 )
-        v4alt = pd.read_excel( filnavn['v4rapp'], sheet_name=None, header=5 )
+    filnavn = finnrapportfilnavn( mappenavn )
+    v2    = pd.read_excel( filnavn['v2rapp'], sheet_name='V2', header=5) 
+    v3alt = pd.read_excel( filnavn['v3rapp'], sheet_name=None, header=5 )
+    v4alt = pd.read_excel( filnavn['v4rapp'], sheet_name=None, header=5 )
    
     # Leser Funkraliste hvis den finnes 
     funkraV3 = None
@@ -558,7 +574,6 @@ def hentdata( mappenavn, lespickle=False, hentFunkraV3=False  ):
             filnavn = finnrapportfilnavn( mappenavn )
         if 'funkra' in filnavn: 
             funkraV3 = lesfunkraV3( filnavn['funkra'], giMegV3=True )
-         
 
     return (v2, v3alt, v4alt, funkraV3)
 
@@ -593,8 +608,134 @@ def feilObjektDefinisjon(regl):
     return data
 
 
+def hentNvdbdata( objType, nvdbFilter ): 
 
-def mengdesjekk( mappenavn, objekttyper, lespickle=False, hentFunkraV3=False): 
+    sok = nvdbapiv3.nvdbFagdata( objType )
+    sok.filter( nvdbFilter )
+    data = pd.DataFrame( sok.to_records( ))
+
+    if len( data ) == 0: 
+
+        data = pd.DataFrame( columns = ['objekttype', 'nvdbId', 'versjon', 'startdato', 'veglenkesekvensid', 'detaljnivå',
+                                        'typeVeg', 'kommune', 'fylke', 'vref', 'vegkategori', 'fase', 'nummer',
+                                        'startposisjon', 'sluttposisjon', 'segmentlengde', 'adskilte_lop',
+                                        'trafikantgruppe', 'geometri'] )
+
+    data.rename( columns= { 'vegkategori' : 'Vegkategori', 'nvdbId' : 'Objekt Id', 'nummer' : 'vegnummer'}, inplace=True)
+
+    # Lengde for punktdata, ellers tryner det
+    if not 'segmentlengde' in data: 
+        data['segmentlengde'] = np.nan
+
+    return data 
+
+
+def sammenlignV4( nvdbData, v4regneark, komradeNavn, objtype ): 
+
+    antall          = np.nan 
+    lengde          = np.nan 
+    antallprosent   = np.nan 
+    lengdeprosent   = np.nan 
+    feilstring      = ''
+    nvdbAntall      = np.nan # len( nvdbId)
+    v4Antall        = np.nan # len( v4Id )
+    lengdeNvdb      = np.nan 
+    lengdeV4        = np.nan 
+
+    if len( nvdbData) > 0: 
+        nvdbAntall = len( list( nvdbData['Objekt Id'].unique() ))
+        lengdeNvdb =  nvdbData['segmentlengde'].sum()
+
+    if len( v4regneark ) > 0: 
+        v4Antall   = len( list( v4regneark['Objekt Id'].unique()  ) )
+        lengdeV4   =  v4regneark['Lengde vegnett'].sum()
+
+
+    if len( nvdbData ) > 0 and len( v4regneark ) > 0: 
+        nvdbId = set( list(   nvdbData['Objekt Id']  ))
+        v4Id   = set( list( v4regneark['Objekt Id']  ))
+
+        diffA = list( nvdbId - v4Id ) 
+        diffB = list( v4Id - nvdbId )
+
+        max_ID = 6
+        feilstring = '' 
+        if len( diffA ) > 0: 
+            idString = ','.join( [ str(x) for x in diffA[:max_ID] ]  ) 
+            if len( diffA ) > max_ID+1:
+                idString += f".... (totalt {len(diffA)} objekter"
+
+            feilstring += f"QA V4  {len(diffA)} objekt av type {objtype} mangler i V4-rapport, men finnes i {komradeNavn} : {idString} " 
+            print( feilstring)
+
+        if len( diffB ) > 0: 
+            idString = ','.join( [ str(x) for x in diffB[:max_ID] ]  ) 
+            if len( diffB ) > max_ID+1:
+                idString += f".... (totalt {len(diffB)} objekter"
+
+            feilstring += f"QA V4  {len(diffB)} objekt av type {objtype} FINNES i V4-rapport, men ikke i nedlasting fra {komradeNavn} : {idString} " 
+            print( f"QA V4  {len(diffB)} objekt av type {objtype} FINNES i V4-rapport, men ikke i nedlasting fra {komradeNavn} : {idString} " )
+
+        antall = len( diffA ) + len( diffB )
+        maks_antall = max( [ len( nvdbId  ), len( v4Id) ] )
+        if ~np.isnan( antall ) and ~np.isnan( maks_antall) and maks_antall > 0: 
+            antallprosent = 100 * antall / maks_antall 
+
+        lengde = abs( lengdeNvdb - lengdeV4 ) 
+        maks_lengde = max( [ lengdeNvdb, lengdeV4  ] )
+
+        if ~np.isnan( lengde ) and ~np.isnan( maks_lengde) and maks_lengde > 0: 
+            lengdeprosent = 100 * lengde / maks_lengde 
+
+
+    beskrivelse = f"Tellekontroll {objtype} innafor {komradeNavn} "
+    diff   = {  'type'          : 'differanse',
+                'datakilde'     : 'nvdb og V4', 
+                'telletype'     : 'tellALT', 
+                'Beskrivelse'   : beskrivelse, 
+                'objtype'       : objtype, 
+                'antall'        : antall,
+                'lengde'        : lengde, 
+                'areal'         : np.nan, 
+                'antallprosent' : antallprosent,
+                'lengdeprosent' : lengdeprosent,
+                'arealprosent'  : np.nan, 
+                'avvik'         : feilstring, 
+                'Kjent problem' : '',
+                'regl'          : { 'objtype' : objtype, 'Beskrivelse' : beskrivelse} 
+                }
+
+    nvdbBeskrivelse = f"Tellekontroll {objtype} innafor {komradeNavn} "
+    tellNvdb = {    'type'          : 'telling',
+                    'datakilde'     : 'nvdb',  
+                    'telletype'     : 'tellALT', 
+                    'Beskrivelse'   : nvdbBeskrivelse, 
+                    'objtype'       : objtype, 
+                    'antall' : nvdbAntall, 'lengde' : lengdeNvdb, 'areal' : np.nan, 
+                    'Kjent problem' : '',
+                    'regl'          : { 'objtype' : objtype, 'Beskrivelse' : nvdbBeskrivelse }   
+                    }
+
+
+    v4Beskrivelse = f"Tellekontroll {objtype} innafor {komradeNavn} "
+    tellV4   = {    'type'          : 'telling',
+                    'datakilde'     : 'v4',  
+                    'telletype'     : 'tellALT', 
+                    'Beskrivelse'   : v4Beskrivelse, 
+                    'objtype'       : objtype, 
+                    'antall' : v4Antall, 'lengde' : lengdeV4, 'areal' : np.nan, 
+                    'Kjent problem' : '',
+                    'regl'          : { 'objtype' : objtype, 'Beskrivelse' : nvdbBeskrivelse }   
+                    }
+
+    loggTelling( tellV4)
+    loggTelling( tellNvdb)
+    loggTelling( diff )
+
+    return diff, [tellNvdb, tellV4 ]
+
+
+def mengdesjekk( mappenavn, objekttyper, nvdbFilter=None,  lespickle=False, hentFunkraV3=False, brukNvdbData=True ): 
     """
     Ny metode som sammenligner V3-oppføringer vegnummer for vegnummre
     """
@@ -615,8 +756,36 @@ def mengdesjekk( mappenavn, objekttyper, lespickle=False, hentFunkraV3=False):
     if isinstance( objekttyper, int):
         objekttyper = [ objekttyper ]
     for objekttype in objekttyper: 
-        v4dRaadata = v4alt[v4indeks[objekttype]]
+        v4regneark = v4alt[v4indeks[objekttype]]
         # v4data = lesv4( filnavn['v4rapp'], sheet_name=v4indeks[objekttype])
+
+    
+        if nvdbFilter and brukNvdbData: 
+            nvdbData = hentNvdbdata( objekttype, nvdbFilter )
+            v4dRaadata = nvdbData 
+            v4datakilde = 'nvdb'
+            (endiff, flereTellinger) = sammenlignV4( nvdbData, v4regneark, nvdbFilter['kontraktsomrade'], objekttype )
+            differanser.append( endiff )
+            datarader.extend( flereTellinger )
+
+            # Fant ett objekt uten vegsystemreferanse, fjerner det
+            # https://nvdbapiles-v3.atlas.vegvesen.no/vegobjekter/27/960941773/1.json?inkluder=alle 
+            if len( v4dRaadata[ v4dRaadata['vegnummer'].isnull()] ): 
+                v4dRaadata = v4dRaadata[ ~v4dRaadata['vegnummer'].isnull() ].copy()
+                v4dRaadata['vegnummer'] = v4dRaadata['vegnummer'].astype(int)
+
+            if objekttype in [540, 810]: 
+                v4dRaadata = v4dRaadata[ v4dRaadata[ 'adskilte_lop'] != 'Mot'  ].copy()
+        else: 
+            v4dRaadata = v4regneark.copy()
+            v4datakilde = 'V4'
+            # Må døpe om døpe om "Trafikantgruppe" => "trafikantgruppe" pga navnekollisjon med 482 Trafikkregistreringsstasjon
+            # Her kan vi heldigvis basere oss på rekkefølgen, hvor den første "Trafikantgruppe" - kolonnen i regnearket er den vi vil ha
+            v4dRaadata.rename( columns={'Trafikantgruppe' : 'trafikantgruppe'}, inplace=True )
+            if 'Trafikantgruppe.1' in v4dRaadata.columns: 
+                v4dRaadata.rename( columns={'Trafikantgruppe.1' : 'Trafikantgruppe'}, inplace=True )
+
+            
 
         regler = [ x for x in regelListe if x['objtype'] == objekttype ]
         if len( regler ) == 0: 
@@ -629,12 +798,12 @@ def mengdesjekk( mappenavn, objekttyper, lespickle=False, hentFunkraV3=False):
             v4data = egenskapfilter( v4data, regl, dakat[str(objekttype)] )
 
             # Etterprøver V2-regnearket
-            (tellinger, differ) = tellV4somV2(    v2, v4data, funkraV3, regl, dakat) 
+            (tellinger, differ) = tellV4somV2(   v2, v4data, funkraV3, regl, dakat, v4datakilde=v4datakilde) 
             datarader.extend( tellinger )
             differanser.extend( differ )
 
             # Etterprøver V3-regnearket 
-            (tellinger, differ) = tellV4somV3( v3alt, v4data, funkraV3, regl, dakat) 
+            (tellinger, differ) = tellV4somV3( v3alt, v4data, funkraV3, regl, dakat, v4datakilde=v4datakilde) 
             datarader.extend( tellinger )
             differanser.extend( differ )
 
@@ -642,6 +811,8 @@ def mengdesjekk( mappenavn, objekttyper, lespickle=False, hentFunkraV3=False):
             datarader.extend(    feilObjektDefinisjon(regl) )
             differanser.extend(  feilObjektDefinisjon(regl) )
             
+
+    # pdb.set_trace( )
     return (datarader, differanser)
     
 if __name__ == "__main__":

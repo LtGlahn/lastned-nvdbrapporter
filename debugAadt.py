@@ -51,7 +51,8 @@ def fiksfeltoversikt( feltoversikt ):
 
 mappe = '../drift_tester/nedlasting_ATM_2021-02-10__9305_Sunnfjord_2021-2026/' 
 
-objektliste = [301, 540, 810]
+# objektliste = [301, 540, 810]
+objektliste = [810]
 
 (tellinger, differanser) = driftqa.mengdesjekk( mappe, objektliste, nvdbFilter= { 'kontraktsomrade' :  '9305 Sunnfjord 2021-2026' }, brukNvdbData=False )  
 diff = pd.DataFrame( differanser )

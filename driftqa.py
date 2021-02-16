@@ -265,6 +265,8 @@ def tellV4somV3( v3, v4, funkraV3, regl, dakat, v4datakilde='V4'):
         #     debug = True 
 
         tellV4 = v4mengdetelling( v4temp[ v4temp['Veg'] == Veg ], v4datakilde, 'langs-'+Veg, regl, dakat, debug=debug  )
+
+        debugSkrivMeter( v4temp[ v4temp['Veg'] == Veg ], 'langs-'+Veg, regl)
         loggTelling( tellV4 )
         tellinger.append( tellV4 )
 
@@ -329,6 +331,8 @@ def tellV4somV2( v2, v4, funkraV3, regl, dakat, v4datakilde='V4'):
         if isinstance( v4uttrekk, pd.core.frame.DataFrame): 
 
             tellV4 = v4mengdetelling( v4uttrekk, v4datakilde, 'langs-'+Veg, regl, dakat  )
+            debugSkrivMeter( v4uttrekk, 'langs-'+Veg, regl)
+
             loggTelling( tellV4 )
             tellinger.append( tellV4 )
 
@@ -436,6 +440,32 @@ def finnDifferanser( tellA, tellB, regl):
 
     return diff 
 
+def debugSkrivMeter( v4, vegstrekning, regl, debug=False): 
+    """
+    Skriver detaljert meter-stedfesting for objektene som inngår i en telling
+    """
+
+    if debug: 
+
+        print( f"\nDetaljert meterangivelse for {regl['Beskrivelse']} {vegstrekning} " )
+
+
+        for ii, row in v4.iterrows(): 
+
+            if np.isnan( row['KryssSystem/SideAnlegg Nummer'] ): 
+                print( ( f"\t\t{vegstrekning}\t {row['Objekt Id']}\t {row['Vegkategori']}{row['Fase']}{row['vegnummer']}"
+                        f" s{row['Strekningsnummer']}d{row['Delstrekningsnummer']}"
+                        f" m{row['Frameter']}-{row['Tilmeter']}" ))
+
+            else: 
+                print( ( f"\t\t{vegstrekning}\t {row['Objekt Id']}\t {row['Vegkategori']}{row['Fase']}{row['vegnummer']}"
+                        f" s{row['Strekningsnummer']}d{row['Delstrekningsnummer']}"
+                        f" m{row['Frameter']} " 
+                        f"{row['KD/SD']}{row['Delnummer']} m{row['Frameter ']}-{row['Tilmeter ']}" 
+                        ))
+
+        # pdb.set_trace()
+    
 
 def v4mengdetelling( v4, datakilde, telletype, regl, dakat, debug=None):
     """
@@ -794,7 +824,8 @@ def v4filterEnvegMot( v4data, v1):
                                 (v4_side['vegnummer']                       == row['vegnummer']) & 
                                 (v4_side['Strekningsnummer']                == row['Strekningsnummer']) & 
                                 (v4_side['Delstrekningsnummer']             == row['Delstrekningsnummer']) & 
-                                (v4_side['Frameter']                        == row['Tilmeter']) & 
+                                (v4_side['Frameter']                        == row['Frameter']) & 
+                                (v4_side['KS/SA']                           == row['KS/SA']) & 
                                 (v4_side['KryssSystem/SideAnlegg Nummer']   == row['KryssSystem/SideAnlegg Nummer']) &
                                 (v4_side['Delnummer']                       ==  row['Delnummer']) &
                                 (v4_side['Frameter ']                        <  row['Tilmeter ']) & 

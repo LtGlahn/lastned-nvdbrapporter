@@ -63,16 +63,16 @@ def oppsummerDiff_skrivhtmlrad( mindict ):
     For noen spesifikke tekstverdiene i  "antall", "lengde" og "areal" vil vi endre bakgrunnsfarge på cellen
     """
 
-    antallfarge = oppsummerDiff_htmlfarge( mindict['antall'] )
-    lengdeFarge = oppsummerDiff_htmlfarge( mindict['lengde'] )
-    arealFarge = oppsummerDiff_htmlfarge( mindict['areal'] )
+    # antallfarge = oppsummerDiff_htmlfarge( mindict['antall'] )
+    # lengdeFarge = oppsummerDiff_htmlfarge( mindict['lengde'] )
+    # arealFarge = oppsummerDiff_htmlfarge( mindict['areal'] )
     
     tableRow = (    f"<tr>"
                     f"<td> {mindict['objtype'] } </td>" 
                     f"<td> {mindict['Beskrivelse']} </td>" 
-                    f"<td {antallfarge}> {mindict['antall']} </td> "
-                    f"<td {lengdeFarge}> {mindict['lengde']} </td>"
-                    f"<td {arealFarge}>  {mindict['areal']} </td>"
+                    f"<td  {mindict['antallFarge']}> {mindict['antall']} </td> "
+                    f"<td  {mindict['lengdeFarge']}> {mindict['lengde']} </td>"
+                    f"<td  {mindict['arealFarge']}>  {mindict['areal']} </td>"
                     f"<td> {mindict['Kjent problem']} </td>"
                     f"</tr>\n" )
 
@@ -90,46 +90,61 @@ def oppsummerDiff( diff ):
     lengdeprosent    =  diff['lengdeprosent'].max()
     arealprosent     =  diff['arealprosent'].max()
 
-
+    antallFarge = ''
     if np.isnan( antall ): 
         antall = '-'
+        antallFarge = oppsummerDiff_htmlfarge( antall )
     elif antall == 0 and np.isnan( antallprosent ): 
         antall = 'OK'
+        antallFarge = oppsummerDiff_htmlfarge( antall )
     elif antall == 0 and antallprosent == 0: 
         antall = 'OK'
+        antallFarge = oppsummerDiff_htmlfarge( antall )
     elif antall == 1: 
-        antall = 'Noe avvik'
+        antallFarge = oppsummerDiff_htmlfarge( 'Noe avvik' )
+        antall = '1 stk'
     elif antallprosent < 2: 
-        antall = 'Noe avvik'
+        antallFarge = oppsummerDiff_htmlfarge( 'Noe avvik' )
+        antall = f'{antallprosent:.2f}%'
     elif antallprosent > 2: 
-        antall = 'Mye avvik'
+        antallFarge = oppsummerDiff_htmlfarge( 'Mye avvik' )
+        antall = f'{antallprosent:.2f}%'
     else: 
         antall = 'FEIL i QA'
-
+    
+    lengdeFarge = ''
     if np.isnan( lengde ): 
         lengde = '-'
     elif lengde == 0 and np.isnan( lengdeprosent ): 
         lengde = 'OK'
+        lengdeFarge = oppsummerDiff_htmlfarge( lengde )
     elif ~np.isnan( lengdeprosent) and lengdeprosent < 0.5: 
-        lengde = 'OK'
+        lengde = f'{lengdeprosent:.2f}%'
+        lengdeFarge = oppsummerDiff_htmlfarge( 'OK' )
     elif ~np.isnan( lengdeprosent) and lengdeprosent < 2: 
-        lengde = 'Noe avvik'
+        lengde = f'{lengdeprosent:.2f}%'
+        lengdeFarge = oppsummerDiff_htmlfarge( 'Noe avvik' )        
     elif ~np.isnan( lengdeprosent) and lengdeprosent > 2: 
-        lengde = 'Store avvik'
+        lengde = f'{lengdeprosent:.2f}%'
+        lengdeFarge = oppsummerDiff_htmlfarge( 'Store avvik' )        
     else: 
         lengde = 'FEIL i QA'
 
-
+    arealFarge = ''
     if np.isnan( areal ): 
         areal = '-'
     elif areal == 0 and np.isnan( arealprosent ): 
         areal = 'OK'
+        arealFarge = oppsummerDiff_htmlfarge( areal )
     elif ~np.isnan( arealprosent) and arealprosent < 0.5: 
-        areal = 'OK'
+        arealFarge = oppsummerDiff_htmlfarge( 'OK' )
+        areal = f'{arealprosent:.2f}%'
     elif ~np.isnan( arealprosent) and arealprosent < 2: 
-        areal = 'Noe avvik'
+        arealFarge = oppsummerDiff_htmlfarge( 'Noe avvik' )
+        areal = f'{arealprosent:.2f}%'
     elif ~np.isnan( arealprosent) and arealprosent > 2: 
-        areal = 'Store avvik'
+        arealFarge = oppsummerDiff_htmlfarge( 'Store avvik' )
+        areal = f'{arealprosent:.2f}%'
     else: 
         areal = 'FEIL i QA'
 
@@ -139,15 +154,19 @@ def oppsummerDiff( diff ):
     else: 
         objtype = ','.join( [ str(x) for x in objtype ] )
 
+
     oppsum = { 
             'type'             :  ', '.join( list( diff['type'].unique()) ),
             'datakilde'        : ', '.join( list( diff['datakilde'].unique()) ), 
             'telletype'        : ', '.join( list( diff['type'].unique()) ), 
             'Beskrivelse'      : ', '.join( list( diff['Beskrivelse'].unique()) ), 
             'objtype'          : objtype,  
-            'antall'           :  antall,
-            'lengde'           :  lengde,
-            'areal'            :  areal,
+            'antall'           : antall,
+            'antallFarge'      : antallFarge,
+            'lengde'           : lengde,
+            'lengdeFarge'      : lengdeFarge,
+            'areal'            : areal,
+            'arealFarge'       : arealFarge,
             'avvik'            : ', '.join( list( diff['avvik'].unique()) ),  
             'Kjent problem'    : ', '.join( list( diff['Kjent problem'].unique()) )  
     }
@@ -563,6 +582,7 @@ def hentdata( mappenavn, lespickle=False, hentFunkraV3=False  ):
     filnavn = None 
 
     filnavn = finnrapportfilnavn( mappenavn )
+    v1    = pd.read_excel( filnavn['v1rapp'], sheet_name='Samlet, alt vegnett', header=5) 
     v2    = pd.read_excel( filnavn['v2rapp'], sheet_name='V2', header=5) 
     v3alt = pd.read_excel( filnavn['v3rapp'], sheet_name=None, header=5 )
     v4alt = pd.read_excel( filnavn['v4rapp'], sheet_name=None, header=5 )
@@ -575,7 +595,7 @@ def hentdata( mappenavn, lespickle=False, hentFunkraV3=False  ):
         if 'funkra' in filnavn: 
             funkraV3 = lesfunkraV3( filnavn['funkra'], giMegV3=True )
 
-    return (v2, v3alt, v4alt, funkraV3)
+    return (v1, v2, v3alt, v4alt, funkraV3)
 
 def feilObjektDefinisjon(regl): 
     data = []
@@ -735,6 +755,67 @@ def sammenlignV4( nvdbData, v4regneark, komradeNavn, objtype ):
     return diff, [tellNvdb, tellV4 ]
 
 
+def v4filterEnvegMot( v4data, v1): 
+    """
+    Filtrerer vekk "adskilte løp" basert på vegnettsrapport V1
+
+    Forutsetter at fagdata blir segmentert på start- og slutt adskilte løp. Ser slik ut... 
+
+    Vær obs på forskjellen mellom 'Frameter', 'Tilmeter' og 'Frameter ', 'Tilmeter ' i kolonnenavnene
+    Frameter, Tilmneter inklusive mellomrom bakerst = meterverdier på sideanlegg og kryssdeler 
+    Uten mellomrom bakerst = meterverdier på vanlig veg. 
+    """
+
+    mot_vanlig = v1[  (v1['Adskilte Løp'] == 'MOT') & (  v1['KryssSystem/SideAnlegg Nummer'].isnull() ) ]
+    mot_side   = v1[  (v1['Adskilte Løp'] == 'MOT') & ( ~v1['KryssSystem/SideAnlegg Nummer'].isnull() ) ]
+
+    v4_vanlig = v4data[  v4data['KryssSystem/SideAnlegg Nummer'].isnull()   ]
+    v4_side   = v4data[ ~v4data['KryssSystem/SideAnlegg Nummer'].isnull()   ]
+
+    motgaaende = [ ]
+    if len( mot_vanlig  ) > 0 and len( v4_vanlig ) > 0: 
+        for ii, row in mot_vanlig.iterrows(): 
+            temp = v4_vanlig[   (v4_vanlig['Vegkategori']           == row['Vegkategori']) & 
+                                (v4_vanlig['Fase']                  == row['Fase']) & 
+                                (v4_vanlig['vegnummer']             == row['vegnummer']) & 
+                                (v4_vanlig['Strekningsnummer']      == row['Strekningsnummer']) & 
+                                (v4_vanlig['Delstrekningsnummer']   == row['Delstrekningsnummer']) & 
+                                (v4_vanlig['Frameter']              <  row['Tilmeter']) & 
+                                (v4_vanlig['Tilmeter']              >  row['Frameter']) 
+                            ].copy()   
+
+            if len( temp ) > 0: 
+                motgaaende.append( temp )
+
+    if len( mot_side  ) > 0 and len( v4_side ) > 0: 
+        for ii, row in mot_side.iterrows(): 
+            temp = v4_side[     (v4_side['Vegkategori']                     == row['Vegkategori']) & 
+                                (v4_side['Fase']                            == row['Fase']) & 
+                                (v4_side['vegnummer']                       == row['vegnummer']) & 
+                                (v4_side['Strekningsnummer']                == row['Strekningsnummer']) & 
+                                (v4_side['Delstrekningsnummer']             == row['Delstrekningsnummer']) & 
+                                (v4_side['Frameter']                        == row['Tilmeter']) & 
+                                (v4_side['KryssSystem/SideAnlegg Nummer']   == row['KryssSystem/SideAnlegg Nummer']) &
+                                (v4_side['Delnummer']                       ==  row['Delnummer']) &
+                                (v4_side['Frameter ']                        <  row['Tilmeter ']) & 
+                                (v4_side['Tilmeter ']                        >  row['Frameter ']) 
+                            ].copy()
+
+            if len( temp ) > 0: 
+                motgaaende.append( temp )
+
+    if len( motgaaende ) > 0: 
+        motgaaendeDf = pd.concat( motgaaende )
+
+        v4ut = v4data[ ~v4data.index.isin(  motgaaendeDf.index )].copy()
+        # pdb.set_trace()
+
+    else: 
+        v4ut = v4data.copy()
+
+
+    return v4ut 
+
 def mengdesjekk( mappenavn, objekttyper, nvdbFilter=None,  lespickle=False, hentFunkraV3=False, brukNvdbData=True ): 
     """
     Ny metode som sammenligner V3-oppføringer vegnummer for vegnummre
@@ -744,7 +825,7 @@ def mengdesjekk( mappenavn, objekttyper, nvdbFilter=None,  lespickle=False, hent
     (regelListe, dakat) = lesregler()
     
     # Leser de ulike regnearkene 
-    (v2, v3alt, v4alt, funkraV3 ) = hentdata( mappenavn, lespickle=lespickle, hentFunkraV3=hentFunkraV3 )
+    (v1, v2, v3alt, v4alt, funkraV3 ) = hentdata( mappenavn, lespickle=lespickle, hentFunkraV3=hentFunkraV3 )
 
    # Forbereder for lesning av V4-data (ett ark per objekttype)
     v4indeks = list( v4alt['Objektoversikt'].iloc[:,0] )
@@ -774,8 +855,7 @@ def mengdesjekk( mappenavn, objekttyper, nvdbFilter=None,  lespickle=False, hent
                 v4dRaadata = v4dRaadata[ ~v4dRaadata['vegnummer'].isnull() ].copy()
                 v4dRaadata['vegnummer'] = v4dRaadata['vegnummer'].astype(int)
 
-            if objekttype in [540, 810]: 
-                v4dRaadata = v4dRaadata[ v4dRaadata[ 'adskilte_lop'] != 'Mot'  ].copy()
+
         else: 
             v4dRaadata = v4regneark.copy()
             v4datakilde = 'V4'
@@ -796,6 +876,15 @@ def mengdesjekk( mappenavn, objekttyper, nvdbFilter=None,  lespickle=False, hent
             # v4Backup = v4dRaadata.copy()
 
             v4data = egenskapfilter( v4data, regl, dakat[str(objekttype)] )
+
+            # Sjekk for "Adskilte løp" for 'withFeatureLabel' - regel 
+            if 'withFeatureLabel': 
+                if brukNvdbData: 
+                    v4data = v4data[ v4data[ 'adskilte_lop'] != 'Mot'  ].copy()
+                else: 
+                    v4data = v4filterEnvegMot( v4data, v1 )
+
+
 
             # Etterprøver V2-regnearket
             (tellinger, differ) = tellV4somV2(   v2, v4data, funkraV3, regl, dakat, v4datakilde=v4datakilde) 

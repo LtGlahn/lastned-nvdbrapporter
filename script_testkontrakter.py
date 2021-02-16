@@ -15,8 +15,8 @@ import lastned
 
 
 # miljo = 'UTV'
-miljo = 'TEST'
-# miljo = 'PROD' # PROD 
+# miljo = 'TEST'
+miljo = 'PROD' # PROD 
 
 nedlasting = None 
 

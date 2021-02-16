@@ -58,6 +58,7 @@ def finnrapportfil( mappenavn, sokestreng  ):
 def finnrapportfilnavn( mappenavn ): 
 
     filnavn = {    
+        'v1rapp' : finnrapportfil( mappenavn, '*V1*.XLSX' ), 
         'v2rapp' : finnrapportfil( mappenavn, '*V2*.XLSX' ), 
         'v3rapp' : finnrapportfil( mappenavn, '*V3*.xlsx' ), 
         'v4rapp' : finnrapportfil( mappenavn, '*V4*.XLSX' ),
@@ -546,7 +547,6 @@ def egenskapfilter(v4, regl, dakat):
                 raise ValueError( f"Må lage mer robust håndtering av regel 'withCustomPresetsNumberInRange' {regl} "  )
 
             terskler = regl['withCustomPresetsNumberInRange']
-
             v4 = v4[ (v4['ÅDT, total'] >= terskler[1]) & (v4['ÅDT, total'] < terskler[2]) ].copy()
 
     return v4    

@@ -15,7 +15,7 @@ Vi trenger python-bibliotekene `pandas` og `geopandas`. Anbefalingen er jo at di
 
 Og jeg har brukt dette biblioteket for å lese data fra NVDB https://github.com/LtGlahn/nvdbapi-V3 . Scriptet `STARTHER.py` utvider søkestien 
 med plasseringen til dette reposet. For så vidt bruker jeg ikke NVDB-data i nåværende versjon (parameterstyrt), men det må i så fall kommenteres ut 
-littegrann hvis du vil kjøre uten. 
+et par steder i koden hvis du vil kjøre uten. 
 
 # Filstruktur, tester og nedlastede rapporter 
 
@@ -52,4 +52,16 @@ Det er muligens en smule uryddig, men jeg foretrakk å lagre testresultater i en
 
 ```
 
+# Detaljert feilsøking 
+
+Funksjoen `driftqa.py/debugSkrivMeter ` kan aktiveres (debug=True) for å få en detaljert utlisting i konsoll av hvilke objekter og deres stedfesting som telles med i våre beregninger. Potensielt brukbart for feilsøking? 
+
+I så fall er det veldig nyttig å innsnevre feilsøket til kun de relevante objekttypene. I `script_testkontrakter` gjøres dette ved å endre innholdet i listen `objektliste`, f.eks. `objektliste = [ 540, 810]`
+
+# Toodo 
+
+ - Fjerne konnekteringslenker fra regnskapet  (gjelder vel kun 810 og 540, tror jeg)
+     - Har en greit gjennomførbar idé her, finner overlapp konnektering (V1-rapport) og objektets stedfesting (V4), og for hver match så trekkes lengden av konnekteringslenken fra lengden av den stedfestingen. 
+ - Omstrukturer og finpuss
+ - Dokumentasjon, inklusive docstring 
 

@@ -11,6 +11,7 @@ Her returnerer vi to dataframes: En med alle tallene som er henta, og en med dif
 
 import pdb 
 from datetime import datetime
+from copy import deepcopy 
 
 import pandas as pd
 import pickle
@@ -247,7 +248,7 @@ def loggTelling( telling ):
                 # f"\t {antall:>7} stk {lengde:>10} m {areal:>10} m2 {avvik} {kjent}"   )
 
 
-def tellV4somV3( v3, v4, funkraV3, regl, dakat, v4datakilde='V4'): 
+def tellV4somV3( v3, v4, funkraV3, regl, dakat, v4datakilde='V4', debug=False): 
 
     tellinger = []
     differ =  []
@@ -266,7 +267,7 @@ def tellV4somV3( v3, v4, funkraV3, regl, dakat, v4datakilde='V4'):
 
         tellV4 = v4mengdetelling( v4temp[ v4temp['Veg'] == Veg ], v4datakilde, 'langs-'+Veg, regl, dakat, debug=debug  )
 
-        debugSkrivMeter( v4temp[ v4temp['Veg'] == Veg ], 'langs-'+Veg, regl)
+        debugSkrivMeter( v4temp[ v4temp['Veg'] == Veg ], 'langs-'+Veg, regl, debug=debug)
         loggTelling( tellV4 )
         tellinger.append( tellV4 )
 
@@ -296,7 +297,7 @@ def tellV4somV3( v3, v4, funkraV3, regl, dakat, v4datakilde='V4'):
     return (tellinger, differ) 
 
 
-def tellV4somV2( v2, v4, funkraV3, regl, dakat, v4datakilde='V4'): 
+def tellV4somV2( v2, v4, funkraV3, regl, dakat, v4datakilde='V4', debug=False ): 
 
     tellinger = []
     differ =  []
@@ -331,7 +332,7 @@ def tellV4somV2( v2, v4, funkraV3, regl, dakat, v4datakilde='V4'):
         if isinstance( v4uttrekk, pd.core.frame.DataFrame): 
 
             tellV4 = v4mengdetelling( v4uttrekk, v4datakilde, 'langs-'+Veg, regl, dakat  )
-            debugSkrivMeter( v4uttrekk, 'langs-'+Veg, regl)
+            debugSkrivMeter( v4uttrekk, 'langs-'+Veg, regl, debug=debug)
 
             loggTelling( tellV4 )
             tellinger.append( tellV4 )
@@ -450,18 +451,24 @@ def debugSkrivMeter( v4, vegstrekning, regl, debug=False):
         print( f"\nDetaljert meterangivelse for {regl['Beskrivelse']} {vegstrekning} " )
 
 
-        for ii, row in v4.iterrows(): 
+        for junk, row in v4.iterrows(): 
+
+            konnekteringKorreksjon = ''
+            if 'orginalLengde' in v4.columns and row['orginalLengde'] != row['Lengde vegnett']: 
+                konnekteringKorreksjon = 'KORRIGERT, orginal lengde=' + str( row['orginalLengde'] )
 
             if np.isnan( row['KryssSystem/SideAnlegg Nummer'] ): 
                 print( ( f"\t\t{vegstrekning}\t {row['Objekt Id']}\t {row['Vegkategori']}{row['Fase']}{row['vegnummer']}"
                         f" s{row['Strekningsnummer']}d{row['Delstrekningsnummer']}"
-                        f" m{row['Frameter']}-{row['Tilmeter']}" ))
+                        f" m{row['Frameter']}-{row['Tilmeter']}"
+                        f" LENGDE={row['Lengde vegnett']} {konnekteringKorreksjon}" ))
 
             else: 
                 print( ( f"\t\t{vegstrekning}\t {row['Objekt Id']}\t {row['Vegkategori']}{row['Fase']}{row['vegnummer']}"
                         f" s{row['Strekningsnummer']}d{row['Delstrekningsnummer']}"
                         f" m{row['Frameter']} " 
-                        f"{row['KD/SD']}{row['Delnummer']} m{row['Frameter ']}-{row['Tilmeter ']}" 
+                        f"{row['KD/SD']}{row['Delnummer']} m{row['Frameter ']}-{row['Tilmeter ']}"
+                        f" LENGDE={row['Lengde vegnett']} {konnekteringKorreksjon}" 
                         ))
 
         # pdb.set_trace()
@@ -575,7 +582,8 @@ def v4mengdetelling( v4, datakilde, telletype, regl, dakat, debug=None):
                 arealsum_TxL        = tverr[colAreal].sum()
 
         if debug: 
-            pdb.set_trace( )
+            pass 
+            # pdb.set_trace( )
 
         areal = arealsum_harAreal + arealsum_TxL
 
@@ -804,7 +812,7 @@ def v4filterEnvegMot( v4data, v1):
 
     motgaaende = [ ]
     if len( mot_vanlig  ) > 0 and len( v4_vanlig ) > 0: 
-        for ii, row in mot_vanlig.iterrows(): 
+        for junk, row in mot_vanlig.iterrows(): 
             temp = v4_vanlig[   (v4_vanlig['Vegkategori']           == row['Vegkategori']) & 
                                 (v4_vanlig['Fase']                  == row['Fase']) & 
                                 (v4_vanlig['vegnummer']             == row['vegnummer']) & 
@@ -818,7 +826,7 @@ def v4filterEnvegMot( v4data, v1):
                 motgaaende.append( temp )
 
     if len( mot_side  ) > 0 and len( v4_side ) > 0: 
-        for ii, row in mot_side.iterrows(): 
+        for junk, row in mot_side.iterrows(): 
             temp = v4_side[     (v4_side['Vegkategori']                     == row['Vegkategori']) & 
                                 (v4_side['Fase']                            == row['Fase']) & 
                                 (v4_side['vegnummer']                       == row['vegnummer']) & 
@@ -847,7 +855,66 @@ def v4filterEnvegMot( v4data, v1):
 
     return v4ut 
 
-def mengdesjekk( mappenavn, objekttyper, nvdbFilter=None,  lespickle=False, hentFunkraV3=False, brukNvdbData=True ): 
+
+
+def fjernKonnektering( v4data, v1): 
+    """
+    Fjerner lengden av konnekteringslenker fra  V4-datasettet 
+
+    Konnekteringslenker hentes fra V1 - datasettet. Der det er overlapp mellom en (eller flere) konnekteringslenker og V4-segmenter
+    så trekkes lengden av konnektering fra angjeldende V4-segment. 
+
+    Vær obs på forskjellen mellom 'Frameter', 'Tilmeter' og 'Frameter ', 'Tilmeter ' i kolonnenavnene
+    Frameter, Tilmneter inklusive mellomrom bakerst = meterverdier på sideanlegg og kryssdeler 
+    Uten mellomrom bakerst = meterverdier på vanlig veg. 
+    """
+
+    v1 = deepcopy(v1 )
+    v1['typeVeg'] = v1['typeVeg'].fillna( value='')
+
+    konnektering = v1[  v1['typeVeg'].str.contains('Konnektering')  ]
+    konnektering_vanlig = konnektering[   konnektering['KryssSystem/SideAnlegg Nummer'].isnull( ) ]
+    konnektering_side   = konnektering[  ~konnektering['KryssSystem/SideAnlegg Nummer'].isnull( ) ]
+
+    v4data = deepcopy( v4data )
+    v4data['orginalLengde'] = v4data['Lengde vegnett']
+
+    for ii, row in v4data.iterrows(): 
+        
+        if np.isnan(  row['KryssSystem/SideAnlegg Nummer']  ): 
+            temp = konnektering_vanlig[     (konnektering_vanlig['Vegkategori']           == row['Vegkategori']) & 
+                                            (konnektering_vanlig['Fase']                  == row['Fase']) & 
+                                            (konnektering_vanlig['vegnummer']             == row['vegnummer']) & 
+                                            (konnektering_vanlig['Strekningsnummer']      == row['Strekningsnummer']) & 
+                                            (konnektering_vanlig['Delstrekningsnummer']   == row['Delstrekningsnummer']) & 
+                                            (konnektering_vanlig['Frameter']              <  row['Tilmeter']) & 
+                                            (konnektering_vanlig['Tilmeter']              >  row['Frameter']) 
+                                        ].copy()   
+
+        else: 
+            temp = konnektering_side[       (konnektering_side['Vegkategori']           == row['Vegkategori']) & 
+                                            (konnektering_side['Fase']                  == row['Fase']) & 
+                                            (konnektering_side['vegnummer']             == row['vegnummer']) & 
+                                            (konnektering_side['Strekningsnummer']      == row['Strekningsnummer']) & 
+                                            (konnektering_side['Delstrekningsnummer']   == row['Delstrekningsnummer']) & 
+                                            (konnektering_side['Frameter']              <  row['Tilmeter']) & 
+                                            (konnektering_side['Tilmeter']              >  row['Frameter']) 
+                                        ].copy()   
+
+        if len( temp ) > 0: 
+
+            v4data.loc[ ii, 'Lengde vegnett'] = row['Lengde vegnett'] - temp['Lengde veg (m)'].sum()
+
+
+        # if row['vegnummer'] == 39 and row['Strekningsnummer'] == 54: 
+        #     pdb.set_trace()
+
+    return v4data
+
+
+
+
+def mengdesjekk( mappenavn, objekttyper, nvdbFilter=None,  lespickle=False, hentFunkraV3=False, brukNvdbData=True, debug=False ): 
     """
     Ny metode som sammenligner V3-oppføringer vegnummer for vegnummre
     """
@@ -897,7 +964,6 @@ def mengdesjekk( mappenavn, objekttyper, nvdbFilter=None,  lespickle=False, hent
                 v4dRaadata.rename( columns={'Trafikantgruppe.1' : 'Trafikantgruppe'}, inplace=True )
 
             
-
         regler = [ x for x in regelListe if x['objtype'] == objekttype ]
         if len( regler ) == 0: 
             print( 'Fant ingen regler for objekttype', objekttype)
@@ -915,15 +981,18 @@ def mengdesjekk( mappenavn, objekttyper, nvdbFilter=None,  lespickle=False, hent
                 else: 
                     v4data = v4filterEnvegMot( v4data, v1 )
 
+                # Korrigerer for konnekteringslenker 
+                v4data = fjernKonnektering( v4data, v1)
+
 
 
             # Etterprøver V2-regnearket
-            (tellinger, differ) = tellV4somV2(   v2, v4data, funkraV3, regl, dakat, v4datakilde=v4datakilde) 
+            (tellinger, differ) = tellV4somV2(   v2, v4data, funkraV3, regl, dakat, v4datakilde=v4datakilde, debug=debug) 
             datarader.extend( tellinger )
             differanser.extend( differ )
 
             # Etterprøver V3-regnearket 
-            (tellinger, differ) = tellV4somV3( v3alt, v4data, funkraV3, regl, dakat, v4datakilde=v4datakilde) 
+            (tellinger, differ) = tellV4somV3( v3alt, v4data, funkraV3, regl, dakat, v4datakilde=v4datakilde, debug=debug) 
             datarader.extend( tellinger )
             differanser.extend( differ )
 

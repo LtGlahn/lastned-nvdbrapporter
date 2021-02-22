@@ -1,0 +1,1043 @@
+Legger NVDB api til søkestien
+
+Detaljert meterangivelse for ÅDT (1), 0 - 500 langs-g/s 
+telling      V4         540 ÅDT (1), 0 - 500                                             langs-g/s 	       - stk          - m          - m2 
+telling      V2         540 ÅDT (1), 0 - 500                                             langs-g/s 	       - stk          - m          - m2 
+differanse   V2 og V4   540 ÅDT (1), 0 - 500                                             langs-g/s 	       - stk          - m          - m2 
+
+Detaljert meterangivelse for ÅDT (1), 0 - 500 langs-E+R 
+		langs-E+R	 1007338659	 EV39 s54d20 m0-88.0 LENGDE=87.78 
+		langs-E+R	 78536145	 RV5 s4d1 m8291 KD1.0 m0.0-138.0 LENGDE=138.42 
+		langs-E+R	 78536141	 RV5 s4d1 m8291 KD2.0 m0.0-22.0 LENGDE=21.85 
+		langs-E+R	 78536023	 RV13 s43d1 m0-512.0 LENGDE=512.48 
+		langs-E+R	 667843283	 RV13 s47d200 m2239-2720.0 LENGDE=477.18 KORRIGERT, orginal lengde=481.38
+telling      V4         540 ÅDT (1), 0 - 500                                             langs-E+R 	       - stk       1238 m          0 m2 
+telling      V2         540 ÅDT (1), 0 - 500                                             langs-E+R 	       - stk       1213 m          - m2 
+differanse   V2 og V4   540 ÅDT (1), 0 - 500                                             langs-E+R 	       - stk         24 m          - m2 AVVIK:   små lengdeavvik
+telling      V4         540 ÅDT (1), 0 - 500                                             langs-EV39 	       - stk         88 m          0 m2 
+telling      V3         540 ÅDT (1), 0 - 500                                             langs-EV39 	       - stk         88 m          - m2 
+differanse   V3 og V4   540 ÅDT (1), 0 - 500                                             langs-EV39 	       - stk          0 m          - m2 
+telling      V4         540 ÅDT (1), 0 - 500                                             langs-RV5 	       - stk        160 m          0 m2 
+telling      V3         540 ÅDT (1), 0 - 500                                             langs-RV5 	       - stk        136 m          - m2 
+differanse   V3 og V4   540 ÅDT (1), 0 - 500                                             langs-RV5 	       - stk         24 m          - m2 AVVIK:   STORE lengdeavvik
+telling      V4         540 ÅDT (1), 0 - 500                                             langs-RV13 	       - stk        990 m          0 m2 
+telling      V3         540 ÅDT (1), 0 - 500                                             langs-RV13 	       - stk        990 m          - m2 
+differanse   V3 og V4   540 ÅDT (1), 0 - 500                                             langs-RV13 	       - stk          0 m          - m2 
+
+Detaljert meterangivelse for ÅDT (2), 500 - 1500 langs-g/s 
+telling      V4         540 ÅDT (2), 500 - 1500                                          langs-g/s 	       - stk          - m          - m2 
+telling      V2         540 ÅDT (2), 500 - 1500                                          langs-g/s 	       - stk          - m          - m2 
+differanse   V2 og V4   540 ÅDT (2), 500 - 1500                                          langs-g/s 	       - stk          - m          - m2 
+
+Detaljert meterangivelse for ÅDT (2), 500 - 1500 langs-E+R 
+		langs-E+R	 237683463	 EV39 s50d1 m0-13.0 LENGDE=13.0 
+		langs-E+R	 846431548	 EV39 s50d1 m13-480.0 LENGDE=466.88 
+		langs-E+R	 237683463	 EV39 s50d1 m480-2627.0 LENGDE=2147.54 
+		langs-E+R	 78536092	 EV39 s50d1 m2627-3465.0 LENGDE=837.61 
+		langs-E+R	 762030283	 EV39 s59d1 m8499 KD5.0 m15.0-199.0 LENGDE=184.08 
+		langs-E+R	 319672275	 RV5 s4d1 m40-356.0 LENGDE=316.21 
+		langs-E+R	 159483591	 RV5 s4d1 m8291 KD1.0 m138.0-204.0 LENGDE=65.71 
+		langs-E+R	 78536140	 RV5 s4d1 m8291 KD3.0 m0.0-166.0 LENGDE=166.47 
+		langs-E+R	 78536142	 RV5 s4d1 m8291 KD4.0 m0.0-33.0 LENGDE=33.45 
+		langs-E+R	 78536143	 RV5 s4d1 m8291 KD5.0 m0.0-302.0 LENGDE=302.27 
+		langs-E+R	 157014484	 RV5 s4d1 m8291 KD6.0 m0.0-50.0 LENGDE=50.25 
+		langs-E+R	 78536136	 RV5 s4d1 m8291 KD7.0 m0.0-56.0 LENGDE=55.81 
+		langs-E+R	 78536149	 RV5 s4d30 m0-4.0 LENGDE=0.0 KORRIGERT, orginal lengde=4.13
+		langs-E+R	 207015888	 RV5 s4d30 m409-2403.0 LENGDE=1994.2 
+		langs-E+R	 78536024	 RV13 s44d1 m0-9746.0 LENGDE=9745.52 
+		langs-E+R	 78536025	 RV13 s44d1 m9746-10890.0 LENGDE=1144.6 
+		langs-E+R	 78536025	 RV13 s45d1 m0-1840.0 LENGDE=1840.23 
+		langs-E+R	 78536025	 RV13 s46d1 m0-nan LENGDE=0.0 
+telling      V4         540 ÅDT (2), 500 - 1500                                          langs-E+R 	       - stk      19364 m          0 m2 
+telling      V2         540 ÅDT (2), 500 - 1500                                          langs-E+R 	       - stk      18948 m          - m2 
+differanse   V2 og V4   540 ÅDT (2), 500 - 1500                                          langs-E+R 	       - stk        416 m          - m2 AVVIK:   noe lengdeavvik
+telling      V4         540 ÅDT (2), 500 - 1500                                          langs-EV39 	       - stk       3649 m          0 m2 
+telling      V3         540 ÅDT (2), 500 - 1500                                          langs-EV39 	       - stk       3649 m          - m2 
+differanse   V3 og V4   540 ÅDT (2), 500 - 1500                                          langs-EV39 	       - stk          0 m          - m2 
+telling      V4         540 ÅDT (2), 500 - 1500                                          langs-RV5 	       - stk       2984 m          0 m2 
+telling      V3         540 ÅDT (2), 500 - 1500                                          langs-RV5 	       - stk       2568 m          - m2 
+differanse   V3 og V4   540 ÅDT (2), 500 - 1500                                          langs-RV5 	       - stk        416 m          - m2 AVVIK:   STORE lengdeavvik
+telling      V4         540 ÅDT (2), 500 - 1500                                          langs-RV13 	       - stk      12730 m          0 m2 
+telling      V3         540 ÅDT (2), 500 - 1500                                          langs-RV13 	       - stk      12730 m          - m2 
+differanse   V3 og V4   540 ÅDT (2), 500 - 1500                                          langs-RV13 	       - stk          0 m          - m2 
+
+Detaljert meterangivelse for ÅDT (3), 1500 - 3000 langs-g/s 
+		langs-g/s	 319633704	 EV39 s61d201 m11-1433.0 LENGDE=1422.31 
+		langs-g/s	 78536123	 EV39 s62d400 m51-317.0 LENGDE=265.51 
+		langs-g/s	 78536123	 EV39 s62d500 m54-138.0 LENGDE=84.0 
+		langs-g/s	 78536123	 EV39 s62d600 m0-2018.0 LENGDE=2018.14 
+telling      V4         540 ÅDT (3), 1500 - 3000                                         langs-g/s 	       - stk       3790 m          0 m2 
+telling      V2         540 ÅDT (3), 1500 - 3000                                         langs-g/s 	       - stk       3790 m          - m2 
+differanse   V2 og V4   540 ÅDT (3), 1500 - 3000                                         langs-g/s 	       - stk          0 m          - m2 
+
+Detaljert meterangivelse for ÅDT (3), 1500 - 3000 langs-E+R 
+		langs-E+R	 78536093	 EV39 s50d1 m3465-6317.0 LENGDE=2852.19 
+		langs-E+R	 78536094	 EV39 s50d1 m6317-9559.0 LENGDE=3241.98 
+		langs-E+R	 78536095	 EV39 s50d1 m9559-12541.0 LENGDE=2981.62 
+		langs-E+R	 761996497	 EV39 s50d1 m12541-13330.0 LENGDE=789.43 
+		langs-E+R	 761996497	 EV39 s51d1 m0-2706.0 LENGDE=2705.71 
+		langs-E+R	 761996496	 EV39 s51d1 m2706-9953.0 LENGDE=7246.9 
+		langs-E+R	 761996495	 EV39 s51d1 m9953-10729.0 LENGDE=776.86 
+		langs-E+R	 761996494	 EV39 s51d1 m10729-12074.0 LENGDE=1344.23 
+		langs-E+R	 78536101	 EV39 s51d1 m12074-15919.0 LENGDE=3845.42 
+		langs-E+R	 78536101	 EV39 s52d1 m0-77.0 LENGDE=76.97 
+		langs-E+R	 78536102	 EV39 s52d1 m77-1044.0 LENGDE=967.3 
+		langs-E+R	 78536103	 EV39 s52d1 m1044-10082.0 LENGDE=9037.36 
+		langs-E+R	 78536103	 EV39 s53d1 m0-591.0 LENGDE=590.67 
+		langs-E+R	 78536103	 EV39 s53d1 m241-nan LENGDE=0.0 
+		langs-E+R	 78536103	 EV39 s53d1 m591-4593.0 LENGDE=4002.53 
+		langs-E+R	 579194702	 EV39 s53d1 m4593-8810.0 LENGDE=4216.3 
+		langs-E+R	 157014483	 EV39 s53d1 m9907 KD1.0 m0.0-91.0 LENGDE=90.89 
+		langs-E+R	 762029558	 EV39 s59d1 m8152-8500.0 LENGDE=348.19 
+		langs-E+R	 762029557	 EV39 s59d1 m8500-9392.0 LENGDE=891.84 
+		langs-E+R	 762029557	 EV39 s60d1 m0-1836.0 LENGDE=1835.96 
+		langs-E+R	 762029557	 EV39 s61d1 m0-8134.0 LENGDE=8133.64 
+		langs-E+R	 762029557	 EV39 s61d1 m8134-11685.0 LENGDE=3551.84 
+		langs-E+R	 762029557	 EV39 s62d1 m0-56.0 LENGDE=55.74 
+		langs-E+R	 78536122	 EV39 s62d1 m56-1121.0 LENGDE=1065.23 
+		langs-E+R	 1006504054	 EV39 s62d1 m1121-10106.0 LENGDE=8985.01 
+		langs-E+R	 1006504054	 EV39 s63d1 m0-10001.0 LENGDE=10000.97 
+		langs-E+R	 1006504054	 EV39 s64d1 m0-4403.0 LENGDE=4402.76 
+		langs-E+R	 667834596	 EV39 s64d1 m4403-4825.0 LENGDE=421.81 
+		langs-E+R	 237683464	 RV5 s4d1 m0-40.0 LENGDE=40.19 
+		langs-E+R	 1007204434	 RV5 s4d1 m356-556.0 LENGDE=200.0 
+		langs-E+R	 1007204434	 RV5 s4d1 m1086-3566.0 LENGDE=2479.77 
+		langs-E+R	 1007204434	 RV5 s4d1 m3265-nan LENGDE=0.0 
+		langs-E+R	 1007204434	 RV5 s4d1 m3566-3880.0 LENGDE=313.62 
+		langs-E+R	 1007204435	 RV5 s4d1 m3880-8113.0 LENGDE=4233.42 
+		langs-E+R	 78536202	 RV5 s4d1 m8113-8246.0 LENGDE=133.38 
+		langs-E+R	 159483592	 RV5 s4d1 m8246-8303.0 LENGDE=56.31 
+		langs-E+R	 159483593	 RV5 s4d1 m8291 KD3.0 m166.0-344.0 LENGDE=178.03 
+		langs-E+R	 207015887	 RV5 s4d30 m4-409.0 LENGDE=405.02 
+		langs-E+R	 761706679	 RV5 s7d1 m835-6796.0 LENGDE=5961.32 
+		langs-E+R	 846325611	 RV5 s7d1 m6796-9994.0 LENGDE=3197.85 
+		langs-E+R	 846325611	 RV5 s8d1 m0-1170.0 LENGDE=1170.15 
+		langs-E+R	 761706680	 RV5 s8d1 m1170-9116.0 LENGDE=7946.14 
+		langs-E+R	 761706681	 RV5 s8d1 m9116-11772.0 LENGDE=2655.44 
+		langs-E+R	 761706681	 RV5 s9d1 m0-10000.0 LENGDE=9999.71 
+		langs-E+R	 761706681	 RV5 s10d1 m0-2195.0 LENGDE=2194.99 
+		langs-E+R	 761706682	 RV5 s10d1 m2195-9451.0 LENGDE=7256.0 
+		langs-E+R	 761706682	 RV5 s11d1 m0-2868.0 LENGDE=2868.0 
+		langs-E+R	 761706682	 RV5 s11d1 m2868-9999.0 LENGDE=7131.06 
+		langs-E+R	 761706682	 RV5 s12d1 m0-8295.0 LENGDE=8294.51 
+		langs-E+R	 157087513	 RV5 s12d1 m8295-9653.0 LENGDE=1358.16 
+		langs-E+R	 371366223	 RV5 s12d1 m9653-10320.0 LENGDE=663.82 KORRIGERT, orginal lengde=667.58
+		langs-E+R	 78536152	 RV5 s15d1 m1350-6252.0 LENGDE=4902.62 
+		langs-E+R	 78536152	 RV5 s15d1 m6252-10002.0 LENGDE=3749.72 
+		langs-E+R	 78536152	 RV5 s16d1 m0-4535.0 LENGDE=4535.15 
+		langs-E+R	 78536152	 RV5 s17d1 m0-89.0 LENGDE=89.12 
+		langs-E+R	 78536158	 RV5 s17d1 m89-3561.0 LENGDE=3471.64 
+		langs-E+R	 319672277	 RV5 s17d1 m3561-6374.0 LENGDE=2813.09 
+		langs-E+R	 78536157	 RV5 s17d1 m6374-10042.0 LENGDE=3667.72 
+		langs-E+R	 78536157	 RV5 s18d1 m0-2717.0 LENGDE=2716.99 
+		langs-E+R	 78536156	 RV5 s18d1 m2717-10023.0 LENGDE=7306.5 
+		langs-E+R	 78536156	 RV5 s19d1 m0-3863.0 LENGDE=3863.42 
+		langs-E+R	 846062740	 RV5 s20d1 m6574-6766.0 LENGDE=191.47 
+		langs-E+R	 78536026	 RV13 s46d1 m0-1340.0 LENGDE=1340.43 
+		langs-E+R	 207179671	 RV13 s46d1 m1340-2828.0 LENGDE=1487.82 
+		langs-E+R	 206361970	 RV13 s47d1 m201-7991.0 LENGDE=7790.35 
+		langs-E+R	 207179672	 RV13 s47d1 m7991-9572.0 LENGDE=1580.9 
+		langs-E+R	 207179672	 RV13 s48d1 m0-9226.0 LENGDE=9225.99 
+telling      V4         540 ÅDT (3), 1500 - 3000                                         langs-E+R 	       - stk     211929 m          0 m2 
+telling      V2         540 ÅDT (3), 1500 - 3000                                         langs-E+R 	       - stk     201037 m          - m2 
+differanse   V2 og V4   540 ÅDT (3), 1500 - 3000                                         langs-E+R 	       - stk      10892 m          - m2 AVVIK:   STORE lengdeavvik
+telling      V4         540 ÅDT (3), 1500 - 3000                                         langs-EV39 	       - stk      88249 m          0 m2 
+telling      V3         540 ÅDT (3), 1500 - 3000                                         langs-EV39 	       - stk      85397 m          - m2 
+differanse   V3 og V4   540 ÅDT (3), 1500 - 3000                                         langs-EV39 	       - stk       2852 m          - m2 AVVIK:   noe lengdeavvik
+telling      V4         540 ÅDT (3), 1500 - 3000                                         langs-RV5 	       - stk     106044 m          0 m2 
+telling      V3         540 ÅDT (3), 1500 - 3000                                         langs-RV5 	       - stk      98005 m          - m2 
+differanse   V3 og V4   540 ÅDT (3), 1500 - 3000                                         langs-RV5 	       - stk       8040 m          - m2 AVVIK:   STORE lengdeavvik
+telling      V4         540 ÅDT (3), 1500 - 3000                                         langs-RV13 	       - stk      21425 m          0 m2 
+telling      V3         540 ÅDT (3), 1500 - 3000                                         langs-RV13 	       - stk      21425 m          - m2 
+differanse   V3 og V4   540 ÅDT (3), 1500 - 3000                                         langs-RV13 	       - stk          0 m          - m2 
+
+Detaljert meterangivelse for ÅDT (4), 3000 - 5000 langs-g/s 
+telling      V4         540 ÅDT (4), 3000 - 5000                                         langs-g/s 	       - stk          - m          - m2 
+telling      V2         540 ÅDT (4), 3000 - 5000                                         langs-g/s 	       - stk          - m          - m2 
+differanse   V2 og V4   540 ÅDT (4), 3000 - 5000                                         langs-g/s 	       - stk          - m          - m2 
+
+Detaljert meterangivelse for ÅDT (4), 3000 - 5000 langs-E+R 
+		langs-E+R	 371366224	 EV39 s53d1 m8810-9915.0 LENGDE=1101.8 KORRIGERT, orginal lengde=1105.26
+		langs-E+R	 1007338741	 EV39 s54d1 m0-9933.0 LENGDE=9929.740000000002 KORRIGERT, orginal lengde=9932.79
+		langs-E+R	 1007338741	 EV39 s55d1 m0-13212.0 LENGDE=13211.5 
+		langs-E+R	 1007338741	 EV39 s56d1 m0-50.0 LENGDE=50.32 
+		langs-E+R	 206814429	 EV39 s56d1 m50-3149.0 LENGDE=3099.12 
+		langs-E+R	 78536109	 EV39 s56d1 m3149-9035.0 LENGDE=5885.41 
+		langs-E+R	 206803630	 EV39 s58d1 m4814-13204.0 LENGDE=8389.99 
+		langs-E+R	 206803630	 EV39 s59d1 m0-109.0 LENGDE=108.58 
+		langs-E+R	 765904815	 EV39 s59d1 m109-8152.0 LENGDE=8043.7 
+		langs-E+R	 78536201	 RV5 s4d1 m8303-8452.0 LENGDE=148.89 
+		langs-E+R	 159509173	 RV5 s4d1 m8452-8763.0 LENGDE=311.86 
+		langs-E+R	 915401697	 RV5 s6d1 m270 KD1.0 m0.0-87.0 LENGDE=87.08 
+		langs-E+R	 78536192	 RV5 s6d1 m1559-1626.0 LENGDE=62.67 KORRIGERT, orginal lengde=66.98
+		langs-E+R	 78536192	 RV5 s7d1 m0-310.0 LENGDE=309.97 
+		langs-E+R	 157044788	 RV5 s7d1 m310-650.0 LENGDE=339.83 
+		langs-E+R	 761706678	 RV5 s7d1 m650-835.0 LENGDE=184.94 
+		langs-E+R	 670365532	 RV5 s14d1 m592 KD1.0 m0.0-91.0 LENGDE=90.86 
+		langs-E+R	 670365533	 RV5 s14d1 m750 KD1.0 m0.0-86.0 LENGDE=86.31 
+		langs-E+R	 915401698	 RV5 s14d1 m1902 KD1.0 m0.0-89.0 LENGDE=89.0 
+		langs-E+R	 78536163	 RV5 s14d1 m1902-11899.0 LENGDE=9993.609999999999 KORRIGERT, orginal lengde=9996.89
+		langs-E+R	 78536160	 RV5 s14d1 m11899-11963.0 LENGDE=63.61 
+		langs-E+R	 78536160	 RV5 s15d1 m0-1350.0 LENGDE=1349.8 
+		langs-E+R	 78536155	 RV5 s19d1 m3863-4142.0 LENGDE=279.0 
+		langs-E+R	 78536155	 RV5 s20d1 m0-3366.0 LENGDE=3366.0 
+		langs-E+R	 78536133	 RV5 s20d1 m4416 KD1.0 m0.0-82.0 LENGDE=82.49 
+		langs-E+R	 207179670	 RV13 s46d1 m2828-3414.0 LENGDE=585.74 
+		langs-E+R	 207179670	 RV13 s47d1 m0-201.0 LENGDE=201.0 
+telling      V4         540 ÅDT (4), 3000 - 5000                                         langs-E+R 	       - stk      67453 m          0 m2 
+telling      V2         540 ÅDT (4), 3000 - 5000                                         langs-E+R 	       - stk      66351 m          - m2 
+differanse   V2 og V4   540 ÅDT (4), 3000 - 5000                                         langs-E+R 	       - stk       1102 m          - m2 AVVIK:   små lengdeavvik
+telling      V4         540 ÅDT (4), 3000 - 5000                                         langs-EV39 	       - stk      49820 m          0 m2 
+telling      V3         540 ÅDT (4), 3000 - 5000                                         langs-EV39 	       - stk      48718 m          - m2 
+differanse   V3 og V4   540 ÅDT (4), 3000 - 5000                                         langs-EV39 	       - stk       1102 m          - m2 AVVIK:   noe lengdeavvik
+telling      V4         540 ÅDT (4), 3000 - 5000                                         langs-RV5 	       - stk      16846 m          0 m2 
+telling      V3         540 ÅDT (4), 3000 - 5000                                         langs-RV5 	       - stk      16846 m          - m2 
+differanse   V3 og V4   540 ÅDT (4), 3000 - 5000                                         langs-RV5 	       - stk          0 m          - m2 
+telling      V4         540 ÅDT (4), 3000 - 5000                                         langs-RV13 	       - stk        787 m          0 m2 
+telling      V3         540 ÅDT (4), 3000 - 5000                                         langs-RV13 	       - stk        787 m          - m2 
+differanse   V3 og V4   540 ÅDT (4), 3000 - 5000                                         langs-RV13 	       - stk          0 m          - m2 
+
+Detaljert meterangivelse for ÅDT (5), 5000 - 6000 langs-g/s 
+telling      V4         540 ÅDT (5), 5000 - 6000                                         langs-g/s 	       - stk          - m          - m2 
+telling      V2         540 ÅDT (5), 5000 - 6000                                         langs-g/s 	       - stk          - m          - m2 
+differanse   V2 og V4   540 ÅDT (5), 5000 - 6000                                         langs-g/s 	       - stk          - m          - m2 
+
+Detaljert meterangivelse for ÅDT (5), 5000 - 6000 langs-E+R 
+		langs-E+R	 584334798	 EV39 s56d1 m9035-nan LENGDE=0.0 
+		langs-E+R	 584334798	 EV39 s57d1 m0-3918.0 LENGDE=3917.94 
+		langs-E+R	 584334797	 EV39 s57d1 m3918-5178.0 LENGDE=1260.25 
+		langs-E+R	 78536119	 EV39 s58d1 m3491-4814.0 LENGDE=1323.21 
+		langs-E+R	 78536200	 RV5 s4d1 m8763-10542.0 LENGDE=1778.21 
+		langs-E+R	 78536200	 RV5 s5d1 m0-1487.0 LENGDE=1486.81 
+		langs-E+R	 1006498981	 RV5 s5d1 m1487-3626.0 LENGDE=2138.8 
+		langs-E+R	 78536134	 RV5 s6d1 m1559 KD1.0 m0.0-77.0 LENGDE=77.0 
+		langs-E+R	 78536154	 RV5 s20d1 m3366-4416.0 LENGDE=1044.49 KORRIGERT, orginal lengde=1049.72
+telling      V4         540 ÅDT (5), 5000 - 6000                                         langs-E+R 	       - stk      13027 m          0 m2 
+telling      V2         540 ÅDT (5), 5000 - 6000                                         langs-E+R 	       - stk      12950 m          - m2 
+differanse   V2 og V4   540 ÅDT (5), 5000 - 6000                                         langs-E+R 	       - stk         77 m          - m2 AVVIK:   små lengdeavvik
+telling      V4         540 ÅDT (5), 5000 - 6000                                         langs-EV39 	       - stk       6501 m          0 m2 
+telling      V3         540 ÅDT (5), 5000 - 6000                                         langs-EV39 	       - stk       6501 m          - m2 
+differanse   V3 og V4   540 ÅDT (5), 5000 - 6000                                         langs-EV39 	       - stk          0 m          - m2 
+telling      V4         540 ÅDT (5), 5000 - 6000                                         langs-RV5 	       - stk       6525 m          0 m2 
+telling      V3         540 ÅDT (5), 5000 - 6000                                         langs-RV5 	       - stk       6448 m          - m2 
+differanse   V3 og V4   540 ÅDT (5), 5000 - 6000                                         langs-RV5 	       - stk         77 m          - m2 AVVIK:   små lengdeavvik
+
+Detaljert meterangivelse for ÅDT (6), 6000 - 10000 langs-g/s 
+telling      V4         540 ÅDT (6), 6000 - 10000                                        langs-g/s 	       - stk          - m          - m2 
+telling      V2         540 ÅDT (6), 6000 - 10000                                        langs-g/s 	       - stk          - m          - m2 
+differanse   V2 og V4   540 ÅDT (6), 6000 - 10000                                        langs-g/s 	       - stk          - m          - m2 
+
+Detaljert meterangivelse for ÅDT (6), 6000 - 10000 langs-E+R 
+		langs-E+R	 78536113	 EV39 s57d1 m5178-9055.0 LENGDE=3876.71 
+		langs-E+R	 78536081	 EV39 s57d1 m9051 KD1.0 m0.0-94.0 LENGDE=94.48 
+		langs-E+R	 670365531	 EV39 s58d1 m105 KD1.0 m0.0-98.0 LENGDE=98.37 
+		langs-E+R	 78536082	 EV39 s58d1 m1235 KD1.0 m0.0-63.0 LENGDE=62.96 
+		langs-E+R	 761992225	 EV39 s58d1 m1782-1918.0 LENGDE=135.66 
+		langs-E+R	 761992224	 EV39 s58d1 m1918-2264.0 LENGDE=346.06 
+		langs-E+R	 761992223	 EV39 s58d1 m2264-2750.0 LENGDE=485.54 
+		langs-E+R	 78536118	 EV39 s58d1 m2750-3491.0 LENGDE=741.21 
+		langs-E+R	 1006498982	 RV5 s5d1 m3626-6344.0 LENGDE=2717.92 
+		langs-E+R	 1006498982	 RV5 s6d1 m0-270.0 LENGDE=266.44 KORRIGERT, orginal lengde=270.17
+		langs-E+R	 78536195	 RV5 s6d1 m270-898.0 LENGDE=618.69 KORRIGERT, orginal lengde=627.34
+		langs-E+R	 78536135	 RV5 s6d1 m898 KD1.0 m0.0-78.0 LENGDE=77.63 
+		langs-E+R	 78536194	 RV5 s6d1 m898-1473.0 LENGDE=570.75 KORRIGERT, orginal lengde=575.31
+		langs-E+R	 78536193	 RV5 s6d1 m1473-1559.0 LENGDE=81.21 KORRIGERT, orginal lengde=86.57
+		langs-E+R	 78536161	 RV5 s14d1 m239-592.0 LENGDE=348.94 KORRIGERT, orginal lengde=352.62
+		langs-E+R	 78536164	 RV5 s14d1 m592-750.0 LENGDE=150.13 KORRIGERT, orginal lengde=157.75
+		langs-E+R	 206361614	 RV5 s14d1 m750-1902.0 LENGDE=1145.32 KORRIGERT, orginal lengde=1152.28
+		langs-E+R	 78536153	 RV5 s20d1 m4416-5952.0 LENGDE=1531.5 KORRIGERT, orginal lengde=1536.15
+		langs-E+R	 78536150	 RV5 s20d1 m6170-6574.0 LENGDE=403.93 
+		langs-E+R	 157011910	 RV13 s48d1 m9226-9722.0 LENGDE=489.92 KORRIGERT, orginal lengde=495.92
+telling      V4         540 ÅDT (6), 6000 - 10000                                        langs-E+R 	       - stk      14243 m          0 m2 
+telling      V2         540 ÅDT (6), 6000 - 10000                                        langs-E+R 	       - stk      14166 m          - m2 
+differanse   V2 og V4   540 ÅDT (6), 6000 - 10000                                        langs-E+R 	       - stk         78 m          - m2 AVVIK:   små lengdeavvik
+telling      V4         540 ÅDT (6), 6000 - 10000                                        langs-EV39 	       - stk       5841 m          0 m2 
+telling      V3         540 ÅDT (6), 6000 - 10000                                        langs-EV39 	       - stk       5841 m          - m2 
+differanse   V3 og V4   540 ÅDT (6), 6000 - 10000                                        langs-EV39 	       - stk          0 m          - m2 
+telling      V4         540 ÅDT (6), 6000 - 10000                                        langs-RV5 	       - stk       7912 m          0 m2 
+telling      V3         540 ÅDT (6), 6000 - 10000                                        langs-RV5 	       - stk       7835 m          - m2 
+differanse   V3 og V4   540 ÅDT (6), 6000 - 10000                                        langs-RV5 	       - stk         78 m          - m2 AVVIK:   små lengdeavvik
+telling      V4         540 ÅDT (6), 6000 - 10000                                        langs-RV13 	       - stk        490 m          0 m2 
+telling      V3         540 ÅDT (6), 6000 - 10000                                        langs-RV13 	       - stk        490 m          - m2 
+differanse   V3 og V4   540 ÅDT (6), 6000 - 10000                                        langs-RV13 	       - stk          0 m          - m2 
+
+Detaljert meterangivelse for ÅDT (7), 10000 - 20000 langs-g/s 
+telling      V4         540 ÅDT (7), 10000 - 20000                                       langs-g/s 	       - stk          - m          - m2 
+telling      V2         540 ÅDT (7), 10000 - 20000                                       langs-g/s 	       - stk          - m          - m2 
+differanse   V2 og V4   540 ÅDT (7), 10000 - 20000                                       langs-g/s 	       - stk          - m          - m2 
+
+Detaljert meterangivelse for ÅDT (7), 10000 - 20000 langs-E+R 
+		langs-E+R	 78536114	 EV39 s57d1 m9055-9181.0 LENGDE=122.63000000000001 KORRIGERT, orginal lengde=125.84
+		langs-E+R	 78536114	 EV39 s58d1 m75-108.0 LENGDE=29.400000000000002 KORRIGERT, orginal lengde=32.92
+		langs-E+R	 78536115	 EV39 s58d1 m108-871.0 LENGDE=758.75 KORRIGERT, orginal lengde=762.91
+		langs-E+R	 78536116	 EV39 s58d1 m871-1237.0 LENGDE=361.15999999999997 KORRIGERT, orginal lengde=366.46
+		langs-E+R	 761992226	 EV39 s58d1 m1237-1507.0 LENGDE=266.12 KORRIGERT, orginal lengde=270.43
+		langs-E+R	 78536117	 EV39 s58d1 m1507-1589.0 LENGDE=81.03 
+		langs-E+R	 157011911	 RV5 s14d1 m0-2.0 LENGDE=0.0 KORRIGERT, orginal lengde=2.04
+		langs-E+R	 78536165	 RV5 s14d1 m2-239.0 LENGDE=237.39 
+		langs-E+R	 78536151	 RV5 s20d1 m5952-6170.0 LENGDE=218.57 
+telling      V4         540 ÅDT (7), 10000 - 20000                                       langs-E+R 	       - stk       2075 m          0 m2 
+telling      V2         540 ÅDT (7), 10000 - 20000                                       langs-E+R 	       - stk       1856 m          - m2 
+differanse   V2 og V4   540 ÅDT (7), 10000 - 20000                                       langs-E+R 	       - stk        219 m          - m2 AVVIK:   STORE lengdeavvik
+telling      V4         540 ÅDT (7), 10000 - 20000                                       langs-EV39 	       - stk       1619 m          0 m2 
+telling      V3         540 ÅDT (7), 10000 - 20000                                       langs-EV39 	       - stk       1619 m          - m2 
+differanse   V3 og V4   540 ÅDT (7), 10000 - 20000                                       langs-EV39 	       - stk          0 m          - m2 
+telling      V4         540 ÅDT (7), 10000 - 20000                                       langs-RV5 	       - stk        456 m          0 m2 
+telling      V3         540 ÅDT (7), 10000 - 20000                                       langs-RV5 	       - stk        237 m          - m2 
+differanse   V3 og V4   540 ÅDT (7), 10000 - 20000                                       langs-RV5 	       - stk        219 m          - m2 AVVIK:   STORE lengdeavvik
+
+Detaljert meterangivelse for ÅDT (8), > 20000 langs-g/s 
+telling      V4         540 ÅDT (8), > 20000                                             langs-g/s 	       - stk          - m          - m2 
+Ingen data i V2-rapporten samsvarer med 540 ÅDT (8), > 20000
+
+Detaljert meterangivelse for ÅDT (8), > 20000 langs-E+R 
+telling      V4         540 ÅDT (8), > 20000                                             langs-E+R 	       - stk          - m          - m2 
+Ingen data i V2-rapporten samsvarer med 540 ÅDT (8), > 20000
+
+Detaljert meterangivelse for Vinterdriftsklasse A langs-g/s 
+telling      V4         810 Vinterdriftsklasse A                                         langs-g/s 	       - stk          - m          - m2 
+Ingen data i V2-rapporten samsvarer med 810 Vinterdriftsklasse A
+
+Detaljert meterangivelse for Vinterdriftsklasse A langs-E+R 
+telling      V4         810 Vinterdriftsklasse A                                         langs-E+R 	       - stk          - m          - m2 
+Ingen data i V2-rapporten samsvarer med 810 Vinterdriftsklasse A
+
+Detaljert meterangivelse for Vinterdriftsklasse B,  Høy langs-g/s 
+telling      V4         810 Vinterdriftsklasse B,  Høy                                   langs-g/s 	       - stk          - m          - m2 
+telling      V2         810 Vinterdriftsklasse B,  Høy                                   langs-g/s 	       - stk          - m          - m2 
+differanse   V2 og V4   810 Vinterdriftsklasse B,  Høy                                   langs-g/s 	       - stk          - m          - m2 
+
+Detaljert meterangivelse for Vinterdriftsklasse B,  Høy langs-E+R 
+		langs-E+R	 481089425	 EV39 s57d1 m9035-9051.0 LENGDE=16.02 
+		langs-E+R	 481089425	 EV39 s57d1 m9051 KD1.0 m0.0-94.0 LENGDE=94.48 
+		langs-E+R	 481089425	 EV39 s57d1 m9051-9181.0 LENGDE=126.40000000000002 KORRIGERT, orginal lengde=129.61
+		langs-E+R	 1013147367	 EV39 s57d1 m9181-9605.0 LENGDE=423.83 
+		langs-E+R	 481089425	 EV39 s57d1 m9605-nan LENGDE=0.0 
+		langs-E+R	 481089425	 EV39 s58d1 m0-108.0 LENGDE=104.11 KORRIGERT, orginal lengde=107.63
+		langs-E+R	 481089425	 EV39 s58d1 m105 KD1.0 m0.0-98.0 LENGDE=98.37 
+		langs-E+R	 481089425	 EV39 s58d1 m108-1237.0 LENGDE=1119.97 KORRIGERT, orginal lengde=1129.43
+		langs-E+R	 481089425	 EV39 s58d1 m1235 KD1.0 m0.0-63.0 LENGDE=62.96 
+		langs-E+R	 481089425	 EV39 s58d1 m1237-1589.0 LENGDE=347.15 KORRIGERT, orginal lengde=351.46
+		langs-E+R	 1010862247	 EV39 s58d1 m1589-1782.0 LENGDE=193.75 
+		langs-E+R	 481089425	 EV39 s58d1 m1782-7688.0 LENGDE=5906.11 
+		langs-E+R	 481088830	 RV5 s14d1 m2-592.0 LENGDE=586.33 KORRIGERT, orginal lengde=590.01
+		langs-E+R	 481088830	 RV5 s14d1 m592 KD1.0 m0.0-91.0 LENGDE=90.86 
+		langs-E+R	 481088830	 RV5 s14d1 m592-750.0 LENGDE=150.13 KORRIGERT, orginal lengde=157.75
+		langs-E+R	 481088830	 RV5 s14d1 m750 KD1.0 m0.0-86.0 LENGDE=86.31 
+		langs-E+R	 481088830	 RV5 s14d1 m750-1902.0 LENGDE=1145.32 KORRIGERT, orginal lengde=1152.28
+		langs-E+R	 481088830	 RV5 s14d1 m1902-nan LENGDE=0.0 
+		langs-E+R	 481088830	 RV5 s14d1 m1902 KD1.0 m0.0-89.0 LENGDE=89.0 
+telling      V4         810 Vinterdriftsklasse B,  Høy                                   langs-E+R 	       - stk      10641 m          0 m2 
+telling      V2         810 Vinterdriftsklasse B,  Høy                                   langs-E+R 	       - stk      10655 m          - m2 
+differanse   V2 og V4   810 Vinterdriftsklasse B,  Høy                                   langs-E+R 	       - stk         14 m          - m2 
+telling      V4         810 Vinterdriftsklasse B,  Høy                                   langs-EV39 	       - stk       8493 m          0 m2 
+telling      V3         810 Vinterdriftsklasse B,  Høy                                   langs-EV39 	       - stk       8497 m          - m2 
+differanse   V3 og V4   810 Vinterdriftsklasse B,  Høy                                   langs-EV39 	       - stk          3 m          - m2 
+telling      V4         810 Vinterdriftsklasse B,  Høy                                   langs-RV5 	       - stk       2148 m          0 m2 
+telling      V3         810 Vinterdriftsklasse B,  Høy                                   langs-RV5 	       - stk       2159 m          - m2 
+differanse   V3 og V4   810 Vinterdriftsklasse B,  Høy                                   langs-RV5 	       - stk         11 m          - m2 AVVIK:   små lengdeavvik
+
+Detaljert meterangivelse for Vinterdriftsklasse B,  Middels langs-g/s 
+telling      V4         810 Vinterdriftsklasse B,  Middels                               langs-g/s 	       - stk          - m          - m2 
+telling      V2         810 Vinterdriftsklasse B,  Middels                               langs-g/s 	       - stk          - m          - m2 
+differanse   V2 og V4   810 Vinterdriftsklasse B,  Middels                               langs-g/s 	       - stk          - m          - m2 
+
+Detaljert meterangivelse for Vinterdriftsklasse B,  Middels langs-E+R 
+		langs-E+R	 481089426	 EV39 s50d1 m0-12629.0 LENGDE=12628.74 
+		langs-E+R	 324742295	 EV39 s54d1 m0-138.0 LENGDE=135.39 KORRIGERT, orginal lengde=138.44
+		langs-E+R	 1006526244	 EV39 s54d1 m138-9933.0 LENGDE=9794.35 
+		langs-E+R	 1006525955	 EV39 s54d20 m0-88.0 LENGDE=87.78 
+		langs-E+R	 1006526244	 EV39 s55d1 m0-1243.0 LENGDE=1242.75 
+		langs-E+R	 324742295	 EV39 s55d1 m1243-13212.0 LENGDE=11968.75 
+		langs-E+R	 324742295	 EV39 s56d1 m0-9035.0 LENGDE=9034.85 
+		langs-E+R	 324742295	 EV39 s57d1 m0-9035.0 LENGDE=9035.12 
+		langs-E+R	 992981729	 RV5 s14d1 m1902-8836.0 LENGDE=6930.59 KORRIGERT, orginal lengde=6933.87
+		langs-E+R	 324742348	 RV5 s14d1 m8836-11963.0 LENGDE=3127.01 
+		langs-E+R	 324742348	 RV5 s15d1 m0-1336.0 LENGDE=1335.8 
+telling      V4         810 Vinterdriftsklasse B,  Middels                               langs-E+R 	       - stk      65321 m          0 m2 
+telling      V2         810 Vinterdriftsklasse B,  Middels                               langs-E+R 	       - stk      65453 m          - m2 
+differanse   V2 og V4   810 Vinterdriftsklasse B,  Middels                               langs-E+R 	       - stk        132 m          - m2 
+telling      V4         810 Vinterdriftsklasse B,  Middels                               langs-EV39 	       - stk      53928 m          0 m2 
+telling      V3         810 Vinterdriftsklasse B,  Middels                               langs-EV39 	       - stk      53928 m          - m2 
+differanse   V3 og V4   810 Vinterdriftsklasse B,  Middels                               langs-EV39 	       - stk          0 m          - m2 
+telling      V4         810 Vinterdriftsklasse B,  Middels                               langs-RV5 	       - stk      11393 m          0 m2 
+telling      V3         810 Vinterdriftsklasse B,  Middels                               langs-RV5 	       - stk      11526 m          - m2 
+differanse   V3 og V4   810 Vinterdriftsklasse B,  Middels                               langs-RV5 	       - stk        132 m          - m2 AVVIK:   små lengdeavvik
+
+Detaljert meterangivelse for Vinterdriftsklasse B, Lav langs-g/s 
+telling      V4         810 Vinterdriftsklasse B, Lav                                    langs-g/s 	       - stk          - m          - m2 
+telling      V2         810 Vinterdriftsklasse B, Lav                                    langs-g/s 	       - stk          - m          - m2 
+differanse   V2 og V4   810 Vinterdriftsklasse B, Lav                                    langs-g/s 	       - stk          - m          - m2 
+
+Detaljert meterangivelse for Vinterdriftsklasse B, Lav langs-E+R 
+		langs-E+R	 324742343	 EV39 s50d1 m12629-13330.0 LENGDE=701.51 
+		langs-E+R	 324742343	 EV39 s51d1 m0-15919.0 LENGDE=15919.11 
+		langs-E+R	 324742343	 EV39 s52d1 m0-10082.0 LENGDE=10081.63 
+		langs-E+R	 324742343	 EV39 s53d1 m0-668.0 LENGDE=668.18 
+		langs-E+R	 324742343	 EV39 s53d1 m241-nan LENGDE=0.0 
+		langs-E+R	 324742343	 EV39 s53d1 m668-9911.0 LENGDE=9243.07 
+		langs-E+R	 324742343	 EV39 s53d1 m9907 KD1.0 m0.0-91.0 LENGDE=90.89 
+		langs-E+R	 324742343	 EV39 s53d1 m9911-9915.0 LENGDE=0.06000000000000005 KORRIGERT, orginal lengde=3.52
+		langs-E+R	 324742294	 EV39 s58d1 m7688-10764.0 LENGDE=3075.7 
+		langs-E+R	 324165848	 EV39 s58d1 m10764-11096.0 LENGDE=331.67 
+		langs-E+R	 324165847	 EV39 s58d1 m11096-11457.0 LENGDE=360.96 
+		langs-E+R	 324165846	 EV39 s58d1 m11457-11526.0 LENGDE=69.31 
+		langs-E+R	 324165845	 EV39 s58d1 m11526-11689.0 LENGDE=162.41 
+		langs-E+R	 324165844	 EV39 s58d1 m11689-11703.0 LENGDE=14.78 
+		langs-E+R	 324165843	 EV39 s58d1 m11703-11804.0 LENGDE=101.02 
+		langs-E+R	 324165842	 EV39 s58d1 m11804-12159.0 LENGDE=355.02 
+		langs-E+R	 324165841	 EV39 s58d1 m12159-12265.0 LENGDE=105.73 
+		langs-E+R	 324165840	 EV39 s58d1 m12265-12345.0 LENGDE=79.65 
+		langs-E+R	 324165839	 EV39 s58d1 m12345-12429.0 LENGDE=84.48 
+		langs-E+R	 324165838	 EV39 s58d1 m12429-12703.0 LENGDE=273.55 
+		langs-E+R	 324165837	 EV39 s58d1 m12703-12768.0 LENGDE=65.01 
+		langs-E+R	 324165836	 EV39 s58d1 m12768-12804.0 LENGDE=36.58 
+		langs-E+R	 324165835	 EV39 s58d1 m12804-13204.0 LENGDE=399.5 
+		langs-E+R	 324165834	 EV39 s58d1 m13204-nan LENGDE=0.0 
+		langs-E+R	 324165835	 EV39 s59d1 m0-nan LENGDE=0.0 
+		langs-E+R	 324165834	 EV39 s59d1 m0-89.0 LENGDE=88.9 
+		langs-E+R	 324165833	 EV39 s59d1 m89-100.0 LENGDE=11.35 
+		langs-E+R	 324165832	 EV39 s59d1 m100-109.0 LENGDE=8.33 
+		langs-E+R	 324165831	 EV39 s59d1 m109-114.0 LENGDE=5.29 
+		langs-E+R	 324165830	 EV39 s59d1 m114-277.0 LENGDE=162.71 
+		langs-E+R	 324165829	 EV39 s59d1 m277-975.0 LENGDE=698.65 
+		langs-E+R	 324165828	 EV39 s59d1 m975-996.0 LENGDE=20.88 
+		langs-E+R	 324165827	 EV39 s59d1 m996-1145.0 LENGDE=149.67 
+		langs-E+R	 324165826	 EV39 s59d1 m1146-1286.0 LENGDE=140.0 
+		langs-E+R	 324165825	 EV39 s59d1 m1286-1400.0 LENGDE=113.9 
+		langs-E+R	 324165824	 EV39 s59d1 m1400-1940.0 LENGDE=539.54 
+		langs-E+R	 324165823	 EV39 s59d1 m1940-2259.0 LENGDE=319.76 
+		langs-E+R	 324165822	 EV39 s59d1 m2259-2281.0 LENGDE=21.23 
+		langs-E+R	 324165821	 EV39 s59d1 m2281-2301.0 LENGDE=20.0 
+		langs-E+R	 324165820	 EV39 s59d1 m2301-2887.0 LENGDE=586.87 
+		langs-E+R	 324165819	 EV39 s59d1 m2887-3180.0 LENGDE=292.74 
+		langs-E+R	 324165818	 EV39 s59d1 m3180-3230.0 LENGDE=49.43 
+		langs-E+R	 324165817	 EV39 s59d1 m3230-3284.0 LENGDE=54.08 
+		langs-E+R	 324165816	 EV39 s59d1 m3284-3347.0 LENGDE=63.56 
+		langs-E+R	 324165815	 EV39 s59d1 m3347-3383.0 LENGDE=36.04 
+		langs-E+R	 324165814	 EV39 s59d1 m3383-3499.0 LENGDE=115.56 
+		langs-E+R	 324165813	 EV39 s59d1 m3499-3541.0 LENGDE=42.54 
+		langs-E+R	 324165812	 EV39 s59d1 m3541-3631.0 LENGDE=89.27 
+		langs-E+R	 324165811	 EV39 s59d1 m3631-3672.0 LENGDE=41.63 
+		langs-E+R	 324165810	 EV39 s59d1 m3672-3880.0 LENGDE=207.83 
+		langs-E+R	 324165809	 EV39 s59d1 m3880-3943.0 LENGDE=63.08 
+		langs-E+R	 324165808	 EV39 s59d1 m3943-4224.0 LENGDE=280.64 
+		langs-E+R	 324165807	 EV39 s59d1 m4224-4282.0 LENGDE=58.29 
+		langs-E+R	 324165806	 EV39 s59d1 m4282-4393.0 LENGDE=111.35 
+		langs-E+R	 324165805	 EV39 s59d1 m4393-4558.0 LENGDE=164.5 
+		langs-E+R	 324165804	 EV39 s59d1 m4558-4704.0 LENGDE=145.87 
+		langs-E+R	 324165803	 EV39 s59d1 m4704-5267.0 LENGDE=562.72 
+		langs-E+R	 324165802	 EV39 s59d1 m5267-5284.0 LENGDE=16.9 
+		langs-E+R	 324165801	 EV39 s59d1 m5284-5955.0 LENGDE=671.76 
+		langs-E+R	 324165800	 EV39 s59d1 m5955-6375.0 LENGDE=419.79 
+		langs-E+R	 324165799	 EV39 s59d1 m6375-7225.0 LENGDE=850.51 
+		langs-E+R	 745243150	 EV39 s59d1 m7225-8247.0 LENGDE=1022.14 
+		langs-E+R	 745243151	 EV39 s59d1 m8247-8350.0 LENGDE=102.9 
+		langs-E+R	 745243152	 EV39 s59d1 m8350-8500.0 LENGDE=150.16 
+		langs-E+R	 745243149	 EV39 s59d1 m8499 KD5.0 m0.0-165.0 LENGDE=165.34 
+		langs-E+R	 745243148	 EV39 s59d1 m8499 KD5.0 m165.0-203.0 LENGDE=37.72 
+		langs-E+R	 745243153	 EV39 s59d1 m8500-9392.0 LENGDE=891.84 
+		langs-E+R	 745243154	 EV39 s60d1 m0-1836.0 LENGDE=1835.96 
+		langs-E+R	 324165755	 EV39 s61d1 m0-42.0 LENGDE=42.49 
+		langs-E+R	 324165754	 EV39 s61d1 m42-49.0 LENGDE=6.81 
+		langs-E+R	 324165753	 EV39 s61d1 m49-100.0 LENGDE=51.06 
+		langs-E+R	 324165752	 EV39 s61d1 m100-612.0 LENGDE=511.98 
+		langs-E+R	 324165751	 EV39 s61d1 m612-644.0 LENGDE=31.18 
+		langs-E+R	 324165750	 EV39 s61d1 m644-928.0 LENGDE=284.11 
+		langs-E+R	 324165749	 EV39 s61d1 m928-1311.0 LENGDE=383.32 
+		langs-E+R	 324165748	 EV39 s61d1 m1311-1421.0 LENGDE=110.45 
+		langs-E+R	 324165747	 EV39 s61d1 m1421-1644.0 LENGDE=222.85 
+		langs-E+R	 324165746	 EV39 s61d1 m1644-2257.0 LENGDE=612.61 
+		langs-E+R	 324165745	 EV39 s61d1 m2257-2538.0 LENGDE=280.67 
+		langs-E+R	 324165744	 EV39 s61d1 m2538-2646.0 LENGDE=108.59 
+		langs-E+R	 324165743	 EV39 s61d1 m2646-2656.0 LENGDE=10.05 
+		langs-E+R	 324165742	 EV39 s61d1 m2656-2671.0 LENGDE=14.58 
+		langs-E+R	 324165741	 EV39 s61d1 m2671-2783.0 LENGDE=111.97 
+		langs-E+R	 324165740	 EV39 s61d1 m2783-2908.0 LENGDE=125.31 
+		langs-E+R	 324165739	 EV39 s61d1 m2908-3301.0 LENGDE=392.57 
+		langs-E+R	 745243155	 EV39 s61d1 m3301-8134.0 LENGDE=4832.83 
+		langs-E+R	 745243155	 EV39 s61d1 m8134-8162.0 LENGDE=28.17 
+		langs-E+R	 324165724	 EV39 s61d1 m8162-8678.0 LENGDE=516.46 
+		langs-E+R	 324165723	 EV39 s61d1 m8679-9039.0 LENGDE=360.41 
+		langs-E+R	 324165722	 EV39 s61d1 m9039-9682.0 LENGDE=642.75 
+		langs-E+R	 324165721	 EV39 s61d1 m9682-9982.0 LENGDE=299.81 
+		langs-E+R	 324165720	 EV39 s61d1 m9982-10006.0 LENGDE=24.24 
+		langs-E+R	 324165719	 EV39 s61d1 m10006-10184.0 LENGDE=178.39 
+		langs-E+R	 324165718	 EV39 s61d1 m10184-11638.0 LENGDE=1453.97 
+		langs-E+R	 324165717	 EV39 s61d1 m11638-11645.0 LENGDE=6.83 
+		langs-E+R	 324165716	 EV39 s61d1 m11645-11685.0 LENGDE=40.29 
+		langs-E+R	 324165716	 EV39 s62d1 m0-1.0 LENGDE=0.69 
+		langs-E+R	 324165715	 EV39 s62d1 m1-37.0 LENGDE=36.29 
+		langs-E+R	 324165714	 EV39 s62d1 m37-62.0 LENGDE=24.96 
+		langs-E+R	 324165713	 EV39 s62d1 m62-142.0 LENGDE=79.65 
+		langs-E+R	 324165712	 EV39 s62d1 m142-182.0 LENGDE=40.11 
+		langs-E+R	 324165711	 EV39 s62d1 m182-200.0 LENGDE=18.73 
+		langs-E+R	 324165710	 EV39 s62d1 m200-216.0 LENGDE=15.66 
+		langs-E+R	 324165709	 EV39 s62d1 m216-252.0 LENGDE=35.68 
+		langs-E+R	 324165708	 EV39 s62d1 m252-637.0 LENGDE=384.87 
+		langs-E+R	 324165707	 EV39 s62d1 m637-691.0 LENGDE=54.39 
+		langs-E+R	 324165706	 EV39 s62d1 m691-911.0 LENGDE=219.89 
+		langs-E+R	 324165705	 EV39 s62d1 m911-925.0 LENGDE=13.67 
+		langs-E+R	 324165704	 EV39 s62d1 m925-1121.0 LENGDE=196.73 
+		langs-E+R	 324165703	 EV39 s62d1 m1121-1130.0 LENGDE=8.7 
+		langs-E+R	 324165702	 EV39 s62d1 m1130-1596.0 LENGDE=465.52 
+		langs-E+R	 324165701	 EV39 s62d1 m1595-2142.0 LENGDE=546.55 
+		langs-E+R	 324165700	 EV39 s62d1 m2142-2620.0 LENGDE=478.35 
+		langs-E+R	 324165699	 EV39 s62d1 m2621-2790.0 LENGDE=169.14 
+		langs-E+R	 324165611	 EV39 s62d1 m2790-2864.0 LENGDE=74.22 
+		langs-E+R	 324165610	 EV39 s62d1 m2864-6354.0 LENGDE=3489.67 
+		langs-E+R	 324165609	 EV39 s62d1 m6354-6561.0 LENGDE=207.1 
+		langs-E+R	 324165608	 EV39 s62d1 m6561-6708.0 LENGDE=146.96 
+		langs-E+R	 481090995	 EV39 s62d1 m6708-7606.0 LENGDE=898.5 
+		langs-E+R	 481090996	 EV39 s62d1 m7606-8228.0 LENGDE=622.09 
+		langs-E+R	 481090997	 EV39 s62d1 m8228-8328.0 LENGDE=100.0 
+		langs-E+R	 481090998	 EV39 s62d1 m8328-8623.0 LENGDE=295.0 
+		langs-E+R	 481090999	 EV39 s62d1 m8623-10106.0 LENGDE=1482.83 
+		langs-E+R	 481090999	 EV39 s63d1 m0-1108.0 LENGDE=1108.17 
+		langs-E+R	 481091000	 EV39 s63d1 m1108-1541.0 LENGDE=433.0 
+		langs-E+R	 481091001	 EV39 s63d1 m1541-1602.0 LENGDE=61.0 
+		langs-E+R	 481091002	 EV39 s63d1 m1602-1882.0 LENGDE=280.0 
+		langs-E+R	 324165680	 EV39 s63d1 m1882-2155.0 LENGDE=272.66 
+		langs-E+R	 324165679	 EV39 s63d1 m2155-2282.0 LENGDE=126.77 
+		langs-E+R	 324165678	 EV39 s63d1 m2282-2514.0 LENGDE=232.32 
+		langs-E+R	 324165677	 EV39 s63d1 m2514-2721.0 LENGDE=206.94 
+		langs-E+R	 324165676	 EV39 s63d1 m2721-2737.0 LENGDE=15.71 
+		langs-E+R	 324165675	 EV39 s63d1 m2737-2745.0 LENGDE=8.49 
+		langs-E+R	 324165674	 EV39 s63d1 m2745-2758.0 LENGDE=13.05 
+		langs-E+R	 324165673	 EV39 s63d1 m2758-2910.0 LENGDE=152.23 
+		langs-E+R	 324165672	 EV39 s63d1 m2910-2943.0 LENGDE=33.06 
+		langs-E+R	 324165671	 EV39 s63d1 m2943-3369.0 LENGDE=425.89 
+		langs-E+R	 324165670	 EV39 s63d1 m3369-3706.0 LENGDE=337.05 
+		langs-E+R	 324165669	 EV39 s63d1 m3706-3900.0 LENGDE=194.0 
+		langs-E+R	 324165668	 EV39 s63d1 m3900-3947.0 LENGDE=46.19 
+		langs-E+R	 324165667	 EV39 s63d1 m3947-4244.0 LENGDE=297.5 
+		langs-E+R	 324165666	 EV39 s63d1 m4244-4630.0 LENGDE=385.54 
+		langs-E+R	 324165665	 EV39 s63d1 m4630-4944.0 LENGDE=314.08 
+		langs-E+R	 324165664	 EV39 s63d1 m4944-5140.0 LENGDE=196.55 
+		langs-E+R	 324165663	 EV39 s63d1 m5140-5359.0 LENGDE=219.13 
+		langs-E+R	 324165662	 EV39 s63d1 m5359-5366.0 LENGDE=6.3 
+		langs-E+R	 324165661	 EV39 s63d1 m5366-5613.0 LENGDE=247.84 
+		langs-E+R	 324165660	 EV39 s63d1 m5613-5951.0 LENGDE=337.76 
+		langs-E+R	 324165659	 EV39 s63d1 m5951-6835.0 LENGDE=883.99 
+		langs-E+R	 324165658	 EV39 s63d1 m6835-6856.0 LENGDE=21.11 
+		langs-E+R	 324165657	 EV39 s63d1 m6856-6953.0 LENGDE=96.76 
+		langs-E+R	 324165656	 EV39 s63d1 m6953-7113.0 LENGDE=159.58 
+		langs-E+R	 324165655	 EV39 s63d1 m7113-7205.0 LENGDE=92.49 
+		langs-E+R	 324165654	 EV39 s63d1 m7205-7213.0 LENGDE=7.98 
+		langs-E+R	 324165653	 EV39 s63d1 m7213-7219.0 LENGDE=5.85 
+		langs-E+R	 324165652	 EV39 s63d1 m7219-7454.0 LENGDE=234.59 
+		langs-E+R	 324165651	 EV39 s63d1 m7454-7527.0 LENGDE=73.53 
+		langs-E+R	 324165650	 EV39 s63d1 m7527-7832.0 LENGDE=304.81 
+		langs-E+R	 324165649	 EV39 s63d1 m7832-7883.0 LENGDE=51.08 
+		langs-E+R	 324165648	 EV39 s63d1 m7883-7955.0 LENGDE=71.98 
+		langs-E+R	 324165647	 EV39 s63d1 m7955-8073.0 LENGDE=117.65 
+		langs-E+R	 324165646	 EV39 s63d1 m8073-8136.0 LENGDE=62.94 
+		langs-E+R	 324165645	 EV39 s63d1 m8136-9076.0 LENGDE=940.81 
+		langs-E+R	 324165644	 EV39 s63d1 m9076-9457.0 LENGDE=381.07 
+		langs-E+R	 324165643	 EV39 s63d1 m9457-10001.0 LENGDE=543.53 
+		langs-E+R	 324165643	 EV39 s64d1 m0-9.0 LENGDE=9.4 
+		langs-E+R	 324165642	 EV39 s64d1 m9-249.0 LENGDE=239.68 
+		langs-E+R	 324165641	 EV39 s64d1 m249-452.0 LENGDE=202.6 
+		langs-E+R	 324165640	 EV39 s64d1 m452-460.0 LENGDE=8.78 
+		langs-E+R	 324165639	 EV39 s64d1 m460-891.0 LENGDE=430.16 
+		langs-E+R	 324165638	 EV39 s64d1 m891-1116.0 LENGDE=225.08 
+		langs-E+R	 324165637	 EV39 s64d1 m1116-1459.0 LENGDE=343.25 
+		langs-E+R	 324165636	 EV39 s64d1 m1459-1467.0 LENGDE=7.94 
+		langs-E+R	 324165635	 EV39 s64d1 m1467-1636.0 LENGDE=169.21 
+		langs-E+R	 324165634	 EV39 s64d1 m1636-1695.0 LENGDE=59.37 
+		langs-E+R	 324165633	 EV39 s64d1 m1695-2462.0 LENGDE=766.88 
+		langs-E+R	 324165632	 EV39 s64d1 m2462-2484.0 LENGDE=22.1 
+		langs-E+R	 324165631	 EV39 s64d1 m2484-2606.0 LENGDE=121.11 
+		langs-E+R	 324165630	 EV39 s64d1 m2606-2639.0 LENGDE=33.49 
+		langs-E+R	 324165629	 EV39 s64d1 m2639-2852.0 LENGDE=212.98 
+		langs-E+R	 324165628	 EV39 s64d1 m2852-3114.0 LENGDE=262.28 
+		langs-E+R	 324165627	 EV39 s64d1 m3114-3181.0 LENGDE=66.3 
+		langs-E+R	 324165626	 EV39 s64d1 m3181-3369.0 LENGDE=188.86 
+		langs-E+R	 324165625	 EV39 s64d1 m3369-3462.0 LENGDE=92.29 
+		langs-E+R	 324165624	 EV39 s64d1 m3462-3716.0 LENGDE=254.26 
+		langs-E+R	 324165623	 EV39 s64d1 m3716-4198.0 LENGDE=481.75 
+		langs-E+R	 745243156	 EV39 s64d1 m4198-4825.0 LENGDE=626.81 
+		langs-E+R	 324742346	 RV5 s4d1 m0-556.0 LENGDE=556.4 
+		langs-E+R	 324742346	 RV5 s4d1 m1086-3566.0 LENGDE=2479.77 
+		langs-E+R	 324742346	 RV5 s4d1 m3265-nan LENGDE=0.0 
+		langs-E+R	 324742346	 RV5 s4d1 m3566-10542.0 LENGDE=6975.68 
+		langs-E+R	 636526035	 RV5 s4d1 m8291 KD1.0 m0.0-16.0 LENGDE=16.35 
+		langs-E+R	 621374777	 RV5 s4d1 m8291 KD1.0 m16.0-204.0 LENGDE=187.78 
+		langs-E+R	 636526031	 RV5 s4d1 m8291 KD2.0 m0.0-4.0 LENGDE=3.52 
+		langs-E+R	 621374774	 RV5 s4d1 m8291 KD2.0 m4.0-17.0 LENGDE=13.94 
+		langs-E+R	 636526030	 RV5 s4d1 m8291 KD2.0 m17.0-22.0 LENGDE=4.38 
+		langs-E+R	 636526029	 RV5 s4d1 m8291 KD3.0 m0.0-15.0 LENGDE=15.18 
+		langs-E+R	 621374773	 RV5 s4d1 m8291 KD3.0 m15.0-341.0 LENGDE=325.66 
+		langs-E+R	 636526028	 RV5 s4d1 m8291 KD3.0 m341.0-344.0 LENGDE=3.65 
+		langs-E+R	 636526033	 RV5 s4d1 m8291 KD4.0 m0.0-5.0 LENGDE=4.77 
+		langs-E+R	 621374775	 RV5 s4d1 m8291 KD4.0 m5.0-28.0 LENGDE=23.66 
+		langs-E+R	 636526032	 RV5 s4d1 m8291 KD4.0 m28.0-33.0 LENGDE=5.02 
+		langs-E+R	 621374776	 RV5 s4d1 m8291 KD5.0 m0.0-298.0 LENGDE=298.07 
+		langs-E+R	 636526034	 RV5 s4d1 m8291 KD5.0 m298.0-302.0 LENGDE=4.2 
+		langs-E+R	 621374772	 RV5 s4d1 m8291 KD6.0 m0.0-50.0 LENGDE=50.25 
+		langs-E+R	 621374771	 RV5 s4d1 m8291 KD7.0 m0.0-56.0 LENGDE=55.81 
+		langs-E+R	 636526027	 RV5 s4d30 m0-4.0 LENGDE=0.0 KORRIGERT, orginal lengde=4.13
+		langs-E+R	 1010862237	 RV5 s4d40 m0-100.0 LENGDE=99.86 
+		langs-E+R	 324742346	 RV5 s5d1 m0-6344.0 LENGDE=6343.53 
+		langs-E+R	 324742346	 RV5 s6d1 m0-898.0 LENGDE=885.13 KORRIGERT, orginal lengde=897.51
+		langs-E+R	 623520430	 RV5 s6d1 m270 KD1.0 m0.0-87.0 LENGDE=87.08 
+		langs-E+R	 623520427	 RV5 s6d1 m898 KD1.0 m0.0-78.0 LENGDE=77.63 
+		langs-E+R	 623520430	 RV5 s6d1 m898-1559.0 LENGDE=651.96 KORRIGERT, orginal lengde=661.88
+		langs-E+R	 623520429	 RV5 s6d1 m1559 KD1.0 m0.0-77.0 LENGDE=77.0 
+		langs-E+R	 623520428	 RV5 s6d1 m1559-1626.0 LENGDE=62.67 KORRIGERT, orginal lengde=66.98
+		langs-E+R	 623520428	 RV5 s7d1 m0-9994.0 LENGDE=9993.91 
+		langs-E+R	 623520428	 RV5 s8d1 m0-11772.0 LENGDE=11771.72 
+		langs-E+R	 623520428	 RV5 s9d1 m0-10000.0 LENGDE=9999.71 
+		langs-E+R	 623520428	 RV5 s10d1 m0-9451.0 LENGDE=9450.99 
+		langs-E+R	 623520428	 RV5 s11d1 m0-2868.0 LENGDE=2868.0 
+		langs-E+R	 623520428	 RV5 s11d1 m2868-6527.0 LENGDE=3659.0 
+		langs-E+R	 992981730	 RV5 s15d1 m1336-6252.0 LENGDE=4916.62 
+		langs-E+R	 992981730	 RV5 s15d1 m6252-7452.0 LENGDE=1200.03 
+		langs-E+R	 786520710	 RV5 s15d1 m7452-10002.0 LENGDE=2549.7 
+		langs-E+R	 826792840	 RV5 s15d1 m7909 SD1.0 m0.0-113.0 LENGDE=113.47 
+		langs-E+R	 786520710	 RV5 s16d1 m0-4535.0 LENGDE=4535.15 
+		langs-E+R	 786520710	 RV5 s17d1 m0-10042.0 LENGDE=10041.57 
+		langs-E+R	 745243144	 RV5 s17d1 m4715 SD1.0 m0.0-142.0 LENGDE=141.61 
+		langs-E+R	 786520710	 RV5 s18d1 m0-2639.0 LENGDE=2639.06 
+		langs-E+R	 786520712	 RV5 s18d1 m2612 SD1.0 m0.0-76.0 LENGDE=75.91 
+		langs-E+R	 786520711	 RV5 s18d1 m2639-10023.0 LENGDE=7384.43 
+		langs-E+R	 786520711	 RV5 s19d1 m0-4142.0 LENGDE=4142.42 
+		langs-E+R	 745243143	 RV5 s19d1 m757 SD1.0 m0.0-89.0 LENGDE=88.78 
+		langs-E+R	 786520711	 RV5 s20d1 m0-4416.0 LENGDE=4410.490000000001 KORRIGERT, orginal lengde=4415.72
+		langs-E+R	 786520711	 RV5 s20d1 m4416 KD1.0 m0.0-82.0 LENGDE=82.49 
+		langs-E+R	 786520711	 RV5 s20d1 m4416-6766.0 LENGDE=2345.46 KORRIGERT, orginal lengde=2350.11
+telling      V4         810 Vinterdriftsklasse B, Lav                                    langs-E+R 	       - stk     201987 m          0 m2 
+telling      V2         810 Vinterdriftsklasse B, Lav                                    langs-E+R 	       - stk     194135 m          - m2 
+differanse   V2 og V4   810 Vinterdriftsklasse B, Lav                                    langs-E+R 	       - stk       7851 m          - m2 AVVIK:   noe lengdeavvik
+telling      V4         810 Vinterdriftsklasse B, Lav                                    langs-EV39 	       - stk      90267 m          0 m2 
+telling      V3         810 Vinterdriftsklasse B, Lav                                    langs-EV39 	       - stk      90247 m          - m2 
+differanse   V3 og V4   810 Vinterdriftsklasse B, Lav                                    langs-EV39 	       - stk         20 m          - m2 
+telling      V4         810 Vinterdriftsklasse B, Lav                                    langs-RV5 	       - stk     111719 m          0 m2 
+telling      V3         810 Vinterdriftsklasse B, Lav                                    langs-RV5 	       - stk     103888 m          - m2 
+differanse   V3 og V4   810 Vinterdriftsklasse B, Lav                                    langs-RV5 	       - stk       7831 m          - m2 AVVIK:   STORE lengdeavvik
+
+Detaljert meterangivelse for Vinterdriftsklasse C langs-g/s 
+telling      V4         810 Vinterdriftsklasse C                                         langs-g/s 	       - stk          - m          - m2 
+telling      V2         810 Vinterdriftsklasse C                                         langs-g/s 	       - stk          - m          - m2 
+differanse   V2 og V4   810 Vinterdriftsklasse C                                         langs-g/s 	       - stk          - m          - m2 
+
+Detaljert meterangivelse for Vinterdriftsklasse C langs-E+R 
+		langs-E+R	 324742347	 RV5 s11d1 m6527-9999.0 LENGDE=3472.06 
+		langs-E+R	 324742347	 RV5 s12d1 m0-10320.0 LENGDE=10316.49 KORRIGERT, orginal lengde=10320.25
+		langs-E+R	 324742347	 RV5 s14d1 m0-2.0 LENGDE=0.0 KORRIGERT, orginal lengde=2.04
+		langs-E+R	 324742354	 RV13 s44d1 m0-10890.0 LENGDE=10890.12 
+		langs-E+R	 324742354	 RV13 s45d1 m0-1840.0 LENGDE=1840.23 
+		langs-E+R	 324742354	 RV13 s46d1 m0-3414.0 LENGDE=3413.98 
+		langs-E+R	 324742354	 RV13 s47d1 m0-9572.0 LENGDE=9572.25 
+		langs-E+R	 621374569	 RV13 s47d200 m2239-2720.0 LENGDE=476.69 KORRIGERT, orginal lengde=480.89
+		langs-E+R	 324742354	 RV13 s48d1 m0-9722.0 LENGDE=9715.91 KORRIGERT, orginal lengde=9721.91
+telling      V4         810 Vinterdriftsklasse C                                         langs-E+R 	       - stk      49698 m          0 m2 
+telling      V2         810 Vinterdriftsklasse C                                         langs-E+R 	       - stk      49698 m          - m2 
+differanse   V2 og V4   810 Vinterdriftsklasse C                                         langs-E+R 	       - stk          0 m          - m2 
+telling      V4         810 Vinterdriftsklasse C                                         langs-RV5 	       - stk      13789 m          0 m2 
+telling      V3         810 Vinterdriftsklasse C                                         langs-RV5 	       - stk      13789 m          - m2 
+differanse   V3 og V4   810 Vinterdriftsklasse C                                         langs-RV5 	       - stk          0 m          - m2 
+telling      V4         810 Vinterdriftsklasse C                                         langs-RV13 	       - stk      35909 m          0 m2 
+telling      V3         810 Vinterdriftsklasse C                                         langs-RV13 	       - stk      35909 m          - m2 
+differanse   V3 og V4   810 Vinterdriftsklasse C                                         langs-RV13 	       - stk          0 m          - m2 
+
+Detaljert meterangivelse for Vinterdriftsklasse D langs-g/s 
+telling      V4         810 Vinterdriftsklasse D                                         langs-g/s 	       - stk          - m          - m2 
+telling      V2         810 Vinterdriftsklasse D                                         langs-g/s 	       - stk          - m          - m2 
+differanse   V2 og V4   810 Vinterdriftsklasse D                                         langs-g/s 	       - stk          - m          - m2 
+
+Detaljert meterangivelse for Vinterdriftsklasse D langs-E+R 
+		langs-E+R	 621374778	 RV5 s4d30 m4-2403.0 LENGDE=2399.23 
+telling      V4         810 Vinterdriftsklasse D                                         langs-E+R 	       - stk       2399 m          0 m2 
+telling      V2         810 Vinterdriftsklasse D                                         langs-E+R 	       - stk       2399 m          - m2 
+differanse   V2 og V4   810 Vinterdriftsklasse D                                         langs-E+R 	       - stk          0 m          - m2 
+telling      V4         810 Vinterdriftsklasse D                                         langs-RV5 	       - stk       2399 m          0 m2 
+telling      V3         810 Vinterdriftsklasse D                                         langs-RV5 	       - stk       2399 m          - m2 
+differanse   V3 og V4   810 Vinterdriftsklasse D                                         langs-RV5 	       - stk          0 m          - m2 
+
+Detaljert meterangivelse for Vinterdriftsklasse E langs-g/s 
+telling      V4         810 Vinterdriftsklasse E                                         langs-g/s 	       - stk          - m          - m2 
+Ingen data i V2-rapporten samsvarer med 810 Vinterdriftsklasse E
+
+Detaljert meterangivelse for Vinterdriftsklasse E langs-E+R 
+telling      V4         810 Vinterdriftsklasse E                                         langs-E+R 	       - stk          - m          - m2 
+Ingen data i V2-rapporten samsvarer med 810 Vinterdriftsklasse E
+
+Detaljert meterangivelse for Vinterdriftsklasse GsA langs-g/s 
+telling      V4         810 Vinterdriftsklasse GsA                                       langs-g/s 	       - stk          - m          - m2 
+Ingen data i V2-rapporten samsvarer med 810 Vinterdriftsklasse GsA
+
+Detaljert meterangivelse for Vinterdriftsklasse GsA langs-E+R 
+telling      V4         810 Vinterdriftsklasse GsA                                       langs-E+R 	       - stk          - m          - m2 
+Ingen data i V2-rapporten samsvarer med 810 Vinterdriftsklasse GsA
+
+Detaljert meterangivelse for Vinterdriftsklasse GsB langs-g/s 
+		langs-g/s	 636517280	 EV39 s52d200 m0-43.0 LENGDE=27.580000000000002 KORRIGERT, orginal lengde=42.92
+		langs-g/s	 618361756	 EV39 s52d200 m43-120.0 LENGDE=77.33 
+		langs-g/s	 636517281	 EV39 s52d200 m120-369.0 LENGDE=0.0 KORRIGERT, orginal lengde=248.57
+		langs-g/s	 618361757	 EV39 s52d200 m369-2320.0 LENGDE=1950.8 
+		langs-g/s	 1006526240	 EV39 s54d200 m0-3345.0 LENGDE=3344.95 
+		langs-g/s	 1006526114	 EV39 s54d200 m3345-4834.0 LENGDE=1489.08 
+		langs-g/s	 1006526262	 EV39 s54d200 m4834-5326.0 LENGDE=491.98 
+		langs-g/s	 1006526112	 EV39 s54d200 m5326-6382.0 LENGDE=1055.88 
+		langs-g/s	 1006526119	 EV39 s54d200 m6382-6555.0 LENGDE=172.63 
+		langs-g/s	 1006531573	 EV39 s54d205 m0-121.0 LENGDE=120.68 
+		langs-g/s	 618361739	 EV39 s55d100 m0-276.0 LENGDE=276.0 
+		langs-g/s	 618361740	 EV39 s56d100 m0-174.0 LENGDE=173.65 
+		langs-g/s	 636517259	 EV39 s56d100 m174-182.0 LENGDE=0.0 KORRIGERT, orginal lengde=8.0
+		langs-g/s	 618361741	 EV39 s56d100 m182-793.0 LENGDE=611.47 
+		langs-g/s	 636517260	 EV39 s56d100 m793-800.0 LENGDE=0.0 KORRIGERT, orginal lengde=7.0
+		langs-g/s	 618361742	 EV39 s56d100 m800-1823.0 LENGDE=1022.9 
+		langs-g/s	 636517261	 EV39 s56d100 m1823-1829.0 LENGDE=0.0 KORRIGERT, orginal lengde=6.0
+		langs-g/s	 618361743	 EV39 s56d100 m1829-2396.0 LENGDE=567.0 
+		langs-g/s	 636517262	 EV39 s56d100 m2396-2404.0 LENGDE=0.0 KORRIGERT, orginal lengde=8.0
+		langs-g/s	 618361744	 EV39 s56d100 m2404-3145.0 LENGDE=734.29 KORRIGERT, orginal lengde=740.86
+		langs-g/s	 636517263	 EV39 s56d200 m0-275.0 LENGDE=274.87 
+		langs-g/s	 636517263	 EV39 s56d300 m0-370.0 LENGDE=370.05 
+		langs-g/s	 1010862196	 EV39 s57d100 m0-41.0 LENGDE=40.54 
+		langs-g/s	 745243123	 EV39 s57d100 m41-113.0 LENGDE=72.2 
+		langs-g/s	 636517264	 EV39 s57d100 m113-336.0 LENGDE=223.26 
+		langs-g/s	 636517265	 EV39 s57d200 m0-396.0 LENGDE=396.3 
+		langs-g/s	 636517272	 EV39 s57d200 m396-418.0 LENGDE=21.3 
+		langs-g/s	 636517282	 EV39 s57d400 m0-143.0 LENGDE=143.05 
+		langs-g/s	 636517283	 EV39 s57d400 m143-147.0 LENGDE=8.881784197001252e-16 KORRIGERT, orginal lengde=4.03
+		langs-g/s	 636517284	 EV39 s57d400 m147-155.0 LENGDE=8.11 
+		langs-g/s	 618361758	 EV39 s57d400 m155-529.0 LENGDE=373.97 
+		langs-g/s	 636517285	 EV39 s57d400 m529-536.0 LENGDE=0.0 KORRIGERT, orginal lengde=6.39
+		langs-g/s	 618361759	 EV39 s57d400 m536-4098.0 LENGDE=3562.63 
+		langs-g/s	 636517286	 EV39 s57d400 m4098-4106.0 LENGDE=0.0 KORRIGERT, orginal lengde=8.01
+		langs-g/s	 618361760	 EV39 s57d400 m4106-4315.0 LENGDE=209.02 
+		langs-g/s	 636517287	 EV39 s57d400 m4315-4319.0 LENGDE=0.0 KORRIGERT, orginal lengde=3.64
+		langs-g/s	 618361761	 EV39 s57d400 m4319-5007.0 LENGDE=688.65 
+		langs-g/s	 1013274576	 EV39 s57d400 m5007-nan LENGDE=0.0 
+		langs-g/s	 636517273	 EV39 s57d500 m0-17.0 LENGDE=-0.00999999999999801 KORRIGERT, orginal lengde=17.39
+		langs-g/s	 618361745	 EV39 s57d500 m17-140.0 LENGDE=123.06 
+		langs-g/s	 1013147368	 EV39 s57d501 m0-427.0 LENGDE=427.04 
+		langs-g/s	 1013274577	 EV39 s57d501 m427-nan LENGDE=0.0 
+		langs-g/s	 1013274576	 EV39 s58d100 m0-93.0 LENGDE=92.76 
+		langs-g/s	 618361763	 EV39 s58d100 m93-124.0 LENGDE=31.33 
+		langs-g/s	 636517288	 EV39 s58d100 m124-139.0 LENGDE=0.0 KORRIGERT, orginal lengde=14.94
+		langs-g/s	 618361764	 EV39 s58d100 m139-169.0 LENGDE=30.23 
+		langs-g/s	 618361765	 EV39 s58d100 m169-193.0 LENGDE=24.0 
+		langs-g/s	 618361766	 EV39 s58d100 m193-276.0 LENGDE=82.9 
+		langs-g/s	 636517276	 EV39 s58d100 m276-280.0 LENGDE=0.0 KORRIGERT, orginal lengde=3.85
+		langs-g/s	 1013274577	 EV39 s58d200 m0-104.0 LENGDE=103.54 
+		langs-g/s	 618361746	 EV39 s58d200 m104-128.0 LENGDE=24.44 
+		langs-g/s	 636517266	 EV39 s58d200 m128-143.0 LENGDE=0.0 KORRIGERT, orginal lengde=14.53
+		langs-g/s	 618361747	 EV39 s58d200 m143-175.0 LENGDE=32.68 
+		langs-g/s	 618361748	 EV39 s58d200 m175-280.0 LENGDE=104.79 
+		langs-g/s	 636517267	 EV39 s58d200 m280-542.0 LENGDE=261.75 
+		langs-g/s	 636517274	 EV39 s58d201 m0-20.0 LENGDE=0.0 KORRIGERT, orginal lengde=19.53
+		langs-g/s	 618361746	 EV39 s58d201 m20-22.0 LENGDE=2.74 
+		langs-g/s	 636517275	 EV39 s58d600 m0-22.0 LENGDE=0.0 KORRIGERT, orginal lengde=22.3
+		langs-g/s	 636517267	 EV39 s58d750 m0-nan LENGDE=0.0 
+		langs-g/s	 636517276	 EV39 s58d750 m0-9.0 LENGDE=0.0 KORRIGERT, orginal lengde=8.71
+		langs-g/s	 618361749	 EV39 s58d800 m0-190.0 LENGDE=175.89 KORRIGERT, orginal lengde=190.28
+		langs-g/s	 636517268	 EV39 s58d800 m190-194.0 LENGDE=0.0 KORRIGERT, orginal lengde=3.22
+		langs-g/s	 618361750	 EV39 s58d800 m194-603.0 LENGDE=409.02 
+		langs-g/s	 1010862195	 EV39 s58d800 m603-663.0 LENGDE=33.64 KORRIGERT, orginal lengde=60.63
+		langs-g/s	 618361751	 EV39 s58d800 m663-685.0 LENGDE=14.469999999999999 KORRIGERT, orginal lengde=22.13
+		langs-g/s	 636517270	 EV39 s58d850 m0-9.0 LENGDE=8.77 
+		langs-g/s	 618361752	 EV39 s58d850 m9-112.0 LENGDE=94.15 KORRIGERT, orginal lengde=103.15
+		langs-g/s	 618361767	 EV39 s58d860 m0-70.0 LENGDE=58.0 KORRIGERT, orginal lengde=69.64
+		langs-g/s	 1010862194	 EV39 s58d870 m0-28.0 LENGDE=17.35 KORRIGERT, orginal lengde=27.77
+		langs-g/s	 745243126	 EV39 s59d100 m0-123.0 LENGDE=122.78 
+		langs-g/s	 745243127	 EV39 s59d100 m123-221.0 LENGDE=97.96 
+		langs-g/s	 745243128	 EV39 s59d100 m221-471.0 LENGDE=245.08 KORRIGERT, orginal lengde=250.75
+		langs-g/s	 745243129	 EV39 s60d100 m0-646.0 LENGDE=646.43 
+		langs-g/s	 745243129	 EV39 s61d100 m0-921.0 LENGDE=917.1899999999999 KORRIGERT, orginal lengde=920.66
+		langs-g/s	 618361768	 EV39 s62d100 m0-3111.0 LENGDE=3110.65 
+		langs-g/s	 745243124	 EV39 s62d200 m0-538.0 LENGDE=535.29 KORRIGERT, orginal lengde=538.29
+		langs-g/s	 636517290	 EV39 s62d300 m0-3.0 LENGDE=0.0 KORRIGERT, orginal lengde=3.0
+		langs-g/s	 618361769	 EV39 s62d300 m3-138.0 LENGDE=134.89 
+		langs-g/s	 745243125	 EV39 s62d300 m138-166.0 LENGDE=23.36 KORRIGERT, orginal lengde=27.78
+		langs-g/s	 745243125	 EV39 s62d400 m0-nan LENGDE=0.0 
+		langs-g/s	 745243132	 EV39 s62d400 m0-51.0 LENGDE=47.199999999999996 KORRIGERT, orginal lengde=51.05
+		langs-g/s	 745243133	 EV39 s62d400 m51-317.0 LENGDE=265.51 
+		langs-g/s	 745243134	 EV39 s62d400 m317-484.0 LENGDE=167.0 
+		langs-g/s	 745243135	 EV39 s62d400 m484-496.0 LENGDE=8.059999999999999 KORRIGERT, orginal lengde=12.09
+		langs-g/s	 636517291	 EV39 s62d500 m0-4.0 LENGDE=0.0 KORRIGERT, orginal lengde=4.01
+		langs-g/s	 618361770	 EV39 s62d500 m4-54.0 LENGDE=50.13 
+		langs-g/s	 324165596	 EV39 s62d500 m54-138.0 LENGDE=84.0 
+		langs-g/s	 618361771	 EV39 s62d500 m138-146.0 LENGDE=8.15 
+		langs-g/s	 636517292	 EV39 s62d500 m146-149.0 LENGDE=0.0 KORRIGERT, orginal lengde=3.06
+		langs-g/s	 745265753	 EV39 s64d180 m0-53.0 LENGDE=46.7 KORRIGERT, orginal lengde=52.85
+		langs-g/s	 745265753	 EV39 s64d180 m16-nan LENGDE=0.0 
+		langs-g/s	 745265753	 EV39 s64d180 m53-nan LENGDE=0.0 
+		langs-g/s	 621374660	 RV5 s4d110 m0-4.0 LENGDE=4.05 
+		langs-g/s	 636526098	 RV5 s4d110 m4-13.0 LENGDE=0.0 KORRIGERT, orginal lengde=9.33
+		langs-g/s	 621374659	 RV5 s4d110 m13-57.0 LENGDE=43.99 
+		langs-g/s	 636526097	 RV5 s4d110 m57-70.0 LENGDE=0.0 KORRIGERT, orginal lengde=12.95
+		langs-g/s	 621374658	 RV5 s4d115 m0-2.0 LENGDE=2.04 
+		langs-g/s	 636526096	 RV5 s4d115 m2-13.0 LENGDE=-0.009999999999999787 KORRIGERT, orginal lengde=10.69
+		langs-g/s	 621374657	 RV5 s4d115 m13-79.0 LENGDE=66.07 
+		langs-g/s	 636526095	 RV5 s4d115 m79-83.0 LENGDE=0.0 KORRIGERT, orginal lengde=4.1
+		langs-g/s	 636526100	 RV5 s4d120 m0-6.0 LENGDE=0.0 KORRIGERT, orginal lengde=5.61
+		langs-g/s	 621374665	 RV5 s4d120 m6-39.0 LENGDE=33.0 
+		langs-g/s	 636526099	 RV5 s4d120 m39-50.0 LENGDE=0.0 KORRIGERT, orginal lengde=11.36
+		langs-g/s	 621374664	 RV5 s4d120 m50-339.0 LENGDE=288.99 
+		langs-g/s	 636526094	 RV5 s4d120 m339-349.0 LENGDE=0.0 KORRIGERT, orginal lengde=10.1
+		langs-g/s	 621374656	 RV5 s4d120 m349-351.0 LENGDE=2.13 
+		langs-g/s	 1010862185	 RV5 s4d121 m0-34.0 LENGDE=33.6 
+		langs-g/s	 636526076	 RV5 s4d150 m0-8.0 LENGDE=0.0 KORRIGERT, orginal lengde=7.99
+		langs-g/s	 621374635	 RV5 s4d150 m8-605.0 LENGDE=597.32 
+		langs-g/s	 636526072	 RV5 s4d150 m605-614.0 LENGDE=0.0 KORRIGERT, orginal lengde=8.32
+		langs-g/s	 621374634	 RV5 s4d160 m0-704.0 LENGDE=703.54 
+		langs-g/s	 636526071	 RV5 s4d160 m704-710.0 LENGDE=0.0 KORRIGERT, orginal lengde=6.84
+		langs-g/s	 621374640	 RV5 s4d170 m0-11.0 LENGDE=11.44 
+		langs-g/s	 1010862186	 RV5 s4d170 m11-16.0 LENGDE=0.0 KORRIGERT, orginal lengde=4.1
+		langs-g/s	 636526075	 RV5 s4d200 m0-9.0 LENGDE=0.009999999999999787 KORRIGERT, orginal lengde=8.77
+		langs-g/s	 621374639	 RV5 s4d200 m9-638.0 LENGDE=629.29 
+		langs-g/s	 1010862184	 RV5 s4d200 m638-679.0 LENGDE=32.589999999999996 KORRIGERT, orginal lengde=40.48
+		langs-g/s	 621374639	 RV5 s4d201 m0-12.0 LENGDE=11.72 
+		langs-g/s	 621374638	 RV5 s4d300 m0-332.0 LENGDE=332.15 
+		langs-g/s	 636526074	 RV5 s4d300 m332-343.0 LENGDE=0.0 KORRIGERT, orginal lengde=10.88
+		langs-g/s	 1010862192	 RV5 s5d100 m0-134.0 LENGDE=116.45 KORRIGERT, orginal lengde=134.15
+		langs-g/s	 1010862191	 RV5 s5d200 m0-22.0 LENGDE=14.14 KORRIGERT, orginal lengde=21.61
+		langs-g/s	 621374675	 RV5 s5d400 m0-2182.0 LENGDE=2174.84 KORRIGERT, orginal lengde=2182.27
+		langs-g/s	 621374655	 RV5 s5d410 m0-5.0 LENGDE=4.91 
+		langs-g/s	 636526093	 RV5 s5d410 m5-8.0 LENGDE=0.0 KORRIGERT, orginal lengde=2.91
+		langs-g/s	 621374654	 RV5 s5d420 m0-5.0 LENGDE=4.66 
+		langs-g/s	 636526092	 RV5 s5d420 m5-8.0 LENGDE=0.0 KORRIGERT, orginal lengde=3.19
+		langs-g/s	 621374653	 RV5 s5d430 m0-4.0 LENGDE=4.32 
+		langs-g/s	 636526091	 RV5 s5d430 m4-11.0 LENGDE=0.0 KORRIGERT, orginal lengde=6.45
+		langs-g/s	 621374652	 RV5 s5d440 m0-4.0 LENGDE=4.17 
+		langs-g/s	 636526090	 RV5 s5d440 m4-7.0 LENGDE=0.0 KORRIGERT, orginal lengde=3.0
+		langs-g/s	 621374651	 RV5 s5d450 m0-5.0 LENGDE=4.52 
+		langs-g/s	 636526089	 RV5 s5d450 m5-8.0 LENGDE=0.0 KORRIGERT, orginal lengde=3.01
+		langs-g/s	 621374674	 RV5 s5d600 m0-224.0 LENGDE=209.71 KORRIGERT, orginal lengde=223.88
+		langs-g/s	 1010862190	 RV5 s5d605 m0-206.0 LENGDE=206.35 
+		langs-g/s	 1010862189	 RV5 s5d610 m0-103.0 LENGDE=103.07 
+		langs-g/s	 1010862181	 RV5 s5d615 m0-49.0 LENGDE=48.82 
+		langs-g/s	 621374674	 RV5 s6d100 m0-nan LENGDE=0.0 
+		langs-g/s	 636526105	 RV5 s6d100 m0-470.0 LENGDE=449.75 KORRIGERT, orginal lengde=469.94
+		langs-g/s	 621374671	 RV5 s6d100 m470-832.0 LENGDE=361.83 
+		langs-g/s	 636526104	 RV5 s6d100 m832-835.0 LENGDE=0.0 KORRIGERT, orginal lengde=3.0
+		langs-g/s	 1010862188	 RV5 s6d101 m0-313.0 LENGDE=313.05 
+		langs-g/s	 1010862187	 RV5 s6d102 m0-60.0 LENGDE=60.32 
+		langs-g/s	 621374649	 RV5 s6d110 m0-2.0 LENGDE=2.28 
+		langs-g/s	 636526087	 RV5 s6d110 m2-6.0 LENGDE=0.0 KORRIGERT, orginal lengde=3.81
+		langs-g/s	 636526079	 RV5 s6d150 m0-13.0 LENGDE=0.0 KORRIGERT, orginal lengde=13.24
+		langs-g/s	 621374645	 RV5 s6d150 m13-18.0 LENGDE=5.0 
+		langs-g/s	 621374669	 RV5 s6d150 m18-35.0 LENGDE=16.77 
+		langs-g/s	 636526101	 RV5 s6d150 m35-51.0 LENGDE=0.0 KORRIGERT, orginal lengde=15.49
+		langs-g/s	 621374668	 RV5 s6d150 m51-134.0 LENGDE=83.21 
+		langs-g/s	 621374644	 RV5 s6d150 m134-144.0 LENGDE=9.82 
+		langs-g/s	 636526078	 RV5 s6d150 m144-154.0 LENGDE=-0.010000000000001563 KORRIGERT, orginal lengde=10.5
+		langs-g/s	 621374643	 RV5 s6d150 m154-193.0 LENGDE=38.6 
+		langs-g/s	 745532713	 RV5 s6d200 m0-139.0 LENGDE=132.78 KORRIGERT, orginal lengde=138.88
+		langs-g/s	 621374633	 RV5 s6d200 m139-150.0 LENGDE=11.4 
+		langs-g/s	 636526070	 RV5 s6d200 m150-163.0 LENGDE=0.0 KORRIGERT, orginal lengde=12.8
+		langs-g/s	 621374632	 RV5 s6d200 m163-186.0 LENGDE=22.58 
+		langs-g/s	 636526069	 RV5 s6d200 m186-194.0 LENGDE=0.0 KORRIGERT, orginal lengde=8.41
+		langs-g/s	 621374631	 RV5 s6d200 m194-197.0 LENGDE=2.58 
+		langs-g/s	 745532713	 RV5 s6d300 m0-8.0 LENGDE=7.67 
+		langs-g/s	 621374642	 RV5 s6d300 m8-74.0 LENGDE=66.6 
+		langs-g/s	 621374668	 RV5 s6d400 m0-65.0 LENGDE=64.6 
+		langs-g/s	 621374668	 RV5 s7d100 m0-90.0 LENGDE=89.89 
+		langs-g/s	 745681661	 RV5 s7d200 m0-93.0 LENGDE=0.0 KORRIGERT, orginal lengde=92.65
+		langs-g/s	 621374667	 RV5 s7d300 m0-338.0 LENGDE=338.1 
+		langs-g/s	 621374641	 RV5 s7d350 m0-5.0 LENGDE=5.0 
+		langs-g/s	 636526077	 RV5 s7d350 m5-9.0 LENGDE=0.0 KORRIGERT, orginal lengde=4.0
+		langs-g/s	 1011051968	 RV5 s11d101 m0-55.0 LENGDE=44.300000000000004 KORRIGERT, orginal lengde=54.95
+		langs-g/s	 1011051969	 RV5 s11d102 m0-31.0 LENGDE=22.56 KORRIGERT, orginal lengde=30.58
+		langs-g/s	 481124270	 RV5 s12d100 m0-5.0 LENGDE=3.02 KORRIGERT, orginal lengde=5.04
+		langs-g/s	 618361724	 RV5 s12d100 m5-28.0 LENGDE=23.21 
+		langs-g/s	 481124270	 RV5 s12d100 m28-328.0 LENGDE=297.25 KORRIGERT, orginal lengde=299.25
+		langs-g/s	 481124270	 RV5 s12d200 m0-442.0 LENGDE=420.44 KORRIGERT, orginal lengde=441.78
+		langs-g/s	 636517199	 RV5 s14d100 m0-2.0 LENGDE=0.0 KORRIGERT, orginal lengde=2.0
+		langs-g/s	 618361738	 RV5 s14d100 m2-229.0 LENGDE=227.35 
+		langs-g/s	 636517198	 RV5 s14d100 m229-244.0 LENGDE=0.0 KORRIGERT, orginal lengde=14.79
+		langs-g/s	 618361737	 RV5 s14d100 m244-576.0 LENGDE=312.68 KORRIGERT, orginal lengde=331.41
+		langs-g/s	 618361736	 RV5 s14d100 m576-608.0 LENGDE=32.8 
+		langs-g/s	 636517197	 RV5 s14d100 m608-622.0 LENGDE=0.0 KORRIGERT, orginal lengde=13.36
+		langs-g/s	 618361735	 RV5 s14d100 m622-651.0 LENGDE=29.78 
+		langs-g/s	 618361734	 RV5 s14d100 m651-751.0 LENGDE=99.16 
+		langs-g/s	 618361733	 RV5 s14d100 m751-846.0 LENGDE=95.0 
+		langs-g/s	 618361732	 RV5 s14d100 m846-975.0 LENGDE=129.0 
+		langs-g/s	 618361731	 RV5 s14d100 m975-1112.0 LENGDE=137.31 
+		langs-g/s	 636517196	 RV5 s14d100 m1112-1115.0 LENGDE=0.0 KORRIGERT, orginal lengde=2.72
+		langs-g/s	 618361730	 RV5 s14d100 m1115-2024.0 LENGDE=903.23 KORRIGERT, orginal lengde=909.23
+		langs-g/s	 1010862183	 RV5 s14d200 m0-59.0 LENGDE=39.94 KORRIGERT, orginal lengde=58.81
+		langs-g/s	 618361723	 RV5 s14d300 m0-63.0 LENGDE=62.96 
+		langs-g/s	 745532712	 RV5 s14d300 m63-84.0 LENGDE=3.552713678800501e-15 KORRIGERT, orginal lengde=21.44
+		langs-g/s	 916187690	 RV5 s14d400 m0-83.0 LENGDE=78.09 KORRIGERT, orginal lengde=83.09
+		langs-g/s	 1010862180	 RV5 s14d500 m0-57.0 LENGDE=53.14 KORRIGERT, orginal lengde=56.57
+		langs-g/s	 916187689	 RV5 s14d600 m0-126.0 LENGDE=126.43 
+		langs-g/s	 1010862193	 RV5 s14d700 m0-36.0 LENGDE=36.4 
+		langs-g/s	 636517192	 RV5 s15d100 m0-3.0 LENGDE=0.0 KORRIGERT, orginal lengde=2.5
+		langs-g/s	 618361722	 RV5 s15d100 m3-81.0 LENGDE=78.54 
+		langs-g/s	 618361725	 RV5 s15d100 m81-92.0 LENGDE=11.36 
+		langs-g/s	 618361729	 RV5 s15d100 m92-199.0 LENGDE=106.68 
+		langs-g/s	 636517195	 RV5 s15d100 m199-210.0 LENGDE=0.0 KORRIGERT, orginal lengde=11.01
+		langs-g/s	 618361728	 RV5 s15d100 m210-226.0 LENGDE=16.11 
+		langs-g/s	 636517194	 RV5 s15d100 m226-268.0 LENGDE=0.0 KORRIGERT, orginal lengde=41.62
+		langs-g/s	 618361727	 RV5 s15d100 m268-564.0 LENGDE=295.8 
+		langs-g/s	 636517193	 RV5 s15d100 m564-574.0 LENGDE=0.0 KORRIGERT, orginal lengde=10.78
+		langs-g/s	 618361726	 RV5 s15d100 m574-695.0 LENGDE=120.26 
+		langs-g/s	 1013147365	 RV5 s15d200 m0-53.0 LENGDE=45.01 KORRIGERT, orginal lengde=52.91
+		langs-g/s	 1013147366	 RV5 s15d250 m0-20.0 LENGDE=10.3 KORRIGERT, orginal lengde=19.53
+		langs-g/s	 1010862182	 RV5 s17d100 m0-172.0 LENGDE=168.61 KORRIGERT, orginal lengde=172.18
+		langs-g/s	 363949873	 RV5 s19d100 m0-327.0 LENGDE=327.22 
+		langs-g/s	 1013147362	 RV5 s19d101 m0-34.0 LENGDE=25.730000000000004 KORRIGERT, orginal lengde=34.35
+		langs-g/s	 1013147363	 RV5 s19d102 m0-12.0 LENGDE=9.33 KORRIGERT, orginal lengde=12.01
+		langs-g/s	 363949873	 RV5 s20d100 m0-128.0 LENGDE=128.24 
+		langs-g/s	 363949873	 RV5 s20d200 m0-49.0 LENGDE=49.18 
+		langs-g/s	 363949873	 RV5 s20d300 m0-31.0 LENGDE=30.54 
+		langs-g/s	 363949873	 RV5 s20d400 m0-1022.0 LENGDE=1017.16 KORRIGERT, orginal lengde=1022.16
+		langs-g/s	 363949873	 RV5 s20d500 m0-408.0 LENGDE=402.5 KORRIGERT, orginal lengde=407.5
+		langs-g/s	 363949873	 RV5 s20d600 m0-15.0 LENGDE=14.62 
+		langs-g/s	 621374606	 RV13 s46d100 m0-1106.0 LENGDE=1095.12 KORRIGERT, orginal lengde=1106.12
+		langs-g/s	 636526051	 RV13 s46d100 m1106-1126.0 LENGDE=0.0 KORRIGERT, orginal lengde=20.0
+		langs-g/s	 621374607	 RV13 s46d100 m1126-1273.0 LENGDE=147.0 
+		langs-g/s	 636526052	 RV13 s46d100 m1273-1299.0 LENGDE=0.0 KORRIGERT, orginal lengde=26.0
+		langs-g/s	 621374608	 RV13 s46d100 m1299-1340.0 LENGDE=41.0 
+		langs-g/s	 636526053	 RV13 s46d100 m1340-1350.0 LENGDE=0.0 KORRIGERT, orginal lengde=10.0
+		langs-g/s	 621374609	 RV13 s46d100 m1350-1471.0 LENGDE=121.0 
+		langs-g/s	 636526054	 RV13 s46d100 m1471-1481.0 LENGDE=0.0 KORRIGERT, orginal lengde=10.0
+		langs-g/s	 621374610	 RV13 s46d100 m1481-1867.0 LENGDE=386.0 
+		langs-g/s	 636526055	 RV13 s46d100 m1867-1923.0 LENGDE=0.0 KORRIGERT, orginal lengde=56.0
+		langs-g/s	 621374611	 RV13 s46d100 m1923-2463.0 LENGDE=540.0 
+		langs-g/s	 636526056	 RV13 s46d100 m2463-2486.0 LENGDE=0.0 KORRIGERT, orginal lengde=23.0
+		langs-g/s	 621374612	 RV13 s46d100 m2486-2833.0 LENGDE=347.11 
+		langs-g/s	 636526057	 RV13 s46d100 m2833-2849.0 LENGDE=0.0 KORRIGERT, orginal lengde=16.14
+		langs-g/s	 621374613	 RV13 s46d100 m2849-2991.0 LENGDE=142.0 
+		langs-g/s	 636526058	 RV13 s46d100 m2991-3001.0 LENGDE=0.0 KORRIGERT, orginal lengde=10.0
+		langs-g/s	 621374614	 RV13 s46d100 m3001-3187.0 LENGDE=185.94 
+		langs-g/s	 636526059	 RV13 s46d100 m3187-3260.0 LENGDE=0.0 KORRIGERT, orginal lengde=73.0
+		langs-g/s	 621374615	 RV13 s46d100 m3260-3291.0 LENGDE=31.0 
+		langs-g/s	 636526060	 RV13 s46d100 m3291-3298.0 LENGDE=0.0 KORRIGERT, orginal lengde=7.0
+		langs-g/s	 621374616	 RV13 s46d100 m3298-3438.0 LENGDE=139.34 
+		langs-g/s	 745681663	 RV13 s46d110 m0-6.0 LENGDE=0.0 KORRIGERT, orginal lengde=6.0
+		langs-g/s	 621374596	 RV13 s46d120 m0-3.0 LENGDE=2.74 
+		langs-g/s	 636526041	 RV13 s46d120 m3-11.0 LENGDE=0.0 KORRIGERT, orginal lengde=8.0
+		langs-g/s	 621374597	 RV13 s46d130 m0-4.0 LENGDE=4.0 
+		langs-g/s	 636526042	 RV13 s46d130 m4-7.0 LENGDE=0.0 KORRIGERT, orginal lengde=3.0
+		langs-g/s	 621374598	 RV13 s46d140 m0-5.0 LENGDE=5.0 
+		langs-g/s	 636526043	 RV13 s46d140 m5-12.0 LENGDE=0.0 KORRIGERT, orginal lengde=7.0
+		langs-g/s	 621374599	 RV13 s46d150 m0-4.0 LENGDE=4.0 
+		langs-g/s	 636526044	 RV13 s46d150 m4-11.0 LENGDE=0.0 KORRIGERT, orginal lengde=7.0
+		langs-g/s	 621374600	 RV13 s46d159 m0-4.0 LENGDE=4.0 
+		langs-g/s	 636526045	 RV13 s46d159 m4-11.0 LENGDE=0.0 KORRIGERT, orginal lengde=7.0
+		langs-g/s	 621374602	 RV13 s46d160 m0-5.0 LENGDE=5.0 
+		langs-g/s	 636526047	 RV13 s46d160 m5-11.0 LENGDE=0.0 KORRIGERT, orginal lengde=6.0
+		langs-g/s	 621374601	 RV13 s46d165 m0-2.0 LENGDE=2.0 
+		langs-g/s	 636526046	 RV13 s46d165 m2-9.0 LENGDE=0.0 KORRIGERT, orginal lengde=7.0
+		langs-g/s	 621374616	 RV13 s47d100 m0-7.0 LENGDE=6.66 
+		langs-g/s	 636526061	 RV13 s47d100 m7-15.0 LENGDE=0.0 KORRIGERT, orginal lengde=8.0
+		langs-g/s	 621374617	 RV13 s47d100 m15-139.0 LENGDE=124.0 
+		langs-g/s	 636526062	 RV13 s47d100 m139-165.0 LENGDE=0.0 KORRIGERT, orginal lengde=26.0
+		langs-g/s	 621374618	 RV13 s47d100 m165-188.0 LENGDE=23.0 
+		langs-g/s	 636526063	 RV13 s47d100 m188-197.0 LENGDE=0.0 KORRIGERT, orginal lengde=9.0
+		langs-g/s	 621374619	 RV13 s47d100 m197-916.0 LENGDE=715.32 KORRIGERT, orginal lengde=719.32
+		langs-g/s	 621374603	 RV13 s47d110 m0-3.0 LENGDE=3.0 
+		langs-g/s	 636526048	 RV13 s47d110 m3-8.0 LENGDE=0.0 KORRIGERT, orginal lengde=5.0
+		langs-g/s	 636526036	 RV13 s47d200 m0-1.0 LENGDE=-2.0 KORRIGERT, orginal lengde=1.0
+		langs-g/s	 621374590	 RV13 s47d200 m1-2239.0 LENGDE=2234.97 KORRIGERT, orginal lengde=2237.97
+		langs-g/s	 621374590	 RV13 s47d200 m150-nan LENGDE=0.0 
+		langs-g/s	 1010862179	 RV13 s47d300 m0-87.0 LENGDE=78.0 KORRIGERT, orginal lengde=87.0
+		langs-g/s	 910483746	 RV13 s48d100 m0-1012.0 LENGDE=1004.96 KORRIGERT, orginal lengde=1011.96
+		langs-g/s	 910483746	 RV13 s48d150 m0-68.0 LENGDE=68.04 
+		langs-g/s	 910483746	 RV13 s48d160 m0-13.0 LENGDE=10.0 KORRIGERT, orginal lengde=13.0
+		langs-g/s	 910483746	 RV13 s48d170 m0-16.0 LENGDE=13.0 KORRIGERT, orginal lengde=16.0
+		langs-g/s	 910483746	 RV13 s48d180 m0-13.0 LENGDE=10.0 KORRIGERT, orginal lengde=13.0
+		langs-g/s	 636526037	 RV13 s48d200 m0-3.0 LENGDE=0.0 KORRIGERT, orginal lengde=3.0
+		langs-g/s	 621374591	 RV13 s48d200 m3-207.0 LENGDE=204.0 
+		langs-g/s	 621374592	 RV13 s48d200 m207-1941.0 LENGDE=1733.65 
+		langs-g/s	 636526038	 RV13 s48d300 m0-2.0 LENGDE=0.0 KORRIGERT, orginal lengde=1.8
+		langs-g/s	 621374593	 RV13 s48d300 m2-641.0 LENGDE=638.81 
+		langs-g/s	 636526039	 RV13 s48d300 m641-645.0 LENGDE=0.0 KORRIGERT, orginal lengde=4.0
+		langs-g/s	 621374594	 RV13 s48d300 m645-929.0 LENGDE=284.1 
+		langs-g/s	 636526050	 RV13 s48d310 m0-13.0 LENGDE=0.0 KORRIGERT, orginal lengde=13.0
+		langs-g/s	 636526065	 RV13 s48d400 m0-6.0 LENGDE=0.0 KORRIGERT, orginal lengde=6.0
+		langs-g/s	 621374620	 RV13 s48d400 m6-68.0 LENGDE=61.6 
+		langs-g/s	 636526066	 RV13 s48d400 m68-130.0 LENGDE=0.0 KORRIGERT, orginal lengde=62.0
+		langs-g/s	 621374621	 RV13 s48d400 m130-215.0 LENGDE=85.0 
+		langs-g/s	 636526067	 RV13 s48d400 m215-224.0 LENGDE=0.0 KORRIGERT, orginal lengde=9.0
+		langs-g/s	 621374622	 RV13 s48d400 m224-254.0 LENGDE=30.0 
+		langs-g/s	 636526068	 RV13 s48d400 m254-260.0 LENGDE=0.0 KORRIGERT, orginal lengde=6.0
+		langs-g/s	 621374623	 RV13 s48d400 m260-411.0 LENGDE=151.71 
+		langs-g/s	 621374624	 RV13 s48d400 m411-450.0 LENGDE=38.62 
+		langs-g/s	 621374625	 RV13 s48d400 m450-486.0 LENGDE=36.39 
+telling      V4         810 Vinterdriftsklasse GsB                                       langs-g/s 	       - stk      51719 m          0 m2 
+telling      V2         810 Vinterdriftsklasse GsB                                       langs-g/s 	       - stk      51764 m          - m2 
+differanse   V2 og V4   810 Vinterdriftsklasse GsB                                       langs-g/s 	       - stk         45 m          - m2 
+
+Detaljert meterangivelse for Vinterdriftsklasse GsB langs-E+R 
+		langs-E+R	 636517263	 EV39 s56d1 m6126 SD1.0 m19.0-28.0 LENGDE=9.0 
+		langs-E+R	 621374590	 RV13 s47d200 m2239-nan LENGDE=0.0 
+telling      V4         810 Vinterdriftsklasse GsB                                       langs-E+R 	       - stk          9 m          0 m2 
+telling      V2         810 Vinterdriftsklasse GsB                                       langs-E+R 	       - stk          9 m          - m2 
+differanse   V2 og V4   810 Vinterdriftsklasse GsB                                       langs-E+R 	       - stk          0 m          - m2 
+telling      V4         810 Vinterdriftsklasse GsB                                       langs-EV39 	       - stk      27172 m          0 m2 
+telling      V3         810 Vinterdriftsklasse GsB                                       langs-EV39 	       - stk      27172 m          - m2 
+differanse   V3 og V4   810 Vinterdriftsklasse GsB                                       langs-EV39 	       - stk          0 m          - m2 
+telling      V4         810 Vinterdriftsklasse GsB                                       langs-RV5 	       - stk      13801 m          0 m2 
+telling      V3         810 Vinterdriftsklasse GsB                                       langs-RV5 	       - stk      13843 m          - m2 
+differanse   V3 og V4   810 Vinterdriftsklasse GsB                                       langs-RV5 	       - stk         42 m          - m2 
+telling      V4         810 Vinterdriftsklasse GsB                                       langs-RV13 	       - stk      10755 m          0 m2 
+telling      V3         810 Vinterdriftsklasse GsB                                       langs-RV13 	       - stk      10758 m          - m2 
+differanse   V3 og V4   810 Vinterdriftsklasse GsB                                       langs-RV13 	       - stk          3 m          - m2 
+
+Detaljert meterangivelse for Vinterdriftsklasse Sideanlegg langs-g/s 
+telling      V4         810 Vinterdriftsklasse Sideanlegg                                langs-g/s 	       - stk          - m          - m2 
+telling      V2         810 Vinterdriftsklasse Sideanlegg                                langs-g/s 	       - stk          - m          - m2 
+differanse   V2 og V4   810 Vinterdriftsklasse Sideanlegg                                langs-g/s 	       - stk          - m          - m2 
+
+Detaljert meterangivelse for Vinterdriftsklasse Sideanlegg langs-E+R 
+		langs-E+R	 1010862241	 EV39 s50d1 m61 SD1.0 m0.0-80.0 LENGDE=80.03 
+		langs-E+R	 1010862240	 EV39 s50d1 m61 SD2.0 m0.0-72.0 LENGDE=71.71 
+		langs-E+R	 1011051971	 EV39 s50d1 m61 SD3.0 m0.0-37.0 LENGDE=37.45 
+		langs-E+R	 732290278	 EV39 s51d1 m6383 SD1.0 m0.0-116.0 LENGDE=115.91 
+		langs-E+R	 732290277	 EV39 s51d1 m8822 SD1.0 m0.0-124.0 LENGDE=123.78 
+		langs-E+R	 732290276	 EV39 s53d1 m722 SD1.0 m0.0-142.0 LENGDE=141.61 
+		langs-E+R	 1010862243	 EV39 s54d1 m3724 SD1.0 m0.0-215.0 LENGDE=214.96 
+		langs-E+R	 1010862242	 EV39 s54d1 m7111 SD1.0 m0.0-50.0 LENGDE=50.16 
+		langs-E+R	 732290275	 EV39 s55d1 m10130 SD1.0 m0.0-184.0 LENGDE=183.96 
+		langs-E+R	 1010862246	 EV39 s56d1 m6126 SD1.0 m0.0-19.0 LENGDE=19.31 
+		langs-E+R	 1010862245	 EV39 s56d1 m6126 SD1.0 m28.0-55.0 LENGDE=26.86 
+		langs-E+R	 1010862244	 EV39 s56d1 m6126 SD1.0 m55.0-145.0 LENGDE=89.91 
+		langs-E+R	 745243147	 EV39 s57d1 m1298 SD1.0 m0.0-116.0 LENGDE=115.85 
+		langs-E+R	 1006899984	 EV39 s58d1 m8015 SD1.0 m0.0-89.0 LENGDE=88.67 
+		langs-E+R	 732290273	 EV39 s58d1 m8753 SD1.0 m0.0-93.0 LENGDE=92.71 
+		langs-E+R	 1010862238	 EV39 s58d1 m12786 SD1.0 m0.0-73.0 LENGDE=73.25 
+		langs-E+R	 732290271	 EV39 s63d1 m2219 SD1.0 m0.0-176.0 LENGDE=176.37 
+		langs-E+R	 1010862239	 EV39 s64d1 m4720 SD1.0 m0.0-240.0 LENGDE=240.34 
+		langs-E+R	 1010862234	 RV5 s4d1 m31 SD1.0 m0.0-17.0 LENGDE=16.61 
+		langs-E+R	 1010862233	 RV5 s4d1 m31 SD1.0 m17.0-35.0 LENGDE=18.59 
+		langs-E+R	 1010862232	 RV5 s4d1 m31 SD1.0 m35.0-48.0 LENGDE=12.53 
+		langs-E+R	 1010862231	 RV5 s4d1 m31 SD1.0 m48.0-52.0 LENGDE=4.75 
+		langs-E+R	 1010987066	 RV5 s4d1 m31 SD2.0 m0.0-44.0 LENGDE=44.43 
+		langs-E+R	 1010862229	 RV5 s4d30 m2263 SD1.0 m0.0-84.0 LENGDE=84.03 
+		langs-E+R	 1010862228	 RV5 s4d30 m2263 SD2.0 m0.0-11.0 LENGDE=10.73 
+		langs-E+R	 1010862227	 RV5 s4d30 m2263 SD2.0 m11.0-54.0 LENGDE=43.28 
+		langs-E+R	 621374770	 RV5 s8d1 m69 SD1.0 m0.0-118.0 LENGDE=118.25 
+		langs-E+R	 621374769	 RV5 s8d1 m8392 SD1.0 m0.0-157.0 LENGDE=156.95 
+		langs-E+R	 621374768	 RV5 s8d1 m8392 SD1.0 m157.0-194.0 LENGDE=37.51 
+		langs-E+R	 1011051970	 RV5 s8d1 m8392 SD2.0 m0.0-46.0 LENGDE=45.8 
+		langs-E+R	 1011051970	 RV5 s8d1 m8392 SD3.0 m0.0-30.0 LENGDE=29.8 
+		langs-E+R	 621374767	 RV5 s9d1 m7382 SD1.0 m0.0-18.0 LENGDE=18.26 
+		langs-E+R	 621374766	 RV5 s9d1 m7382 SD1.0 m18.0-84.0 LENGDE=65.95 
+		langs-E+R	 621374765	 RV5 s9d1 m7382 SD1.0 m84.0-103.0 LENGDE=19.11 
+		langs-E+R	 621374764	 RV5 s10d1 m9332 SD1.0 m0.0-90.0 LENGDE=90.44 
+		langs-E+R	 745316624	 RV5 s11d1 m6638 SD1.0 m0.0-71.0 LENGDE=70.98 
+		langs-E+R	 1010862230	 RV5 s12d1 m4279 SD1.0 m0.0-82.0 LENGDE=82.12 
+		langs-E+R	 745243146	 RV5 s14d1 m4889 SD1.0 m0.0-14.0 LENGDE=14.35 
+		langs-E+R	 745243145	 RV5 s14d1 m4889 SD1.0 m14.0-89.0 LENGDE=74.68 
+		langs-E+R	 1011051973	 RV5 s17d1 m54 SD1.0 m0.0-53.0 LENGDE=53.01 
+		langs-E+R	 1011051967	 RV5 s17d1 m54 SD2.0 m0.0-51.0 LENGDE=50.74 
+		langs-E+R	 1011051973	 RV5 s17d1 m54 SD2.0 m44.0-nan LENGDE=0.0 
+		langs-E+R	 621374762	 RV13 s47d1 m1309 SD1.0 m0.0-68.0 LENGDE=68.25 
+		langs-E+R	 621374763	 RV13 s48d1 m9302 SD1.0 m0.0-159.0 LENGDE=158.93 
+telling      V4         810 Vinterdriftsklasse Sideanlegg                                langs-E+R 	       - stk       3333 m          0 m2 
+telling      V2         810 Vinterdriftsklasse Sideanlegg                                langs-E+R 	       - stk       3044 m          - m2 
+differanse   V2 og V4   810 Vinterdriftsklasse Sideanlegg                                langs-E+R 	       - stk        289 m          - m2 AVVIK:   STORE lengdeavvik
+telling      V4         810 Vinterdriftsklasse Sideanlegg                                langs-EV39 	       - stk       1943 m          0 m2 
+telling      V3         810 Vinterdriftsklasse Sideanlegg                                langs-EV39 	       - stk       1727 m          - m2 
+differanse   V3 og V4   810 Vinterdriftsklasse Sideanlegg                                langs-EV39 	       - stk        216 m          - m2 AVVIK:   STORE lengdeavvik
+telling      V4         810 Vinterdriftsklasse Sideanlegg                                langs-RV5 	       - stk       1163 m          0 m2 
+telling      V3         810 Vinterdriftsklasse Sideanlegg                                langs-RV5 	       - stk       1101 m          - m2 
+differanse   V3 og V4   810 Vinterdriftsklasse Sideanlegg                                langs-RV5 	       - stk         62 m          - m2 AVVIK:   STORE lengdeavvik
+telling      V4         810 Vinterdriftsklasse Sideanlegg                                langs-RV13 	       - stk        227 m          0 m2 
+telling      V3         810 Vinterdriftsklasse Sideanlegg                                langs-RV13 	       - stk        216 m          - m2 
+differanse   V3 og V4   810 Vinterdriftsklasse Sideanlegg                                langs-RV13 	       - stk         11 m          - m2 AVVIK:   STORE lengdeavvik

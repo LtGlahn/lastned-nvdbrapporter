@@ -14,9 +14,9 @@ import driftqa
 import lastned
 
 
-# miljo = 'UTV'
+miljo = 'UTV'
 # miljo = 'TEST'
-miljo = 'PROD' # PROD 
+# miljo = 'PROD' # PROD 
 
 nedlasting = None 
 
@@ -25,18 +25,18 @@ t0 = datetime.now()
 kontrakter = [ ]
 # kontrakter.append( '9304 Bergen' ) TEST DENNE for å se hva som skjer når du bruker ikke-eksisterende k.navn ... 
 kontrakter.append( '9305 Sunnfjord 2021-2026' )
-kontrakter.append( '1105 Indre Ryfylke 2015-2021' )
-kontrakter.append( '1102 Høgsfjord 2015-2020' )
-kontrakter.append( '1206 Voss 2014-2019' )
-kontrakter.append( '9108 Østerdalen 2021-2025' )
-kontrakter.append( '0104 Ørje 2012-2020' ) 
+# kontrakter.append( '1105 Indre Ryfylke 2015-2021' )
+# kontrakter.append( '1102 Høgsfjord 2015-2020' )
+# kontrakter.append( '1206 Voss 2014-2019' )
+# kontrakter.append( '9108 Østerdalen 2021-2025' )
+# kontrakter.append( '0104 Ørje 2012-2020' ) 
 
 
 fname = 'nedlastinger' + miljo + '.json'
-nedlasting = lastned.lastnedFlere( driftskontrakter=kontrakter, miljo=miljo)
+# nedlasting = lastned.lastnedFlere( driftskontrakter=kontrakter, miljo=miljo)
 if nedlasting: 
     with open( fname, 'w', encoding='utf-8') as f: 
-        json.dump( nedlasting, f, ensure_ascii=False ) 
+        json.dump( nedlasting, f, ensure_ascii=False, indent=4 ) 
 
 if not nedlasting: 
     with open( fname ) as f:
@@ -48,19 +48,23 @@ objektliste = [ 3, 5, 7, 9, 14, 15, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 37, 
             199, 208, 234, 241, 243, 269, 274, 290, 291, 301, 318, 319, 342, 451, 482, 498, 511, 519, 540, 542,
             810, 836, 838, 845, 848, 849, 859, 875, 876]
 
-# objektliste = 27 
+objektliste = [540, 810 ]
 
 flere_komrader = []
 flere_differ = []
 flere_tellinger = []
 
-# nedlasting2 = [ x for x in nedlasting if 'Østerdalen' in x['kontraktsomrade'] ] 
+# Filtrerer ut kun ett kontraktsområde av dem vi har tilgjengelig
+nedlasting = [ x for x in nedlasting if 'Sunnfjord' in x['kontraktsomrade'] ] 
+
+debug = True 
+# debug = False 
 
 for komr in nedlasting: 
     mappenavn = komr['mappe'] + '/'
     filnavn = driftqa.finnrapportfilnavn( mappenavn )
 
-    (tellinger, differanser) = driftqa.mengdesjekk( mappenavn, objektliste, nvdbFilter= { 'kontraktsomrade' :  komr['kontraktsomrade'] }, brukNvdbData=False )  
+    (tellinger, differanser) = driftqa.mengdesjekk( mappenavn, objektliste, nvdbFilter= { 'kontraktsomrade' :  komr['kontraktsomrade'] }, brukNvdbData=False, debug=debug )  
     # føyer til navn på kontraktsområdet til differansene 
     differanser = [ dict( x, **{ 'omrade' : komr['kontraktsomrade'] }) for x in differanser ] # https://stackoverflow.com/a/34757497
     tellinger   = [ dict( x, **{ 'omrade' : komr['kontraktsomrade'] }) for x in tellinger   ] # https://stackoverflow.com/a/34757497

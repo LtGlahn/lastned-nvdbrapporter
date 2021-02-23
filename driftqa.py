@@ -975,16 +975,16 @@ def mengdesjekk( mappenavn, objekttyper, nvdbFilter=None,  lespickle=False, hent
             v4data = egenskapfilter( v4data, regl, dakat[str(objekttype)] )
 
             # Sjekk for "Adskilte løp" for 'withFeatureLabel' - regel 
-            if 'withFeatureLabel': 
+            if 'withFeatureLabel' in regl: 
+                print( f"\n\nFjerner konnekteringslenker og envg mot fra {regl['objtype']} {regl['Beskrivelse']} ")
+                print( f"Lengde før korreksjon {v4data['Lengde vegnett'].sum()} ")
                 if brukNvdbData: 
                     v4data = v4data[ v4data[ 'adskilte_lop'] != 'Mot'  ].copy()
                 else: 
                     v4data = v4filterEnvegMot( v4data, v1 )
-
-                # Korrigerer for konnekteringslenker 
-                v4data = fjernKonnektering( v4data, v1)
-
-
+                    v4data = fjernKonnektering( v4data, v1)                    # Korrigerer for konnekteringslenker 
+                print( f"Lengde etter korreksjon {v4data['Lengde vegnett'].sum()}\n\n")
+ 
 
             # Etterprøver V2-regnearket
             (tellinger, differ) = tellV4somV2(   v2, v4data, funkraV3, regl, dakat, v4datakilde=v4datakilde, debug=debug) 

@@ -21,7 +21,5 @@ if __name__ == "__main__":
 
     kontrakter = [ '9305 Sunnfjord 2021-2026' ]
 
-    metadata = lastned.lastnedFlere( driftskontrakter=kontrakter, miljo='PROD', mappenavn='rapportNedlasting')
-    # Metadata inneholder detaljer om filnavn og slikt som er brukt 
-    print( json.dumps( metadata, indent=4))
-
+    lastned.lastnedFlere( driftskontrakter=kontrakter, miljo='PROD', mappenavn='rapportNedlasting')
+    

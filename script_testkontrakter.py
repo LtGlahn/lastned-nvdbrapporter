@@ -19,7 +19,6 @@ miljo = 'UTV'
 # miljo = 'PROD' # PROD 
 
 nedlasting = None 
-
 t0 = datetime.now() 
 
 kontrakter = [ ]
@@ -32,7 +31,7 @@ kontrakter.append( '9108 Østerdalen 2021-2025' )
 kontrakter.append( '0104 Ørje 2012-2020' ) 
 
 
-fname = 'nedlastinger-ny-' + miljo + '.json'
+fname = 'nedlastinger-9apr-' + miljo + '.json'
 nedlasting = lastned.lastnedFlere( driftskontrakter=kontrakter, miljo=miljo)
 if nedlasting: 
     with open( fname, 'w', encoding='utf-8') as f: 
@@ -49,6 +48,7 @@ objektliste = [ 3, 5, 7, 9, 14, 15, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 37, 
             810, 836, 838, 845, 848, 849, 859, 875, 876]
 
 # objektliste = [540, 810 ]
+# objektliste = [ 301]
 
 flere_komrader = []
 flere_differ = []

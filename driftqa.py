@@ -267,7 +267,7 @@ def tellV4somV3( v3, v4, funkraV3, regl, dakat, v4datakilde='V4', debug=False):
 
         tellV4 = v4mengdetelling( v4temp[ v4temp['Veg'] == Veg ], v4datakilde, 'langs-'+Veg, regl, dakat, debug=debug  )
 
-        debugSkrivMeter( v4temp[ v4temp['Veg'] == Veg ], 'langs-'+Veg, regl, debug=debug)
+        debugSkrivMeter( v4temp[ v4temp['Veg'] == Veg ], 'langs-'+Veg, regl, debug=False )
         loggTelling( tellV4 )
         tellinger.append( tellV4 )
 
@@ -331,8 +331,8 @@ def tellV4somV2( v2, v4, funkraV3, regl, dakat, v4datakilde='V4', debug=False ):
 
         if isinstance( v4uttrekk, pd.core.frame.DataFrame): 
 
-            tellV4 = v4mengdetelling( v4uttrekk, v4datakilde, 'langs-'+Veg, regl, dakat  )
-            debugSkrivMeter( v4uttrekk, 'langs-'+Veg, regl, debug=debug)
+            tellV4 = v4mengdetelling( v4uttrekk, v4datakilde, 'langs-'+Veg, regl, dakat, debug=debug  )
+            debugSkrivMeter( v4uttrekk, 'langs-'+Veg, regl, debug=False)
 
             loggTelling( tellV4 )
             tellinger.append( tellV4 )
@@ -474,7 +474,7 @@ def debugSkrivMeter( v4, vegstrekning, regl, debug=False):
         # pdb.set_trace()
     
 
-def v4mengdetelling( v4, datakilde, telletype, regl, dakat, debug=None):
+def v4mengdetelling( v4, datakilde, telletype, regl, dakat, debug=False ):
     """
     Regner ut antall, lengde og areal for en V4-dataframe. 
 
@@ -556,7 +556,7 @@ def v4mengdetelling( v4, datakilde, telletype, regl, dakat, debug=None):
         # Spesialregler for årlig klipp av kantareal, modifiserer V4 
         # med et areal som er multiplisert med faktor 0.25-2
         if 'YearlyGrassCuttingAreaPreset' in regl: 
-            v4areal = kantklippspesial( v4areal, regl, dakat[str( regl['objtype'] )])
+            v4areal = kantklippspesial( v4areal, regl, dakat[str( regl['objtype'] ) ], debug=debug)
 
         if colAreal: 
         
@@ -582,8 +582,8 @@ def v4mengdetelling( v4, datakilde, telletype, regl, dakat, debug=None):
                 arealsum_TxL        = tverr[colAreal].sum()
 
         if debug: 
-            pass 
-            # pdb.set_trace( )
+            # pass 
+            pdb.set_trace( )
 
         areal = arealsum_harAreal + arealsum_TxL
 

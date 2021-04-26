@@ -603,7 +603,7 @@ def applyYearlyGrassCuttingAreaPreset( anbefalt_intervall ):
 
     return faktor 
 
-def kantklippspesial( v4, regl, dakat  ):
+def kantklippspesial( v4, regl, dakat, debug=False  ):
     """
     For kantklippareal har vi regelen YearlyGrassCuttingAreaPreset
     """
@@ -617,13 +617,37 @@ def kantklippspesial( v4, regl, dakat  ):
         print( f'Kantklippspesial: Mangler withAreaFromAttributeOrCrossSection i regel {regl} '   )        
         return v4
 
+    # Beregner areal der det mangler 
+    v4['orginal_areal'] = v4['Areal'] 
+    v4.loc[ v4['Areal'].isnull(), 'Areal' ] = v4[ v4['Areal'].isnull() ]['Klippebredde, faktisk'] * v4[ v4['Areal'].isnull() ]['Lengde vegnett' ]
+
+
     arealvariabel = dakat['egenskaper'][str(regl['withAreaFromAttributeOrCrossSection'][0])]['navn']
     v4['kantklippfaktor'] = v4['Kantklipp, anbefalt intervall'].apply( lambda x : applyYearlyGrassCuttingAreaPreset( x )  )
+
+    if debug: 
+        print( "Debug kantklippareal ######################################################################################")
+        col = col = ['Objekt Id', 'Vegkategori', 'Fase', 'vegnummer', 'trafikantgruppe', 'Kantklipp, anbefalt intervall', 'kantklippfaktor', 
+                    'orginal_areal', 'Areal', 'Klippebredde, faktisk', 'Lengde vegnett', 'Filteringshjelp' ] 
+        utdrag = v4[col]
+        print( ';'.join( col ))
+        for ii, row in utdrag.iterrows(): 
+            pretty = [ str(x) for x in row ]
+            print( ';'.join( pretty ))
+
+        print( "Slutt Debug kantklippareal ######################################################################################")
+
     v4[arealvariabel] = v4[arealvariabel] * v4['kantklippfaktor']
+
+    testsum = v4[ ~v4['orginal_areal'].isnull() ]['Areal'].sum()
+    print( 'Anbefalt klippeareal for strekningen når vi kun tar med dem som har egenskapverdi "Areal"', testsum)
+    testsum2 = v4[ ~v4['Kantklipp, anbefalt intervall'].isnull() ]['Areal'].sum()
+    print( 'Anbefalt klippeareal for strekningen når vi kun tar med dem som har egenskapverdi "Kantklipp, anbefalt intervall"', testsum2)
+
 
     return v4 
 
-def arealtelling( v4, regl, dakat): 
+def arealtelling( v4, regl, dakat, debug=False ): 
 
     lengdevariabel = None
     arealvariabel  = None 
@@ -636,7 +660,7 @@ def arealtelling( v4, regl, dakat):
 
     # Spesialregel for årlig beregning av kantklipp 
     if 'YearlyGrassCuttingAreaPreset' in regl: 
-        v4kopi = kantklippspesial( v4, regl, dakat )
+        v4kopi = kantklippspesial( v4, regl, dakat, debug=debug )
 
 
     # 'withAreaFromAttribute' Bruker areal-egenskap (hvis den finnes), ingen backup
@@ -850,7 +874,7 @@ def _intern_funkrasjekk(  funkratall, rapporttype, beskrivelse, tall, regl, bene
                             regl, funkratall=f"{round(funkratall)}" )    
     return svar 
 
-def sjekkmengder( mappenavn, objekttyper ): 
+def sjekkmengder( mappenavn, objekttyper, debug=False ): 
 
     feilmeldinger = f"\n# Oppsummering av avvik\n\n{datetime.now().strftime('%Y-%m-%d %H:%M:%S') }" 
     feilmelding_nulldata = ""
@@ -951,7 +975,7 @@ def sjekkmengder( mappenavn, objekttyper ):
                 ######################################################################################################
                 # Sjekker Areal ----------- 
                 if 'withAreaFromAttribute' in regl or 'withAreaFromAttributeOrCrossSection' in regl or 'withAreaFromCrossSection' in regl:
-                    v4areal = arealtelling( v4, regl, dakat[str(objekttype)])
+                    v4areal = arealtelling( v4, regl, dakat[str(objekttype)], debug=debug)
                     v2svar = v2sum[regl['Beskrivelse']]['totalAreal']
                     v3svar = v3sum[regl['Beskrivelse']]['totalAreal']
                     (prosentavvik, prosent_tekst) = lagProsentTekst(v2svar, v3svar, v4areal )
@@ -973,9 +997,10 @@ def sjekkmengder( mappenavn, objekttyper ):
 if __name__ == "__main__":
 
     mappenavn = './testmagnus2/'
+    debug = False
 
     filnavn = finnrapportfilnavn( mappenavn ) 
     v4oversikt = pd.read_excel( filnavn['v4rapp'] )  
     v4indeks = list( v4oversikt['Unnamed: 0'])[5:] 
     objektliste = [ int( x.split('-')[0].strip()  ) for x in v4indeks]  
-    sjekkmengder( mappenavn, objektliste )  
+    sjekkmengder( mappenavn, objektliste, debug=debug )  

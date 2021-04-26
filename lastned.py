@@ -181,7 +181,7 @@ def lastnedFlere(driftskontrakter = False, veglister=False, kostra=False, mappen
             resultat  = { 'kontraktsomrade' : kontr }
             kontrId = finnKontraktsID( kontr )
             if kontrId: 
-                parametre = { 'kontraktsomradeId' : kontrId  }
+                parametre = { 'kontraktsomradeId' : kontrId, 'vegsystemreferanser' : 'Ev39' }
                 mappe = mappenavn + '_' + kontr.replace( ' ', '_')
                 mappe = mappe.replace( '(', '-')
                 mappe = mappe.replace( ')', '-')
@@ -289,8 +289,11 @@ def lastnedFlere(driftskontrakter = False, veglister=False, kostra=False, mappen
             print( 'laster ned', mappe, rapportType['id'], rapportType['navn'])
             lastned( apiurl, '/rapporter/kostra/' + str( rapportType['id']), parametre, mappe + rapportType['navn']  )
 
-    if len( resultater) > 1: 
+    if len( resultater) > 0: 
         return resultater
+    else: 
+        print( 'Nedlasting: Ingen resultater???')
+
 
 def lastnedveglister():
     """

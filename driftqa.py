@@ -487,6 +487,7 @@ def v4mengdetelling( v4, datakilde, telletype, regl, dakat, debug=None):
     col_id = 'Objekt Id'
     antall = lengde = areal = np.nan 
     colAntall = colLengde = colAreal = colTverrsnitt = None 
+    v4raadata = v4.copy()
 
     if len( v4 ) > 0: 
 
@@ -509,7 +510,6 @@ def v4mengdetelling( v4, datakilde, telletype, regl, dakat, debug=None):
 
             if not colAntall in v4.columns: 
                 v4[colAntall] = np.nan 
-
 
             # Finner dem med antall-egenskap, og den inverse
             harAntall  = v4[ ~v4[colAntall].isnull() ].drop_duplicates( subset=col_id)
@@ -553,10 +553,7 @@ def v4mengdetelling( v4, datakilde, telletype, regl, dakat, debug=None):
         v4areal = v4.copy()
 
         arealsum_harAreal = arealsum_TxL = 0 
-        # Spesialregler for årlig klipp av kantareal, modifiserer V4 
-        # med et areal som er multiplisert med faktor 0.25-2
-        if 'YearlyGrassCuttingAreaPreset' in regl: 
-            v4areal = kantklippspesial( v4areal, regl, dakat[str( regl['objtype'] )])
+
 
         if colAreal: 
         
@@ -602,6 +599,13 @@ def v4mengdetelling( v4, datakilde, telletype, regl, dakat, debug=None):
     kjenteFeil = kjenteproblem()
     if regl['Beskrivelse'] in kjenteFeil and kjenteFeil[regl['Beskrivelse']] != '': 
         kjent = kjenteFeil[regl['Beskrivelse']]
+
+    # Spesialregler for årlig klipp av kantareal, modifiserer V4 
+    # med et areal som er multiplisert med faktor 0.25-2
+    if 'YearlyGrassCuttingAreaPreset' in regl: 
+        v4areal = kantklippspesial( v4raadata, regl, dakat[str( regl['objtype'] )], strekning=telletype, debug=debug)
+        areal = v4areal['Areal'].sum()
+        lengde = np.nan
 
     tell = {    'type'          : 'telling',
                 'datakilde'     : datakilde,  

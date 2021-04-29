@@ -166,7 +166,7 @@ def kjenteproblem(skrivutalt=False, skrivutproblem=False ):
                 'Kanalisering primærveg'									: vekgryss, 
                 'Kanalisering sekundærveg'									: vekgryss, 
                 'Kantklippareal'											: arealfeil1, 
-                'Kantklippareal, årlig anbefalt areal'						: 'Må sjekke spesialregel for "Anbefalt årlig"', 
+                'Kantklippareal, årlig anbefalt areal'						: 'Fiksa spesialregel for "Anbefalt årlig"', 
                 'Kantstein'													: '', 
                 'Kantstolper'												: '', 
                 'Kollektivtrafikkterminaler'								: '', 
@@ -603,7 +603,7 @@ def applyYearlyGrassCuttingAreaPreset( anbefalt_intervall ):
 
     return faktor 
 
-def kantklippspesial( v4, regl, dakat  ):
+def kantklippspesial( v4, regl, dakat, strekning='', debug=False  ):
     """
     For kantklippareal har vi regelen YearlyGrassCuttingAreaPreset
     """
@@ -617,9 +617,40 @@ def kantklippspesial( v4, regl, dakat  ):
         print( f'Kantklippspesial: Mangler withAreaFromAttributeOrCrossSection i regel {regl} '   )        
         return v4
 
-    arealvariabel = dakat['egenskaper'][str(regl['withAreaFromAttributeOrCrossSection'][0])]['navn']
+    # Må fjerne dupliater (vegsegmenter, dvs Første forekomst=0) for dem som har Areal-egenskap
+    v4['orginal_areal'] = v4['Areal'] 
+    v4_enkle = v4[ ~v4['Areal'].isnull( ) ].drop_duplicates( subset=['Objekt Id'])
+    # v4_enkle = v4_enkle[ v4_enkle['Første forekomst'] == 1].copy()
+
+    v4_allesegmenter = v4[ v4['Areal'].isnull() ].copy()
+    v4_allesegmenter['Areal'] = v4_allesegmenter['Klippebredde, faktisk'] * v4_allesegmenter['Lengde vegnett']
+    v4 = pd.concat( [ v4_enkle, v4_allesegmenter])
+
     v4['kantklippfaktor'] = v4['Kantklipp, anbefalt intervall'].apply( lambda x : applyYearlyGrassCuttingAreaPreset( x )  )
+
+
+    # v4.loc[ v4['Areal'].isnull(), 'Areal' ] = v4[ v4['Areal'].isnull() ]['Klippebredde, faktisk'] * v4[ v4['Areal'].isnull() ]['Lengde vegnett' ]
+
+    arealvariabel = dakat['egenskaper'][str(regl['withAreaFromAttributeOrCrossSection'][0])]['navn']
+
+    if debug: 
+        print( "Debug kantklippareal ######################################################################################")
+        col = col = ['Objekt Id', 'Vegkategori', 'Fase', 'vegnummer', 'trafikantgruppe', 'Kantklipp, anbefalt intervall', 'kantklippfaktor', 
+                    'orginal_areal', 'Areal', 'Klippebredde, faktisk', 'Lengde vegnett', 'Filteringshjelp' ] 
+        utdrag = v4[col]
+        print( ';'.join( col ))
+        for ii, row in utdrag.iterrows(): 
+            pretty = [ str(x) for x in row ]
+            print( ';'.join( pretty ))
+
+        print( "Slutt Debug kantklippareal ######################################################################################")
+
     v4[arealvariabel] = v4[arealvariabel] * v4['kantklippfaktor']
+
+    # testsum = v4[ ~v4['orginal_areal'].isnull() ]['Areal'].sum()
+    # print( 'Anbefalt klippeareal for strekningen', strekning, 'når vi kun tar med dem som har egenskapverdi "Areal"\t\t', testsum)
+    # testsum2 = v4[ ~v4['Kantklipp, anbefalt intervall'].isnull() ]['Areal'].sum()
+    # print( 'Anbefalt klippeareal for strekningen når vi kun tar med dem som har egenskapverdi "Kantklipp, anbefalt intervall"\t\t', testsum2)
 
     return v4 
 

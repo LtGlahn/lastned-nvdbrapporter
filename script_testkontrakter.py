@@ -23,15 +23,15 @@ t0 = datetime.now()
 
 kontrakter = [ ]
 # kontrakter.append( '9304 Bergen' ) TEST DENNE for å se hva som skjer når du bruker ikke-eksisterende k.navn ... 
-kontrakter.append( '9305 Sunnfjord 2021-2026' )
-kontrakter.append( '1105 Indre Ryfylke 2015-2021' )
-kontrakter.append( '1102 Høgsfjord 2015-2020' )
-kontrakter.append( '1206 Voss 2014-2019' )
+# kontrakter.append( '9305 Sunnfjord 2021-2026' )
+# kontrakter.append( '1105 Indre Ryfylke 2015-2021' )
+# kontrakter.append( '1102 Høgsfjord 2015-2020' )
+# kontrakter.append( '1206 Voss 2014-2019' )
 kontrakter.append( '9108 Østerdalen 2021-2025' )
-kontrakter.append( '0104 Ørje 2012-2020' ) 
+# kontrakter.append( '0104 Ørje 2012-2020' ) 
 
 
-fname = 'nedlastinger-9apr-' + miljo + '.json'
+fname = 'nedlastinger-28apr-' + miljo + '.json'
 nedlasting = lastned.lastnedFlere( driftskontrakter=kontrakter, miljo=miljo)
 if nedlasting: 
     with open( fname, 'w', encoding='utf-8') as f: 
@@ -64,6 +64,8 @@ for komr in nedlasting:
     mappenavn = komr['mappe'] + '/'
     filnavn = driftqa.finnrapportfilnavn( mappenavn )
 
+    print( f"# Kontraktsområde {komr['kontraktsomrade']} \n\n``` ")
+
     (tellinger, differanser) = driftqa.mengdesjekk( mappenavn, objektliste, nvdbFilter= { 'kontraktsomrade' :  komr['kontraktsomrade'] }, brukNvdbData=False, debug=debug )  
     # føyer til navn på kontraktsområdet til differansene 
     differanser = [ dict( x, **{ 'omrade' : komr['kontraktsomrade'] }) for x in differanser ] # https://stackoverflow.com/a/34757497
@@ -80,8 +82,11 @@ for komr in nedlasting:
     with open(  htmlfilnavn, 'w') as f:
         f.write( svar )
 
+    print( '\n```\n\n')
+
 if isinstance( nedlasting, list) and len( nedlasting ) > 1: 
     diff = pd.DataFrame( flere_differ )
+    tell = pd.DataFrame( flere_tellinger )
     komraader = ', '.join( [ x['kontraktsomrade'] for x in nedlasting ] )
     svar  = driftqa.lagHtmlOppsummering( diff, omraade=komraader )
     with open( '../drift_tester/testsammendrag' + miljo + '_flererapporter.html', 'w') as f: 

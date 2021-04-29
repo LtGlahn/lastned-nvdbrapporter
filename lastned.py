@@ -245,7 +245,8 @@ def lastnedFlere(driftskontrakter = False, veglister=False, kostra=False, mappen
             mappe = mappenavn + '/veglister/' + str(komm )
             for rapportType in veglisteTyper: 
                 t2 = datetime.now()
-                parametre = { 'publisering' : rapportType['publisering'], 'kommune' : komm, 'vegsystemreferanse' : 'Rv706'  }
+                # parametre = { 'publisering' : rapportType['publisering'], 'kommune' : komm, 'vegsystemreferanse' : 'Rv706'  }
+                parametre = { 'publisering' : rapportType['publisering'], 'kommune' : komm  }
                 print( 'laster ned', mappe, rapportType['id'], rapportType['navn'])
                 lastned( apiurl, '/rapporter/veglister/' + str( rapportType['id']), parametre, 
                             os.path.join( mappe, rapportType['navn']), formater=rapportType['formater'] )
@@ -289,7 +290,7 @@ def lastnedFlere(driftskontrakter = False, veglister=False, kostra=False, mappen
             print( 'laster ned', mappe, rapportType['id'], rapportType['navn'])
             lastned( apiurl, '/rapporter/kostra/' + str( rapportType['id']), parametre, mappe + rapportType['navn']  )
 
-    if len( resultater) > 1: 
+    if len( resultater) > 0: 
         return resultater
 
 def lastnedveglister():

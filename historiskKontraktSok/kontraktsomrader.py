@@ -97,5 +97,5 @@ if __name__ == '__main__':
     dagensRappId = set( dagensrapp['Objekt Id'].to_list() )
     dagensFasit = set( fasit_dagens['nvdbId'].to_list())
 
-    dagensrapp_per2021 = pd.read_excel( 'dagens_vegoppmerkingtest_per20211230.xlsx', sheet_name='99 - Vegoppmerking, langsgående', skiprows=6 )
+    dagensrapp_per2021 = pd.read_excel( 'dagens_vegoppmerkingUTV_per20211230.xlsx', sheet_name='99 - Vegoppmerking, langsgående', skiprows=6 )
     dagensrapp_per2021 = dagensrapp_per2021[ dagensrapp_per2021['Første forekomst'] == 1]

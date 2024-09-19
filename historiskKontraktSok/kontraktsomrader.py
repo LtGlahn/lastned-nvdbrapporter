@@ -4,6 +4,8 @@ Finner dagens eller historiske kontraktsområder, og de fagdataene som hører ti
 import pandas as pd
 import geopandas as gpd
 from shapely import wkt 
+import json
+from copy import deepcopy 
 
 import STARTHER
 import nvdbapiv3 
@@ -20,6 +22,9 @@ def kontrakt2veglenkeposisjoner( kontraktObj:dict):
     for veg in stedfest['innhold']: 
         minListe.append(  f"{veg['startposisjon']}-{veg['sluttposisjon']}@{veg['veglenkesekvensid']}"  )
 
+    with open( 'veglenkeposisjonerDK9401_per20211230.json', 'w' ) as f:
+        json.dump( minListe, f, indent=4)
+
     return minListe 
 
 def hentFagdata( objektTypeId:int, veglenkeposisjoner:list, sokefilter={} ):
@@ -32,15 +37,34 @@ def hentFagdata( objektTypeId:int, veglenkeposisjoner:list, sokefilter={} ):
     inkrement = 10
     count = 0
 
+    # Logger liste med søkefilter til debugging
+    sokefilterliste = []
+
     tidspunkt = None
     if 'tidspunkt' in sokefilter:
         tidspunkt = sokefilter['tidspunkt']
 
     # Deler opp listen med veglenkeposisjoner i kortere og mer håndterbare biter 
+    # 
+    nvdbId = []
+    nvdbData = []
     while count < len( veglenkeposisjoner ): 
         sokefilter['veglenkesekvens'] = ','.join( veglenkeposisjoner[count : count + inkrement ] )
+        sokefilterliste.append( deepcopy( sokefilter ))
         count += inkrement
+        # mittsok = nvdbapiv3.nvdbFagdata( objektTypeId, filter=sokefilter )
+        # for etObj in mittsok:
+        #     nvdbId.append( etObj['id'] )
+        #     nvdbData.append( etObj )
         data.extend( nvdbapiv3.nvdbFagdata( objektTypeId, filter=sokefilter).to_records( vegsegmenter=False, tidspunkt=tidspunkt ))
+
+
+    # with open( 'nvdbdata.json', 'w') as f: 
+    #     json.dump( nvdbData, f, indent=4 )
+
+    # with open( 'nvdbId.json', 'w') as f: 
+    #     json.dump( nvdbId, f, indent=4 )
+
 
     if len( data ) > 0:
         myDf = pd.DataFrame( data )
@@ -86,16 +110,21 @@ if __name__ == '__main__':
     sok1 = '9401 Trondheim 2020-2025 (f.o.m. 01.09.2023)'
     tidspunkt = '2021-12-30'
 
-    data1 = finnKontraktNavn( sok1 )
+    # data1 = finnKontraktNavn( sok1 )
     data2 = finnKontraktNavn( sok1, tidspunkt=tidspunkt )
 
-    fasit_dagens = hentFagdata( 99, kontrakt2veglenkeposisjoner( data1[0] ) )
+    # fasit_dagens = hentFagdata( 99, kontrakt2veglenkeposisjoner( data1[0] ) )
+
     fasit_gammal = hentFagdata( 99, kontrakt2veglenkeposisjoner( data2[0] ), sokefilter={'tidspunkt' : tidspunkt } )
 
-    dagensrapp = pd.read_excel( 'dagens_vegoppmerkingtest.xlsx', sheet_name='99 - Vegoppmerking, langsgående', skiprows=6 )
-    dagensrapp = dagensrapp[ dagensrapp['Første forekomst'] == 1].copy()
-    dagensRappId = set( dagensrapp['Objekt Id'].to_list() )
-    dagensFasit = set( fasit_dagens['nvdbId'].to_list())
+    # dagensrapp = pd.read_excel( 'dagens_vegoppmerkingtest.xlsx', sheet_name='99 - Vegoppmerking, langsgående', skiprows=6 )
+    # dagensrapp = dagensrapp[ dagensrapp['Første forekomst'] == 1].copy()
+    # dagensRappId = set( dagensrapp['Objekt Id'].to_list() )
+    # dagensFasit = set( fasit_dagens['nvdbId'].to_list())
 
-    dagensrapp_per2021 = pd.read_excel( 'dagens_vegoppmerkingUTV_per20211230.xlsx', sheet_name='99 - Vegoppmerking, langsgående', skiprows=6 )
-    dagensrapp_per2021 = dagensrapp_per2021[ dagensrapp_per2021['Første forekomst'] == 1]
+    # dagensrapp_per2021 = pd.read_excel( 'dagens_vegoppmerkingUTV_per20211230.xlsx', sheet_name='99 - Vegoppmerking, langsgående', skiprows=6 )
+    # dagensrapp_per2021 = pd.read_excel( 'nvdb-rapport-Driftskontrakter_V4_9401_Trondheim_2020-2025_LAGET20231113UTV.xlsx', sheet_name='99 - Vegoppmerking, langsgående', skiprows=6 )
+    # dagensrapp_per2021 = pd.read_excel( 'nvdb-rapport-Driftskontrakter_V4_9401_Trondheim_2020-2025_LAGET20231113_ATM.xlsx', sheet_name='99 - Vegoppmerking, langsgående', skiprows=6 )
+    dagensrapp_per2021 = pd.read_excel( 'V4_testprod2311.xlsx', sheet_name='99 - Vegoppmerking, langsgående', skiprows=6 )
+    # dagensrapp_per2021 = dagensrapp_per2021[ dagensrapp_per2021['Første forekomst'] == 1]
+
